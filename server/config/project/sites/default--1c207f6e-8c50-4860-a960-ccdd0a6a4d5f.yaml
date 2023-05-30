@@ -1,0 +1,8 @@
+baseUrl: $PRIMARY_SITE_URL
+handle: default
+hasUrls: true
+language: en-US
+name: 'Kortrijk 2030'
+primary: true
+siteGroup: 825d900f-d973-45c3-bb99-5b5fb09d7ccd # Kortrijk 2030
+sortOrder: 1

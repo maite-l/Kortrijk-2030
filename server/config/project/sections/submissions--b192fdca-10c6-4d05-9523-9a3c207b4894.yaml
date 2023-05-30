@@ -1,0 +1,12 @@
+defaultPlacement: end
+enableVersioning: true
+handle: submissions
+name: Submissions
+propagationMethod: all
+siteSettings:
+  1c207f6e-8c50-4860-a960-ccdd0a6a4d5f: # Kortrijk 2030
+    enabledByDefault: true
+    hasUrls: true
+    template: submissions/_entry
+    uriFormat: 'submissions/{slug}'
+type: channel

@@ -1,0 +1,43 @@
+fieldLayouts:
+  af0c5da0-22c8-4294-9774-adeda105d90d:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            elementCondition: null
+            id: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: f386c501-34ff-4208-8177-aec3088357ca
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 4f0cc8fa-2ae2-4a45-8f9a-0d077cace9ff
+        userCondition: null
+handle: default
+hasTitleField: true
+name: Default
+section: ccd8aaae-5c1c-4541-930b-d49e46fbfab4 # Magazines
+sortOrder: 1
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

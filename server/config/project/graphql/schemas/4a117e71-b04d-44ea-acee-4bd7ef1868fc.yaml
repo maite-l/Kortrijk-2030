@@ -1,0 +1,19 @@
+isPublic: true
+name: 'Public Schema'
+scope:
+  - 'sites.1c207f6e-8c50-4860-a960-ccdd0a6a4d5f:read' # Kortrijk 2030
+  - 'sections.ccd8aaae-5c1c-4541-930b-d49e46fbfab4:read' # Magazines
+  - 'entrytypes.e5273228-0fc4-445e-929d-9a7b9f4e6ba6:read' # Default
+  - 'sections.b192fdca-10c6-4d05-9523-9a3c207b4894:read' # Submissions
+  - 'entrytypes.9c439a09-f867-4dcc-9afc-877e31c0d334:read' # Default
+  - 'usergroups.everyone:read'
+  - 'sections.ccd8aaae-5c1c-4541-930b-d49e46fbfab4:edit' # Magazines
+  - 'entrytypes.e5273228-0fc4-445e-929d-9a7b9f4e6ba6:edit' # Default
+  - 'entrytypes.e5273228-0fc4-445e-929d-9a7b9f4e6ba6:create' # Default
+  - 'entrytypes.e5273228-0fc4-445e-929d-9a7b9f4e6ba6:save' # Default
+  - 'entrytypes.e5273228-0fc4-445e-929d-9a7b9f4e6ba6:delete' # Default
+  - 'sections.b192fdca-10c6-4d05-9523-9a3c207b4894:edit' # Submissions
+  - 'entrytypes.9c439a09-f867-4dcc-9afc-877e31c0d334:edit' # Default
+  - 'entrytypes.9c439a09-f867-4dcc-9afc-877e31c0d334:create' # Default
+  - 'entrytypes.9c439a09-f867-4dcc-9afc-877e31c0d334:save' # Default
+  - 'entrytypes.9c439a09-f867-4dcc-9afc-877e31c0d334:delete' # Default

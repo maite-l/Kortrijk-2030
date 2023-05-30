@@ -1,0 +1,27 @@
+dateModified: 1685449131
+email:
+  fromEmail: maite.lejeune@student.howest.be
+  fromName: 'Kortrijk 2030'
+  transportType: craft\mail\transportadapters\Sendmail
+meta:
+  __names__:
+    1c207f6e-8c50-4860-a960-ccdd0a6a4d5f: 'Kortrijk 2030' # Kortrijk 2030
+    4a117e71-b04d-44ea-acee-4bd7ef1868fc: 'Public Schema' # Public Schema
+    9c439a09-f867-4dcc-9afc-877e31c0d334: Default # Default
+    825d900f-d973-45c3-bb99-5b5fb09d7ccd: 'Kortrijk 2030' # Kortrijk 2030
+    a6720840-f082-4e30-bafe-b8176bf62ccc: Common # Common
+    b192fdca-10c6-4d05-9523-9a3c207b4894: Submissions # Submissions
+    ccd8aaae-5c1c-4541-930b-d49e46fbfab4: Magazines # Magazines
+    e5273228-0fc4-445e-929d-9a7b9f4e6ba6: Default # Default
+system:
+  edition: pro
+  live: true
+  name: 'Kortrijk 2030'
+  schemaVersion: 4.4.0.4
+  timeZone: America/Los_Angeles
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: null
+  photoVolumeUid: null
+  requireEmailVerification: true
