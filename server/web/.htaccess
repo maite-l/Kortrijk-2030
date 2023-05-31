@@ -10,7 +10,7 @@
 # as long as we aren't requesting /admin or /api, show index.html
     RewriteBase /
     RewriteRule ^index\.html$ - [L]
-    RewriteCond %{REQUEST_URI} !(admin|api|setpassword)
+    RewriteCond %{REQUEST_URI} !(admin|api|setpassword|cpresources)
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-l
