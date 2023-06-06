@@ -35,3 +35,32 @@ export async function getMagazines() {
     console.log(magazines);
     return magazines;
 }
+
+
+// edit authorId when we have a user system
+export async function newTextSubmission(title, text, magazineSection) {
+    console.log(title, text, magazineSection);
+    const graphqlQuery = `
+    mutation NewTextSubmission($title: String, $text: String, $magazineSection: [Int]) {
+        save_submissions_textSubmission_Entry(
+            title: $title
+            text: $text
+            magazineSection: $magazineSection
+            authorId: 1
+        ) {
+            title
+            text
+            magazineSection {
+            title
+            id
+            }
+        }
+    }`;
+
+    const submission = (await graphQLRequest(
+        graphqlQuery,
+        { title: title, text: text, magazineSection: magazineSection }
+    )).data.save_submissions_textSubmission_Entry;
+    console.log(submission);
+    return submission;
+}

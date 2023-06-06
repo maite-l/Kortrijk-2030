@@ -10,8 +10,9 @@ import "./css/reset.css";
 import Root, { loader as rootLoader } from "./routes/root";
 import Home from "./routes/home";
 import Archive from "./routes/archive";
-import Profile from "./routes/profile";
-import SubmitOverview from "./routes/submit-overview";
+import MySubmissions from "./routes/my-submissions";
+import Submit from "./routes/submit";
+import Gossip, { action as gossipAction } from "./routes/submit/gossip";
 
 import ErrorPage from "./routes/error-page";
 
@@ -34,12 +35,22 @@ const router = createBrowserRouter([
             element: <Archive />,
           },
           {
-            path: "profile",
-            element: <Profile />,
+            path: "my-submissions",
+            element: <MySubmissions />,
           },
           {
-            path: "submit-overview",
-            element: <SubmitOverview />,
+            path: "submit",
+            children: [
+              {
+                index: true,
+                element: <Submit />,
+              },
+              {
+                path: "gossip",
+                element: <Gossip />,
+                action: gossipAction,
+              },
+            ],
           },
         ],
       },

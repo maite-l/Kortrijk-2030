@@ -11,10 +11,10 @@ export default function NavBar() {
                     <NavLink to="archive">Archive</NavLink>
                 </li>
                 <li>
-                    <NavLink to="submit-overview">Submit Your Work</NavLink>
+                    <NavLink to="submit">Submit Your Work</NavLink>
                 </li>
                 <li>
-                    <NavLink to="profile">My Profile</NavLink>
+                    <NavLink to="my-submissions">My Submissions</NavLink>
                 </li>
             </ul>
         </div>
