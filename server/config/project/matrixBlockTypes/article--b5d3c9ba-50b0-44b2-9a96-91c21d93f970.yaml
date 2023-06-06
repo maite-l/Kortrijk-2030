@@ -1,0 +1,46 @@
+field: c56de0da-5b44-478c-923b-0fbe204518f9 # articles to reply to 
+fieldLayouts:
+  1319baba-3203-43eb-8f06-b2960c9d67c1:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            elementCondition: null
+            fieldUid: 5532ab28-2cc4-40fc-aa89-be46645ae30b # title
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 3f4b4a4d-788e-45e8-863c-3a0d7e12f6b8
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: e94487ee-56d8-46cf-817e-9315b76254b0
+        userCondition: null
+fields:
+  5532ab28-2cc4-40fc-aa89-be46645ae30b: # title
+    columnSuffix: czsfrazu
+    contentColumnType: text
+    fieldGroup: null
+    handle: articleTitle
+    instructions: null
+    name: title
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: false
+      columnType: null
+      initialRows: 4
+      multiline: false
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+handle: article
+name: article
+sortOrder: 1

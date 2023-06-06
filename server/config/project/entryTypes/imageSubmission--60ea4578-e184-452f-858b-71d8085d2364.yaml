@@ -1,0 +1,97 @@
+fieldLayouts:
+  4682237c-2f04-4f94-b3c9-33807c300164:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            elementCondition: null
+            id: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: c99c4ded-407e-4593-a2c9-76f3c6ac465b
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 016e84f9-ad52-467d-ad64-15d59d126ea4 # image
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1ff314cf-93a6-49eb-b018-5c0d7cfae5e8
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: fa2997a3-0cb2-4f4b-beaf-5cf0e53dedbc # magazine section
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 5058c676-6df3-4f13-b7b7-3f9cecf129c8
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Submission content'
+        uid: b85c57d2-7541-4385-889a-7c8c65daa915
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            elementCondition: null
+            fieldUid: c6dd7f8a-0019-41b8-af12-1f61cb29d8b0 # approval status
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f1448cd6-aa4d-4c63-bf62-6c1ddda4be5a
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 43d610cc-1f89-426c-b57f-9f1def3f22f5 # issue number
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 86ae81da-cf75-44d2-ac61-426669d56f67
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Approval and info'
+        uid: aaab0b64-15b9-4741-adba-eb69f5865675
+        userCondition: null
+handle: imageSubmission
+hasTitleField: true
+name: 'image submission'
+section: b192fdca-10c6-4d05-9523-9a3c207b4894 # Submissions
+sortOrder: 2
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

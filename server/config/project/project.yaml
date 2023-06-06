@@ -1,18 +1,53 @@
-dateModified: 1685449131
+dateModified: 1686067363
 email:
   fromEmail: maite.lejeune@student.howest.be
   fromName: 'Kortrijk 2030'
   transportType: craft\mail\transportadapters\Sendmail
+fs:
+  images:
+    hasUrls: true
+    name: images
+    settings:
+      path: files/images
+    type: craft\fs\Local
+    url: /files/images
+  magazines:
+    hasUrls: true
+    name: magazines
+    settings:
+      path: files/magazines
+    type: craft\fs\Local
+    url: /files/magazines
 meta:
   __names__:
+    0a679b1b-7494-4145-9b3e-b61d860ad689: 'mixed submission' # mixed submission
     1c207f6e-8c50-4860-a960-ccdd0a6a4d5f: 'Kortrijk 2030' # Kortrijk 2030
+    2d48633e-8695-49d5-a2d6-b11041079468: 'featured topics' # featured topics
+    3be20871-ea45-45e2-a115-78a17368d0dd: submissions # submissions
     4a117e71-b04d-44ea-acee-4bd7ef1868fc: 'Public Schema' # Public Schema
-    9c439a09-f867-4dcc-9afc-877e31c0d334: Default # Default
+    05f2355e-cb3d-4d47-a6d4-4070f42479ee: topic # topic
+    6aad5e8f-7b65-4801-9462-f2016190d987: magazine # magazine
+    9c439a09-f867-4dcc-9afc-877e31c0d334: 'text submission' # text submission
+    016e84f9-ad52-467d-ad64-15d59d126ea4: image # image
+    43d610cc-1f89-426c-b57f-9f1def3f22f5: 'issue number' # issue number
+    60ea4578-e184-452f-858b-71d8085d2364: 'image submission' # image submission
+    238f07e6-f4bd-48c1-8de9-8eb03b03202f: Topic # Topic
     825d900f-d973-45c3-bb99-5b5fb09d7ccd: 'Kortrijk 2030' # Kortrijk 2030
+    5001e355-1c2e-4928-af3b-42af9458c17e: text # text
+    5532ab28-2cc4-40fc-aa89-be46645ae30b: title # title
+    6609f9f3-812e-40d4-84c4-e9e5e467b33d: 'issue date' # issue date
+    059366aa-5dad-411e-a9d9-08c0d05dec3c: sections # sections
     a6720840-f082-4e30-bafe-b8176bf62ccc: Common # Common
+    b5d3c9ba-50b0-44b2-9a96-91c21d93f970: article # article
     b192fdca-10c6-4d05-9523-9a3c207b4894: Submissions # Submissions
+    c6dd7f8a-0019-41b8-af12-1f61cb29d8b0: 'approval status' # approval status
+    c56de0da-5b44-478c-923b-0fbe204518f9: 'articles to reply to ' # articles to reply to 
     ccd8aaae-5c1c-4541-930b-d49e46fbfab4: Magazines # Magazines
+    ce8f2d7a-0d20-47e2-bf26-07ff8d530ffb: 'reply submission' # reply submission
     e5273228-0fc4-445e-929d-9a7b9f4e6ba6: Default # Default
+    ec282539-3cf4-46f1-b8e2-62016da734c5: keywords # keywords
+    f1b76377-5de4-4c7e-88bc-1bd49d48eaf9: magazines # magazines
+    fa2997a3-0cb2-4f4b-beaf-5cf0e53dedbc: 'magazine section' # magazine section
 system:
   edition: pro
   live: true

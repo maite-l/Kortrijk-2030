@@ -1,5 +1,5 @@
 fieldLayouts:
-  af0c5da0-22c8-4294-9774-adeda105d90d:
+  beba441b-0489-4324-b2d5-c45bea22f9f8:
     tabs:
       -
         elementCondition: null
@@ -26,31 +26,61 @@ fieldLayouts:
             tip: null
             title: null
             type: craft\fieldlayoutelements\entries\EntryTitleField
-            uid: f386c501-34ff-4208-8177-aec3088357ca
+            uid: fc6b4836-8b30-436f-9330-bb9089f9ccf8
             userCondition: null
             warning: null
             width: 100
           -
             elementCondition: null
-            fieldUid: 6aad5e8f-7b65-4801-9462-f2016190d987 # magazine
-            instructions: 'here you upload the pdf of the magazine (no bleed lines).'
+            fieldUid: 016e84f9-ad52-467d-ad64-15d59d126ea4 # image
+            instructions: null
             label: null
-            required: true
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: b56774dc-cdf6-4cd2-bf3c-71960fda80c1
+            uid: 99890d58-6dff-40d6-8bdc-cd4e13d52bd2
             userCondition: null
             warning: null
             width: 100
           -
             elementCondition: null
-            fieldUid: 6609f9f3-812e-40d4-84c4-e9e5e467b33d # issue date
-            instructions: 'what month and year is this issue published in?'
+            fieldUid: 5001e355-1c2e-4928-af3b-42af9458c17e # text
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 44f17d7b-70b1-4e65-b878-02048b042585
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: fa2997a3-0cb2-4f4b-beaf-5cf0e53dedbc # magazine section
+            instructions: null
             label: null
             required: true
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: ec083783-ef9a-4a75-8758-9bc4f77d6645
+            uid: f570d7a8-4622-462e-9a5b-93c39f6b5409
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Submission content'
+        uid: d48ab4b1-9500-4ae1-8101-8a3b6e4c744a
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            elementCondition: null
+            fieldUid: c6dd7f8a-0019-41b8-af12-1f61cb29d8b0 # approval status
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6d811232-3eea-4aca-a024-1f2472c2eceb
             userCondition: null
             warning: null
             width: 100
@@ -59,57 +89,21 @@ fieldLayouts:
             fieldUid: 43d610cc-1f89-426c-b57f-9f1def3f22f5 # issue number
             instructions: null
             label: null
-            required: true
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 082fcf90-9045-4d55-9911-3f575657c20b
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            elementCondition: null
-            fieldUid: 2d48633e-8695-49d5-a2d6-b11041079468 # featured topics
-            instructions: 'summarize the main topics of the magazine, this could be similar to what is on front of the magazine.'
-            label: null
-            required: true
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 80e386dc-2d00-4cda-ab68-c1845042e84b
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            elementCondition: null
-            fieldUid: ec282539-3cf4-46f1-b8e2-62016da734c5 # keywords
-            instructions: 'write down anything that is talked about in this issue. these words will be used to make sure users can look up issues based on their content through the search bar'
-            label: null
-            required: true
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: a2aa3182-13b5-4472-af40-8e6a1ae50332
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            elementCondition: null
-            fieldUid: c56de0da-5b44-478c-923b-0fbe204518f9 # articles to reply to 
-            instructions: 'if there are any articles that asked readers to reply to it, mention each of those article here.'
-            label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 5e6470d1-26a5-45e4-8dc3-f6f6de69f328
+            uid: d6441db4-4299-4ce6-a2cf-2fc5bce41600
             userCondition: null
             warning: null
             width: 100
-        name: Content
-        uid: 4f0cc8fa-2ae2-4a45-8f9a-0d077cace9ff
+        name: 'Approval and info'
+        uid: 37b544ed-7d25-4a83-bfa9-39dbbc210d3e
         userCondition: null
-handle: default
+handle: mixedSubmission
 hasTitleField: true
-name: Default
-section: ccd8aaae-5c1c-4541-930b-d49e46fbfab4 # Magazines
-sortOrder: 1
+name: 'mixed submission'
+section: b192fdca-10c6-4d05-9523-9a3c207b4894 # Submissions
+sortOrder: 3
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site

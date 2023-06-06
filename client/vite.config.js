@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://kortrijk2030.ddev.site",
+        target: "https://127.0.0.1:55674",
         changeOrigin: true,
         secure: false,
       },

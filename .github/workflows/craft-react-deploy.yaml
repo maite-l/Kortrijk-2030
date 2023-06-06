@@ -13,6 +13,8 @@ env:
   WEB_PATH: ~/subsites/integration.maite-lejeune.be
   SERVER_PATH: "server"
   CLIENT_PATH: "client"
+  VITE_API_IMAGES_URL: "https://integration.maite-lejeune.be/files/images"
+  VITE_API_MAGAZINES_URL: "https://integration.maite-lejeune.be/files/magazines"
 jobs:
   ftp-deploy:
     runs-on: ubuntu-latest
