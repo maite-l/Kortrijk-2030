@@ -8,9 +8,11 @@ scope:
   - 'entrytypes.9c439a09-f867-4dcc-9afc-877e31c0d334:read' # text submission
   - 'entrytypes.60ea4578-e184-452f-858b-71d8085d2364:read' # image submission
   - 'entrytypes.0a679b1b-7494-4145-9b3e-b61d860ad689:read' # mixed submission
+  - 'entrytypes.ce8f2d7a-0d20-47e2-bf26-07ff8d530ffb:read' # reply submission
   - 'volumes.3be20871-ea45-45e2-a115-78a17368d0dd:read' # submissions
   - 'volumes.f1b76377-5de4-4c7e-88bc-1bd49d48eaf9:read' # magazines
   - 'usergroups.everyone:read'
+  - 'categorygroups.059366aa-5dad-411e-a9d9-08c0d05dec3c:read' # sections
   - 'sections.ccd8aaae-5c1c-4541-930b-d49e46fbfab4:edit' # Magazines
   - 'entrytypes.e5273228-0fc4-445e-929d-9a7b9f4e6ba6:edit' # Default
   - 'entrytypes.e5273228-0fc4-445e-929d-9a7b9f4e6ba6:create' # Default
@@ -29,6 +31,10 @@ scope:
   - 'entrytypes.0a679b1b-7494-4145-9b3e-b61d860ad689:create' # mixed submission
   - 'entrytypes.0a679b1b-7494-4145-9b3e-b61d860ad689:save' # mixed submission
   - 'entrytypes.0a679b1b-7494-4145-9b3e-b61d860ad689:delete' # mixed submission
+  - 'entrytypes.ce8f2d7a-0d20-47e2-bf26-07ff8d530ffb:edit' # reply submission
+  - 'entrytypes.ce8f2d7a-0d20-47e2-bf26-07ff8d530ffb:create' # reply submission
+  - 'entrytypes.ce8f2d7a-0d20-47e2-bf26-07ff8d530ffb:save' # reply submission
+  - 'entrytypes.ce8f2d7a-0d20-47e2-bf26-07ff8d530ffb:delete' # reply submission
   - 'volumes.3be20871-ea45-45e2-a115-78a17368d0dd:edit' # submissions
   - 'volumes.3be20871-ea45-45e2-a115-78a17368d0dd:create' # submissions
   - 'volumes.3be20871-ea45-45e2-a115-78a17368d0dd:save' # submissions
