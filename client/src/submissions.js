@@ -1,7 +1,6 @@
 import { graphQLRequest } from "./util/graphql";
 
 export async function getSubmissions() {
-    console.log("getSubmissions");
     const graphqlQuery = `
     query MyQuery {
     submissionsEntries {
@@ -33,5 +32,6 @@ export async function getMagazines() {
         }
     }`;
     const magazines = (await graphQLRequest(graphqlQuery)).data.magazinesEntries;
+    console.log(magazines);
     return magazines;
 }
