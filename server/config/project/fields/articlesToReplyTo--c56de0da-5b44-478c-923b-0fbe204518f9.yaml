@@ -1,0 +1,16 @@
+columnSuffix: null
+contentColumnType: string
+fieldGroup: a6720840-f082-4e30-bafe-b8176bf62ccc # Common
+handle: articlesToReplyTo
+instructions: null
+name: 'articles to reply to '
+searchable: false
+settings:
+  contentTable: '{{%matrixcontent_articlestoreplyto}}'
+  maxBlocks: null
+  minBlocks: null
+  propagationKeyFormat: null
+  propagationMethod: all
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

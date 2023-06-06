@@ -1,0 +1,45 @@
+columnSuffix: ccprebcq
+contentColumnType: string
+fieldGroup: a6720840-f082-4e30-bafe-b8176bf62ccc # Common
+handle: approvalStatus
+instructions: 'use this to keep track of which entries have been approved or rejected. keep in mind that users can also see this, so don''t change it once you accepted or rejected.'
+name: 'approval status'
+searchable: false
+settings:
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - pending
+        -
+          - value
+          - pending
+        -
+          - default
+          - '1'
+    -
+      __assoc__:
+        -
+          - label
+          - approved
+        -
+          - value
+          - approved
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - 'not selected'
+        -
+          - value
+          - notSelected
+        -
+          - default
+          - ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\RadioButtons

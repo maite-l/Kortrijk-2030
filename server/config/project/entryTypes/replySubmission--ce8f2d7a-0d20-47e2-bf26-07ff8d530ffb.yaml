@@ -1,0 +1,97 @@
+fieldLayouts:
+  98e2c245-0c74-446b-b294-d3d9a3dbd9a0:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            elementCondition: null
+            id: null
+            instructions: null
+            label: 'article replied to'
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 3c091433-279e-4b20-aa7f-59312cbb2719
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 5001e355-1c2e-4928-af3b-42af9458c17e # text
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b04963da-2718-4724-8c50-0678265277b6
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: fa2997a3-0cb2-4f4b-beaf-5cf0e53dedbc # magazine section
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 3409a895-3c8f-47c3-b91c-164d2ce491d4
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Submisson content'
+        uid: 36c1ae3f-21ed-47dd-8ab1-da2b4e1fae9a
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            elementCondition: null
+            fieldUid: c6dd7f8a-0019-41b8-af12-1f61cb29d8b0 # approval status
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 91b87cb7-672f-44e2-858c-f622430a37c8
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 43d610cc-1f89-426c-b57f-9f1def3f22f5 # issue number
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 5441bfb6-e43b-4792-9ef1-e9268063bcd1
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Approval and info'
+        uid: 653bf13f-2bf7-423b-8c09-fe7681cff667
+        userCondition: null
+handle: replySubmission
+hasTitleField: true
+name: 'reply submission'
+section: b192fdca-10c6-4d05-9523-9a3c207b4894 # Submissions
+sortOrder: 4
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

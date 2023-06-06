@@ -1,5 +1,6 @@
+defaultPlacement: end
 fieldLayouts:
-  68c47fdf-367d-4233-819b-8b7e5c51be90:
+  0a61e53f-7f10-48b8-bda1-ab152b9d7d27:
     tabs:
       -
         elementCondition: null
@@ -25,19 +26,21 @@ fieldLayouts:
             step: null
             tip: null
             title: null
-            type: craft\fieldlayoutelements\entries\EntryTitleField
-            uid: a9c2d650-a626-443f-9bfd-9a244b17d114
+            type: craft\fieldlayoutelements\TitleField
+            uid: c37735ea-dd90-4508-aeab-f11d93861f50
             userCondition: null
             warning: null
             width: 100
         name: Content
-        uid: f06fd7ec-4f2a-4d62-b285-f7893fda25b6
+        uid: c3b15814-44c1-4484-beed-3b9a3e7b1ef5
         userCondition: null
-handle: default
-hasTitleField: true
-name: Default
-section: b192fdca-10c6-4d05-9523-9a3c207b4894 # Submissions
-sortOrder: 1
-titleFormat: null
-titleTranslationKeyFormat: null
-titleTranslationMethod: site
+handle: sections
+name: sections
+siteSettings:
+  1c207f6e-8c50-4860-a960-ccdd0a6a4d5f: # Kortrijk 2030
+    hasUrls: true
+    template: null
+    uriFormat: 'sections/{slug}'
+structure:
+  maxLevels: null
+  uid: 77a3f2ae-29f2-47c1-97a6-a0a049b7afc9

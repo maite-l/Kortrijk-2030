@@ -1,0 +1,19 @@
+columnSuffix: nlgjewcs
+contentColumnType: text
+fieldGroup: a6720840-f082-4e30-bafe-b8176bf62ccc # Common
+handle: issueDate
+instructions: null
+name: 'issue date'
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  columnType: null
+  initialRows: 4
+  multiline: false
+  placeholder: 'July 2023'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText
