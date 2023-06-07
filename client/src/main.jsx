@@ -13,6 +13,7 @@ import Archive from "./routes/archive";
 import MySubmissions from "./routes/my-submissions";
 import Submit from "./routes/submit";
 import Gossip, { action as gossipAction } from "./routes/submit/gossip";
+import Photography, { action as photographyAction } from "./routes/submit/photography";
 
 import ErrorPage from "./routes/error-page";
 
@@ -49,6 +50,11 @@ const router = createBrowserRouter([
                 path: "gossip",
                 element: <Gossip />,
                 action: gossipAction,
+              },
+              {
+                path: "photography",
+                element: <Photography />,
+                action: photographyAction,
               },
             ],
           },

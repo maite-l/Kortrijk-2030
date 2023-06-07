@@ -62,8 +62,7 @@ export async function newTextSubmission(title, text, magazineSection) {
             magazineSection: $magazineSection
             authorId: 1
         ) {
-            title
-            text
+            id
         }
     }`;
 
@@ -76,3 +75,39 @@ export async function newTextSubmission(title, text, magazineSection) {
 }
 
 
+export async function newImageAsset(filename, base64String) {
+    const graphqlQuery = `
+    mutation NewSubmissionAsset($fileData: String, $fileName: String) {
+            save_submissions_Asset(_file: {fileData: $fileData, filename: $fileName}) {
+                id
+            }
+        }
+    `;
+    const imgAsset = (await graphQLRequest(
+        graphqlQuery,
+        { fileName: filename, fileData: base64String }
+    )).data.save_submissions_Asset;
+    console.log(imgAsset);
+    return imgAsset;
+}
+
+export async function newImageSubmission(title, imgId, magazineSection) {
+    const graphqlQuery = `
+    mutation NewImgSubmission($title: String, $image: [Int], $magazineSection: [Int]) {
+        save_submissions_imageSubmission_Entry(
+            title: $title
+            image: $image
+            magazineSection: $magazineSection
+            authorId: 1
+        ) {
+            id
+        }
+        }
+    `;
+    const submission = (await graphQLRequest(
+        graphqlQuery,
+        { title: title, image: parseInt(imgId), magazineSection: parseInt(magazineSection) }
+    )).data.save_submissions_imageSubmission_Entry;
+    console.log(submission);
+    return submission;
+}
