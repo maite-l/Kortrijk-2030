@@ -9,8 +9,8 @@ import { createContext } from 'react';
 import NavBar from "../components/NavBar";
 
 // data
-import { getSubmissions } from "../submissions";
-import { getMagazines } from "../submissions";
+// import { getSubmissions } from "../submissions";
+// import { getMagazines } from "../submissions";
 
 // global context
 const IMG_URL = import.meta.env.VITE_API_IMAGES_URL || "https://kortrijk2030.ddev.site/files/images/";

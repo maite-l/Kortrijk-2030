@@ -1,14 +1,19 @@
 import { Form, redirect } from 'react-router-dom';
 
-import { newTextSubmission } from "../../submissions";
+import { getMagazineSectionByTitle, newTextSubmission } from "../../submissions";
 
 export async function action({ request }) {
+    const category = await getMagazineSectionByTitle('article');
+    const magazineSection = category[0].id;
+
+
     const formData = await request.formData();
     console.log(Object.fromEntries(formData));
     const { title, text } = Object.fromEntries(formData);
-    // const magazineSection = [59];
-    console.log(title, text);
-    const submission = await newTextSubmission(title, text);
+
+    console.log(title, text, magazineSection);
+    
+    const submission = await newTextSubmission(title, text, magazineSection);
     console.log(submission);
     throw redirect("/submit");
 }
