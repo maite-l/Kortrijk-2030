@@ -15,5 +15,6 @@ export const graphQLRequest = async (query, variables = {}) => {
         console.log(result);
         throw new Error(result.errors[0].message);
     }
+    console.log(result);
     return result;
 };
