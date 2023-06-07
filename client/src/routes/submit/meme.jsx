@@ -1,52 +1,64 @@
 import { Form, redirect } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext } from 'react';
 
+//global context
+import { GlobalContext } from '../root';
+
+//submission queries and mutations
 import { getMagazineSectionByTitle, newImageAsset, newMixedSubmission } from "../../submissions";
 
-let imgName;
-let imgString;
+import { fileInputChange } from '../../util/util';
+
+//variables
+let imgNamesResult = [];
+let imgStringsResult = [];
 
 export async function action({ request }) {
-    const imgAsset = await newImageAsset(imgName, imgString);
-    const imgId = imgAsset.id;
-    console.log(imgId);
 
+    let imgIds = [];
+    //create image assets
+    const imageAssetPromises = imgNamesResult.map(async (imgName, index) => {
+        console.log(imgName);
+        console.log(imgNamesResult[index]);
+        const imgAsset = await newImageAsset(imgName, imgStringsResult[index]);
+        imgIds.push(imgAsset.id);
+        console.log(imgIds);
+    });
+
+    //wait for all the assets to be made
+    await Promise.all(imageAssetPromises);
+
+    console.log(imgNamesResult);
+    console.log(imgStringsResult);
+
+    //get form data
     const formData = await request.formData();
     const { title, text } = Object.fromEntries(formData);
     console.log(title, text);
 
+    //get magazine section
     const category = await getMagazineSectionByTitle('meme');
     const magazineSection = category[0].id;
     console.log(magazineSection);
 
-    const submission = await newMixedSubmission(title, text, imgId, magazineSection);
+    //create submission
+    const submission = await newMixedSubmission(title, text, imgIds, magazineSection);
     console.log(submission);
     throw redirect("/submit");
 }
 
 export default function Meme() {
 
-    const [base64String, setBase64String] = useState('');
-    const [filename, setFilename] = useState('');
+    //global context
+    const { maxImgCount, maxImgSizeInMb } = useContext(GlobalContext);
 
+    //update variables every time files are uploaded
     const handleFileInputChange = (event) => {
-        const file = event.target.files[0];
-        const reader = new FileReader(); // -> web api
-
-        reader.onloadend = () => {
-            const base64String = reader.result;
-            setBase64String(base64String);
-            const filename = event.target.files[0].name;
-            setFilename(filename);
-
-            console.log(base64String);
-            console.log(filename);
-
-            imgName = filename;
-            imgString = base64String;
-        };
-
-        reader.readAsDataURL(file);
+        const fileInputResult = fileInputChange(event, maxImgCount, maxImgSizeInMb);
+        const imgNames = fileInputResult ? fileInputResult.imgNames : [];
+        const imgStrings = fileInputResult ? fileInputResult.imgStrings : [];
+        imgNamesResult = imgNames;
+        imgStringsResult = imgStrings;
     };
 
     return (
@@ -71,6 +83,7 @@ export default function Meme() {
                         type="file"
                         name="image"
                         accept="image/png, image/jpeg, image/jpg"
+                        multiple
                         onChange={handleFileInputChange}
                     />
                 </label>
