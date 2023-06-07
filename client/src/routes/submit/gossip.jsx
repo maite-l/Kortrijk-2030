@@ -6,9 +6,9 @@ export async function action({ request }) {
     const formData = await request.formData();
     console.log(Object.fromEntries(formData));
     const { title, text } = Object.fromEntries(formData);
-    const magazineSection = [59];
-    console.log(title, text, magazineSection);
-    const submission = await newTextSubmission(title, text, magazineSection);
+    // const magazineSection = [59];
+    console.log(title, text);
+    const submission = await newTextSubmission(title, text);
     console.log(submission);
     throw redirect("/submit");
 }
