@@ -111,3 +111,27 @@ export async function newImageSubmission(title, imgId, magazineSection) {
     console.log(submission);
     return submission;
 }
+
+
+export async function newMixedSubmission(title, text, imgId, magazineSection) {
+    const graphqlQuery = `
+    mutation NewSubmissionAsset($title: String, $image: [Int], $text: String, $magazineSection: [Int]) {
+        save_submissions_mixedSubmission_Entry(
+            title: $title
+            image: $image
+            text: $text
+            magazineSection: $magazineSection
+            authorId: 1
+        ) {
+            id
+        }
+    }
+    `;
+    const submission = (await graphQLRequest(
+        graphqlQuery,
+        { title: title, image: parseInt(imgId), text: text, magazineSection: parseInt(magazineSection) }
+    )).data.save_submissions_mixedSubmission_Entry;
+    console.log(submission);
+    return submission;
+}
+

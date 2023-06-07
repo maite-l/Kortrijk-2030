@@ -4,6 +4,7 @@ export default function Submit() {
             <h1>Submit your work</h1>
             <a href="submit/gossip">gossip</a>
             <a href="submit/photography">my photography</a>
+            <a href="submit/meme">meme</a>
         </div>
     );
 }
