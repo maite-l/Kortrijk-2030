@@ -91,7 +91,9 @@ export async function newImageAsset(filename, base64String) {
     return imgAsset;
 }
 
-export async function newImageSubmission(title, imgId, magazineSection) {
+export async function newImageSubmission(title, imgIds, magazineSection) {
+    const ImgIdsIntArray = imgIds.map(id => parseInt(id));
+
     const graphqlQuery = `
     mutation NewImgSubmission($title: String, $image: [Int], $magazineSection: [Int]) {
         save_submissions_imageSubmission_Entry(
@@ -106,7 +108,7 @@ export async function newImageSubmission(title, imgId, magazineSection) {
     `;
     const submission = (await graphQLRequest(
         graphqlQuery,
-        { title: title, image: parseInt(imgId), magazineSection: parseInt(magazineSection) }
+        { title: title, image: ImgIdsIntArray, magazineSection: parseInt(magazineSection) }
     )).data.save_submissions_imageSubmission_Entry;
     console.log(submission);
     return submission;

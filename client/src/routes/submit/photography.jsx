@@ -1,52 +1,86 @@
 import { Form, redirect } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext } from 'react';
+
+import { GlobalContext } from '../root';
 
 import { getMagazineSectionByTitle, newImageAsset, newImageSubmission } from "../../submissions";
 
-let imgName;
-let imgString;
+let imgNames = [];
+let imgStrings = [];
 
 export async function action({ request }) {
-    const category = await getMagazineSectionByTitle('photography');
-    const magazineSection = category[0].id;
-    console.log(magazineSection);
 
-    const imgAsset = await newImageAsset(imgName, imgString);
-    const imgId = imgAsset.id;
-    console.log(imgId);
+    let imgIds = [];
+    const imageAssetPromises = imgNames.map(async (imgName, index) => {
+        console.log(imgName);
+        console.log(imgStrings[index]);
+        const imgAsset = await newImageAsset(imgName, imgStrings[index]);
+        imgIds.push(imgAsset.id);
+        console.log(imgIds);
+    });
+
+    await Promise.all(imageAssetPromises);
+
+    console.log(imgNames);
+    console.log(imgStrings);
 
     const formData = await request.formData();
     const { title } = Object.fromEntries(formData);
     console.log(title);
 
-    const submission = await newImageSubmission(title, imgId, magazineSection);
+    const category = await getMagazineSectionByTitle('photography');
+    const magazineSection = category[0].id;
+    console.log(magazineSection);
+
+    const submission = await newImageSubmission(title, imgIds, magazineSection);
     console.log(submission);
     throw redirect("/submit");
 }
 
 export default function Gossip() {
 
-    const [base64String, setBase64String] = useState('');
-    const [filename, setFilename] = useState('');
+    const { maxImgCount, maxImgSizeInMb } = useContext(GlobalContext);
 
     const handleFileInputChange = (event) => {
-        const file = event.target.files[0];
-        const reader = new FileReader(); // -> web api
+        imgNames = [];
+        imgStrings = [];
 
-        reader.onloadend = () => {
-            const base64String = reader.result;
-            setBase64String(base64String);
-            const filename = event.target.files[0].name;
-            setFilename(filename);
+        if (event.target.files.length > maxImgCount) {
+            alert(`You can only upload a maximum of ${maxImgCount} images`);
+            event.target.value = null;
+            return;
+        }
+        else {
+            for (let i = 0; i < event.target.files.length; i++) {
+                if (event.target.files[i].size > maxImgSizeInMb*1024*1024) { 
+                    alert(`One or more of your images is too large. Please limit your image size to ${maxImgSizeInMb}MB`);
+                    return;
+                }
+                else {
+                    const file = event.target.files[i];
+                    const reader = new FileReader(); // -> web api
 
-            console.log(base64String);
-            console.log(filename);
+                    reader.onloadend = () => {
+                        const base64String = reader.result;
+                        const filename = event.target.files[i].name;
 
-            imgName = filename;
-            imgString = base64String;
-        };
+                        console.log(base64String);
+                        console.log(filename);
 
-        reader.readAsDataURL(file);
+                        imgNames.push(filename);
+                        imgStrings.push(base64String);
+
+                        console.log(imgNames);
+                        console.log(imgStrings);
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+
+
+
     };
 
     return (
@@ -71,6 +105,7 @@ export default function Gossip() {
                         type="file"
                         name="image"
                         accept="image/png, image/jpeg, image/jpg"
+                        multiple
                         onChange={handleFileInputChange}
                     />
                 </label>

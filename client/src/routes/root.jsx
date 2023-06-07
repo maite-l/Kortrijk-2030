@@ -15,7 +15,11 @@ import NavBar from "../components/NavBar";
 // global context
 const IMG_URL = import.meta.env.VITE_API_IMAGES_URL || "https://kortrijk2030.ddev.site/files/images/";
 const MAGAZINES_URL = import.meta.env.VITE_API_MAGAZINES_URL || "https://kortrijk2030.ddev.site/files/magazines/";
-const GlobalContext = createContext({ imgURL: IMG_URL, magazineURL: MAGAZINES_URL });
+
+const maxImgCount = 5; 
+const maxImgSizeInMb = 16; //https://craftcms.stackexchange.com/questions/492/when-uploading-assets-what-determines-the-maximum-file-size
+
+export const GlobalContext = createContext();
 
 export async function loader() {
     console.log("Loading root");
@@ -38,7 +42,7 @@ export default function Root() {
 
 
     return (
-        <GlobalContext.Provider value={{ imgURL: IMG_URL, magazineURL: MAGAZINES_URL }}>
+        <GlobalContext.Provider value={{ imgURL: IMG_URL, magazineURL: MAGAZINES_URL, maxImgCount, maxImgSizeInMb}}>
             <NavBar />
             <Outlet />
 
