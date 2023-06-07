@@ -1,51 +1,65 @@
 import { graphQLRequest } from "./util/graphql";
 
-export async function getSubmissions() {
-    const graphqlQuery = `
-    query MyQuery {
-    submissionsEntries {
-        ... on submissions_mixedSubmission_Entry {
-        id
-        title
-        text
-        image {
-            path
-        }
-        }
-    }
-    }`;
-    const submissions = (await graphQLRequest(graphqlQuery)).data.submissionsEntries;
-    console.log(submissions);
-    return submissions;
-}
+// export async function getSubmissions() {
+//     const graphqlQuery = `
+//     query MyQuery {
+//     submissionsEntries {
+//         ... on submissions_mixedSubmission_Entry {
+//         id
+//         title
+//         text
+//         image {
+//             path
+//         }
+//         }
+//     }
+//     }`;
+//     const submissions = (await graphQLRequest(graphqlQuery)).data.submissionsEntries;
+//     console.log(submissions);
+//     return submissions;
+// }
 
-export async function getMagazines() {
+// export async function getMagazines() {
+//     const graphqlQuery = `
+//     query MyQuery {
+//         magazinesEntries {
+//             ... on magazines_default_Entry {
+//             id
+//             magazine {
+//                 path
+//             }
+//             }
+//         }
+//     }`;
+//     const magazines = (await graphQLRequest(graphqlQuery)).data.magazinesEntries;
+//     console.log(magazines);
+//     return magazines;
+// }
+
+
+
+export async function getMagazineSectionByTitle(categoryTitle) {
     const graphqlQuery = `
-    query MyQuery {
-        magazinesEntries {
-            ... on magazines_default_Entry {
+    query GetMagazineSections($categoryTitle: [String]) {
+        categories(title: $categoryTitle) {
             id
-            magazine {
-                path
-            }
-            }
         }
     }`;
-    const magazines = (await graphQLRequest(graphqlQuery)).data.magazinesEntries;
-    console.log(magazines);
-    return magazines;
+    const magazineSections = (await graphQLRequest(graphqlQuery, { categoryTitle: categoryTitle })).data.categories;
+    console.log(magazineSections);
+    return magazineSections;
 }
 
 
 // edit authorId when we have a user system
-export async function newTextSubmission(title, text) {
-    console.log(title, text);
+export async function newTextSubmission(title, text, magazineSection) {
+    console.log(title, text, magazineSection);
     const graphqlQuery = `
-    mutation NewTextSubmission($title: String, $text: String) {
+    mutation NewTextSubmission($title: String, $text: String, $magazineSection: [Int]) {
         save_submissions_textSubmission_Entry(
             title: $title
             text: $text
-
+            magazineSection: $magazineSection
             authorId: 1
         ) {
             title
@@ -55,11 +69,10 @@ export async function newTextSubmission(title, text) {
 
     const submission = (await graphQLRequest(
         graphqlQuery,
-        { title: title, text: text }
+        { title: title, text: text, magazineSection: parseInt(magazineSection) }
     )).data.save_submissions_textSubmission_Entry;
     console.log(submission);
     return submission;
 }
 
 
-// magazineSection: $magazineSection
