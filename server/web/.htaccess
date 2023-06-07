@@ -1,8 +1,8 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    RewriteCond %{HTTP:Authorization} ^(.*)
-    RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+    # RewriteCond %{HTTP:Authorization} ^(.*)
+    # RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
 
 # prefer index.html above index.php
     RewriteRule ^$  /index.html [L]
