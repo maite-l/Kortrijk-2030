@@ -7,10 +7,6 @@ let imgName;
 let imgString;
 
 export async function action({ request }) {
-    const category = await getMagazineSectionByTitle('meme');
-    const magazineSection = category[0].id;
-    console.log(magazineSection);
-
     const imgAsset = await newImageAsset(imgName, imgString);
     const imgId = imgAsset.id;
     console.log(imgId);
@@ -18,6 +14,10 @@ export async function action({ request }) {
     const formData = await request.formData();
     const { title, text } = Object.fromEntries(formData);
     console.log(title, text);
+
+    const category = await getMagazineSectionByTitle('meme');
+    const magazineSection = category[0].id;
+    console.log(magazineSection);
 
     const submission = await newMixedSubmission(title, text, imgId, magazineSection);
     console.log(submission);
