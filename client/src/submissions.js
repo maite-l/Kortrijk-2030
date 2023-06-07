@@ -115,7 +115,9 @@ export async function newImageSubmission(title, imgIds, magazineSection) {
 }
 
 
-export async function newMixedSubmission(title, text, imgId, magazineSection) {
+export async function newMixedSubmission(title, text, imgIds, magazineSection) {
+    const ImgIdsIntArray = imgIds.map(id => parseInt(id));
+
     const graphqlQuery = `
     mutation NewSubmissionAsset($title: String, $image: [Int], $text: String, $magazineSection: [Int]) {
         save_submissions_mixedSubmission_Entry(
@@ -131,7 +133,7 @@ export async function newMixedSubmission(title, text, imgId, magazineSection) {
     `;
     const submission = (await graphQLRequest(
         graphqlQuery,
-        { title: title, image: parseInt(imgId), text: text, magazineSection: parseInt(magazineSection) }
+        { title: title, image: ImgIdsIntArray, text: text, magazineSection: parseInt(magazineSection) }
     )).data.save_submissions_mixedSubmission_Entry;
     console.log(submission);
     return submission;
