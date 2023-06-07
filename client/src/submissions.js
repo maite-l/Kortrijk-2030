@@ -38,29 +38,28 @@ export async function getMagazines() {
 
 
 // edit authorId when we have a user system
-export async function newTextSubmission(title, text, magazineSection) {
-    console.log(title, text, magazineSection);
+export async function newTextSubmission(title, text) {
+    console.log(title, text);
     const graphqlQuery = `
-    mutation NewTextSubmission($title: String, $text: String, $magazineSection: [Int]) {
+    mutation NewTextSubmission($title: String, $text: String) {
         save_submissions_textSubmission_Entry(
             title: $title
             text: $text
-            magazineSection: $magazineSection
+
             authorId: 1
         ) {
             title
             text
-            magazineSection {
-            title
-            id
-            }
         }
     }`;
 
     const submission = (await graphQLRequest(
         graphqlQuery,
-        { title: title, text: text, magazineSection: magazineSection }
+        { title: title, text: text }
     )).data.save_submissions_textSubmission_Entry;
     console.log(submission);
     return submission;
 }
+
+
+// magazineSection: $magazineSection
