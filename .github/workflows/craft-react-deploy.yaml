@@ -45,7 +45,7 @@ jobs:
 
       - name: 🚢 Deploy web files with rsync
         run: |
-          rsync -azh --delete-after --exclude={"index.php","assets"} -e "ssh -o StrictHostKeyChecking=no" ./${{env.SERVER_PATH}}/web/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{env.WEB_PATH}}
+          rsync -azh --delete-after --exclude={"index.php","assets","files"} -e "ssh -o StrictHostKeyChecking=no" ./${{env.SERVER_PATH}}/web/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{env.WEB_PATH}}
 
       # Comment out this section if you deploy your frontend somewhere else
       - name: 🚢 Deploy react build wit rsync
