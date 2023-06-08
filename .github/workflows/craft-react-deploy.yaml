@@ -50,7 +50,7 @@ jobs:
       # Comment out this section if you deploy your frontend somewhere else
       - name: 🚢 Deploy react build wit rsync
         run: |
-          rsync -azh --delete-after --exclude={"index.php",".htaccess","cpresources"}  -e "ssh -o StrictHostKeyChecking=no" ./${{env.CLIENT_PATH}}/dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{env.WEB_PATH}}
+          rsync -azh --delete-after --exclude={"index.php",".htaccess","cpresources","files"}  -e "ssh -o StrictHostKeyChecking=no" ./${{env.CLIENT_PATH}}/dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{env.WEB_PATH}}
 
       # execute commands on remote server
       - name: 💻 Execute SSH commmands on remote server
