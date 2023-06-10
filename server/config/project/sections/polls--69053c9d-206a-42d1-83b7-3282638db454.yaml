@@ -1,0 +1,24 @@
+defaultPlacement: end
+enableVersioning: true
+handle: polls
+name: Polls
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  1c207f6e-8c50-4860-a960-ccdd0a6a4d5f: # Kortrijk 2030
+    enabledByDefault: true
+    hasUrls: true
+    template: polls/_entry
+    uriFormat: 'polls/{slug}'
+type: channel

@@ -8,7 +8,7 @@ import {
 import "./css/reset.css";
 
 import Root, { loader as rootLoader } from "./routes/root";
-import Home from "./routes/home";
+import Home, { loader as homeLoader, action as homeAction } from "./routes/home";
 import Archive from "./routes/archive";
 import MySubmissions from "./routes/my-submissions";
 import Submit from "./routes/submit";
@@ -31,6 +31,8 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Home />,
+            loader: homeLoader,
+            action: homeAction,
           },
           {
             path: "archive",

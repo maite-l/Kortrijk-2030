@@ -74,6 +74,31 @@ export async function newTextSubmission(title, text, magazineSection) {
     return submission;
 }
 
+export async function newPollSubmission(title, text, magazineSection, issueNumber) {
+    console.log(issueNumber)
+    console.log(title, text, magazineSection, issueNumber);
+    const graphqlQuery = `
+    mutation NewPollSubmission($title: String, $text: String, $magazineSection: [Int], $issueNumber: Number) {
+        save_submissions_textSubmission_Entry(
+            title: $title
+            text: $text
+            magazineSection: $magazineSection
+            authorId: 1
+            issueNumber: $issueNumber
+        ) {
+            id
+        }
+    }
+    `;
+
+    const submission = (await graphQLRequest(
+        graphqlQuery,
+        { title: title, text: text, magazineSection: parseInt(magazineSection), issueNumber: parseInt(issueNumber) }
+    )).data.save_submissions_textSubmission_Entry;
+    console.log(submission);
+    return submission;
+}
+
 
 export async function newImageAsset(filename, base64String) {
     const graphqlQuery = `
