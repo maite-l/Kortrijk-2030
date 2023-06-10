@@ -1,0 +1,79 @@
+field: 324575b1-4aa1-470b-a0b3-45adf161a21b # poll options
+fieldLayouts:
+  186b8f36-046c-4644-95af-c172ef557d3b:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            elementCondition: null
+            fieldUid: 2a0b235e-6f75-4298-b15e-f28e3bec4452 # option name
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 3159f9d1-36eb-4446-9096-c5f2708f89d1
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 8c9b42bd-a9c2-4358-ace3-cc4ad0e2cc40 # vote amount
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6e60a07a-75c0-44d9-8716-2e3777531a22
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: dd8faa8a-e95a-4248-994b-641c59cc7dc7
+        userCondition: null
+fields:
+  2a0b235e-6f75-4298-b15e-f28e3bec4452: # option name
+    columnSuffix: cforjaiw
+    contentColumnType: text
+    fieldGroup: null
+    handle: optionName
+    instructions: null
+    name: 'option name'
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: false
+      columnType: null
+      initialRows: 4
+      multiline: false
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  8c9b42bd-a9c2-4358-ace3-cc4ad0e2cc40: # vote amount
+    columnSuffix: bexypxwv
+    contentColumnType: integer(10)
+    fieldGroup: null
+    handle: voteAmount
+    instructions: null
+    name: 'vote amount'
+    searchable: false
+    settings:
+      decimals: 0
+      defaultValue: 0
+      max: null
+      min: 0
+      prefix: null
+      previewCurrency: null
+      previewFormat: decimal
+      size: null
+      suffix: null
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+handle: option2
+name: option2
+sortOrder: 2

@@ -1,0 +1,79 @@
+fieldLayouts:
+  8c9b7c06-40a1-40f3-884f-d35ea5d7bc52:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            elementCondition: null
+            id: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: dec918a2-1b62-4d47-bae2-b9ded18090f8
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 43d610cc-1f89-426c-b57f-9f1def3f22f5 # issue number
+            instructions: 'what is the number of the issue the results of this poll will be posted in?'
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 49c8c496-9a61-4531-97f7-174a6e661316
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 6609f9f3-812e-40d4-84c4-e9e5e467b33d # issue date
+            instructions: 'when will the issue that contains these results be released?'
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: de780044-e5a1-4f56-9763-8d56a62ed390
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 324575b1-4aa1-470b-a0b3-45adf161a21b # poll options
+            instructions: 'here, fill in what two options you want people to vote on. don''t edit the vote amount.'
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 113abbec-d28d-49be-b5b9-3dd994385296
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 1fb554aa-0fad-4924-91d2-438c0d84a405
+        userCondition: null
+handle: default
+hasTitleField: true
+name: Default
+section: 69053c9d-206a-42d1-83b7-3282638db454 # Polls
+sortOrder: 1
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
