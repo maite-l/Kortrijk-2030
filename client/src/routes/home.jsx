@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Form, useLoaderData } from "react-router-dom";
 
+import { GlobalContext } from "../routes/root";
+
 import { getCurrentPoll, updateVoteAmountOne, updateVoteAmountTwo } from "../polls";
-import { getMagazineSectionByTitle, newPollSubmission } from "../submissions";
+import { newPollSubmission, getMagazineSectionByTitle, getCurrentFeaturedSubmissions } from "../submissions";
+import { getCurrentIssue } from "../magazines";
 
 let date;
 let number;
@@ -30,8 +33,34 @@ export async function loader() {
     date = issueDate;
     number = issueNumber;
 
-    //pass down to component
-    return { optionOne, optionTwo, issueDate, pollId, voted, submissionPosted };
+    //get current issue
+    const currentIssue = await getCurrentIssue();
+    console.log(currentIssue);
+
+    //get current featured submissions in random order
+    const currentIssueNumber = currentIssue[0].issueNumber;
+    console.log(currentIssueNumber);
+
+    const currentFeaturedSubmissions = await getCurrentFeaturedSubmissions(currentIssueNumber);
+    console.log(currentFeaturedSubmissions);
+
+    const shuffledFeaturedSubmissions = Object.values(currentFeaturedSubmissions);
+    console.log(shuffledFeaturedSubmissions);
+
+    shuffledFeaturedSubmissions.sort(() => Math.random() - 0.5);
+    console.log(shuffledFeaturedSubmissions);
+
+
+    return {
+        optionOne,
+        optionTwo,
+        issueDate,
+        pollId,
+        voted,
+        submissionPosted,
+        currentIssue,
+        shuffledFeaturedSubmissions
+    };
 }
 
 export async function action({ request }) {
@@ -64,7 +93,22 @@ export async function action({ request }) {
 export default function Home() {
 
     //get data from loader
-    const { optionOne, optionTwo, issueDate, pollId, voted, submissionPosted } = useLoaderData();
+    const {
+        optionOne,
+        optionTwo,
+        issueDate,
+        pollId,
+        voted,
+        submissionPosted,
+        currentIssue,
+        shuffledFeaturedSubmissions: featuredSubmissions
+    } = useLoaderData();
+
+    //get global context variables
+    const { imgURL, magazineURL } = useContext(GlobalContext);
+
+    //set current issue path
+    const currentIssuePath = currentIssue[0].magazine[0].path;
 
     //set states
     const [optionOneVotes, setOptionOneVotes] = useState(optionOne.voteAmount);
@@ -112,45 +156,87 @@ export default function Home() {
         <div>
             <h1>Home</h1>
 
-            <h2>Would you rather?</h2>
-            {votedState ? (
-                <>
-                    <p>
-                        {optionOne.optionName} - {(optionOneVotes / totalVotes * 100).toFixed(1)}%
-                    </p>
-                    <p>
-                        {optionTwo.optionName} - {(optionTwoVotes / totalVotes * 100).toFixed(1)}%
-                    </p>
+            <div>
+                <h2>Would you rather?</h2>
+                {votedState ? (
+                    <div>
+                        <p>
+                            {optionOne.optionName} - {(optionOneVotes / totalVotes * 100).toFixed(1)}%
+                        </p>
+                        <p>
+                            {optionTwo.optionName} - {(optionTwoVotes / totalVotes * 100).toFixed(1)}%
+                        </p>
 
-                    {submissionPostedState ? (
-                        <p>Thanks for your submission!</p>
-                    ) : (
-                        <Form method="post" onSubmit={handleSubmit}>
-                            <label htmlFor="text">
-                                <textarea
-                                    rows="4"
-                                    cols="50"
-                                    name="text"
-                                    placeholder="Let us know why...?"
-                                    style={{ resize: "none" }}
-                                />
-                            </label>
-                            <button type="submit">Submit</button>
-                        </Form>
-                    )}
-                </>
-            ) : (
-                <>
-                    <a href="1" onClick={handleVote}>
-                        {optionOne.optionName}
-                    </a>
-                    <a href="2" onClick={handleVote}>
-                        {optionTwo.optionName}
-                    </a>
-                </>
-            )}
+                        {submissionPostedState ? (
+                            <p>Thanks for your submission!</p>
+                        ) : (
+                            <Form method="post" onSubmit={handleSubmit}>
+                                <label htmlFor="text">
+                                    <textarea
+                                        rows="4"
+                                        cols="50"
+                                        name="text"
+                                        placeholder="Let us know why...?"
+                                        style={{ resize: "none" }}
+                                    />
+                                </label>
+                                <button type="submit">Submit</button>
+                            </Form>
+                        )}
+                    </div>
+                ) : (
+                    <div>
+                        <a href="1" onClick={handleVote}>
+                            {optionOne.optionName}
+                        </a>
+                        <a href="2" onClick={handleVote}>
+                            {optionTwo.optionName}
+                        </a>
+                    </div>
+                )}
+            </div>
+
+            <div>
+                <h2>Latest Issue</h2>
+                <object data={`${magazineURL}${currentIssuePath}`} type="application/pdf" width="100%" height="600px">
+                    <p>This browser does not support PDFs. Please download the PDF to view it: <a href={`${magazineURL}${currentIssuePath}`}>Download PDF</a></p>
+                </object>
+            </div>
+
+            <div>
+                {featuredSubmissions.length > 0 && (
+                    <div>
+                        <h2>Featured Submissions</h2>
+                        <FeaturedSubmissions featuredSubmissions={featuredSubmissions} imgURL={imgURL} />
+                    </div>
+                )}
+            </div>
+
+
         </div>
     );
 
 }
+
+export function FeaturedSubmissions({ featuredSubmissions, imgURL }) {
+    const charAmount = 50;
+
+    return (
+        <div>
+            {featuredSubmissions.map((submission, index) => (
+                <div key={index}>
+                    <h2>{submission.title}</h2>
+                    {submission.image.length > 0 && (
+                        <img src={`${imgURL}${submission.image[0].path}`} alt="image" />
+                    )}
+                    {index === 0 ? <p>{submission.text.slice(0, charAmount)}{submission.text.length > charAmount ? "..." : ""}</p> : null}
+                    <p>Read more on page {submission.pageNumber}!</p>
+                    <br />
+                </div>
+            ))}
+        </div>
+    );
+}
+
+
 

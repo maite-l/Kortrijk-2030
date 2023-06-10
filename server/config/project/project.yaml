@@ -1,4 +1,4 @@
-dateModified: 1686342342
+dateModified: 1686428142
 email:
   fromEmail: maite.lejeune@student.howest.be
   fromName: 'Kortrijk 2030'
@@ -23,15 +23,15 @@ meta:
     0a679b1b-7494-4145-9b3e-b61d860ad689: 'mixed submission' # mixed submission
     1c207f6e-8c50-4860-a960-ccdd0a6a4d5f: 'Kortrijk 2030' # Kortrijk 2030
     2a0b235e-6f75-4298-b15e-f28e3bec4452: 'option name' # option name
-    2d48633e-8695-49d5-a2d6-b11041079468: 'featured topics' # featured topics
     3be20871-ea45-45e2-a115-78a17368d0dd: submissions # submissions
     4a117e71-b04d-44ea-acee-4bd7ef1868fc: 'Public Schema' # Public Schema
-    05f2355e-cb3d-4d47-a6d4-4070f42479ee: topic # topic
     6aad5e8f-7b65-4801-9462-f2016190d987: magazine # magazine
     7c04bd97-c2ed-4afb-a845-3fadfd2bc967: Default # Default
     8c9b42bd-a9c2-4358-ace3-cc4ad0e2cc40: 'vote amount' # vote amount
+    9abc582e-b96c-4a01-9269-f393c293d53d: 'page number' # page number
     9c439a09-f867-4dcc-9afc-877e31c0d334: 'text submission' # text submission
     016e84f9-ad52-467d-ad64-15d59d126ea4: image # image
+    42af299d-19ac-41c5-b3a9-39d32ccaca4a: 'featured?' # featured?
     43d610cc-1f89-426c-b57f-9f1def3f22f5: 'issue number' # issue number
     54fea167-e282-4701-8f9c-c5a9d65f85b5: option2 # option2
     60ea4578-e184-452f-858b-71d8085d2364: 'image submission' # image submission

@@ -50,6 +50,28 @@ export async function getMagazineSectionByTitle(categoryTitle) {
     return magazineSections;
 }
 
+export async function getCurrentFeaturedSubmissions(issueNumber) {
+    const graphqlQuery = `
+    query getCurrentFeaturedSubmissions($issueNumber: [QueryArgument]) {
+        submissionsEntries(featured: true, issueNumber: $issueNumber) {
+            ... on submissions_mixedSubmission_Entry {
+            id
+            title
+            text
+            image {
+                id
+                path
+            }
+            pageNumber
+            }
+        }
+    }
+    `;
+    const featuredSubmissions = (await graphQLRequest(graphqlQuery, { issueNumber: issueNumber })).data.submissionsEntries;
+    console.log(featuredSubmissions);
+    return featuredSubmissions;
+}
+
 
 // edit authorId when we have a user system
 export async function newTextSubmission(title, text, magazineSection) {

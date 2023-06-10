@@ -86,13 +86,37 @@ fieldLayouts:
             width: 100
           -
             elementCondition: null
-            fieldUid: 43d610cc-1f89-426c-b57f-9f1def3f22f5 # issue number
+            fieldUid: 42af299d-19ac-41c5-b3a9-39d32ccaca4a # featured?
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
+            uid: 4141be52-b1b2-46e8-a190-62fe28fea37e
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 43d610cc-1f89-426c-b57f-9f1def3f22f5 # issue number
+            instructions: 'specify what issue this submission will be included in when you approve a submission.'
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
             uid: d6441db4-4299-4ce6-a2cf-2fc5bce41600
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 9abc582e-b96c-4a01-9269-f393c293d53d # page number
+            instructions: 'write down here what page of the magazine this submission will end up on. this is especially important if this is an article that will be featured on the home page.'
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1c42343-fef0-4445-8da8-aeb58d95b8e0
             userCondition: null
             warning: null
             width: 100
