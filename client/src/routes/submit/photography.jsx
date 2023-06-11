@@ -14,37 +14,48 @@ let imgNamesResult = [];
 let imgStringsResult = [];
 
 export async function action({ request }) {
+    try {
+        // Submitting state
+        const submitButton = document.querySelector('button[type="submit"]');
+        submitButton.innerHTML = "Submitting...";
+        submitButton.disabled = true;
+        const inputFields = document.querySelectorAll('input');
+        inputFields.forEach(inputField => inputField.disabled = true);
 
-    let imgIds = [];
-    //create image assets
-    const imageAssetPromises = imgNamesResult.map(async (imgName, index) => {
-        console.log(imgName);
-        console.log(imgNamesResult[index]);
-        const imgAsset = await newImageAsset(imgName, imgStringsResult[index]);
-        imgIds.push(imgAsset.id);
-        console.log(imgIds);
-    });
+        let imgIds = [];
+        //create image assets
+        const imageAssetPromises = imgNamesResult.map(async (imgName, index) => {
+            console.log(imgName);
+            console.log(imgNamesResult[index]);
+            const imgAsset = await newImageAsset(imgName, imgStringsResult[index]);
+            imgIds.push(imgAsset.id);
+            console.log(imgIds);
+        });
 
-    //wait for all the assets to be made
-    await Promise.all(imageAssetPromises);
+        //wait for all the assets to be made
+        await Promise.all(imageAssetPromises);
 
-    console.log(imgNamesResult);
-    console.log(imgStringsResult);
+        console.log(imgNamesResult);
+        console.log(imgStringsResult);
 
-    //get form data
-    const formData = await request.formData();
-    const { title } = Object.fromEntries(formData);
-    console.log(title);
+        //get form data
+        const formData = await request.formData();
+        const { title } = Object.fromEntries(formData);
+        console.log(title);
 
-    //get magazine section
-    const category = await getMagazineSectionByTitle('photography');
-    const magazineSection = category[0].id;
-    console.log(magazineSection);
+        //get magazine section
+        const category = await getMagazineSectionByTitle('photography');
+        const magazineSection = category[0].id;
+        console.log(magazineSection);
 
-    //create submission
-    const submission = await newImageSubmission(title, imgIds, magazineSection);
-    console.log(submission);
-    throw redirect("/submit");
+        //create submission
+        const submission = await newImageSubmission(title, imgIds, magazineSection);
+        console.log(submission);
+        throw redirect("/submit");
+    } catch (error) {
+        console.error(error);
+        // Handle the error or display an error message to the user
+    }
 }
 
 export default function Photography() {

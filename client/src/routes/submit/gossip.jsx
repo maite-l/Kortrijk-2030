@@ -3,20 +3,33 @@ import { Form, redirect } from 'react-router-dom';
 import { getMagazineSectionByTitle, newTextSubmission } from "../../submissions";
 
 export async function action({ request }) {
-    //get magazine section
-    const category = await getMagazineSectionByTitle('gossip');
-    const magazineSection = category[0].id;
-    console.log(magazineSection);
+    try {
+        // Submitting state
+        const submitButton = document.querySelector('button[type="submit"]');
+        submitButton.innerHTML = "Submitting...";
+        submitButton.disabled = true;
+        const inputFields = document.querySelectorAll('input, textarea');
+        inputFields.forEach((inputField) => (inputField.disabled = true));
 
-    //get form data
-    const formData = await request.formData();
-    console.log(Object.fromEntries(formData));
-    const { title, text } = Object.fromEntries(formData);
+        // Get magazine section
+        const category = await getMagazineSectionByTitle('gossip');
+        const magazineSection = category[0].id;
+        console.log(magazineSection);
 
-    //create submission
-    const submission = await newTextSubmission(title, text, magazineSection);
-    console.log(submission);
-    throw redirect("/submit");
+        // Get form data
+        const formData = await request.formData();
+        console.log(Object.fromEntries(formData));
+        const { title, text } = Object.fromEntries(formData);
+
+        // Create submission
+        const submission = await newTextSubmission(title, text, magazineSection);
+        console.log(submission);
+
+        throw redirect("/submit");
+    } catch (error) {
+        console.error(error);
+        // Handle the error or display an error message to the user
+    }
 }
 
 export default function Gossip() {
@@ -34,16 +47,18 @@ export default function Gossip() {
                         type="text"
                         name="title"
                         placeholder="My new favourite restaurant (probably)"
+                        required
                     />
                 </label>
                 <label htmlFor="text">
                     <span>Your gossip</span>
                     <textarea
-                        rows="4" 
+                        rows="4"
                         cols="50"
                         name="text"
                         placeholder="Apparently they're opening a new croquette place on the Grote Markt..."
-                        style={{resize: "none"}}
+                        required
+                        style={{ resize: "none" }}
                     />
                 </label>
                 <button type='submit'>Submit</button>
