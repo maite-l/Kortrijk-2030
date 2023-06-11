@@ -11,7 +11,7 @@ import Root, { loader as rootLoader } from "./routes/root";
 import Home, { loader as homeLoader, action as homeAction } from "./routes/home";
 import Archive from "./routes/archive";
 import MySubmissions from "./routes/my-submissions";
-import Submit from "./routes/submit";
+import Submit, { loader as submitLoader } from "./routes/submit";
 import Gossip, { action as gossipAction } from "./routes/submit/gossip";
 import Photography, { action as photographyAction } from "./routes/submit/photography";
 import Meme, { action as memeAction } from "./routes/submit/meme";
@@ -49,6 +49,7 @@ const router = createBrowserRouter([
               {
                 index: true,
                 element: <Submit />,
+                loader: submitLoader,
               },
               {
                 path: "gossip",

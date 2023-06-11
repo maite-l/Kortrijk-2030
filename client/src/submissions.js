@@ -50,6 +50,25 @@ export async function getMagazineSectionByTitle(categoryTitle) {
     return magazineSections;
 }
 
+export async function getAllMagazineSections() {
+    const graphqlQuery = `
+    query getAllMagazineSections {
+    categories {
+            ... on sections_Category {
+                id
+                title
+                text
+                time
+                slug
+            }
+        }
+    }
+    `;
+    const magazineSections = (await graphQLRequest(graphqlQuery)).data.categories;
+    console.log(magazineSections);
+    return magazineSections;
+}
+
 export async function getCurrentFeaturedSubmissions(issueNumber) {
     const graphqlQuery = `
     query getCurrentFeaturedSubmissions($issueNumber: [QueryArgument]) {

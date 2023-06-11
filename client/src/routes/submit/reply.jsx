@@ -13,20 +13,32 @@ export async function loader() {
 }
 
 export async function action({ request }) {
-    //get magazine section
-    const category = await getMagazineSectionByTitle('reply');
-    const magazineSection = category[0].id;
-    console.log(magazineSection);
+    try {
+        // Submitting state
+        const submitButton = document.querySelector('button[type="submit"]');
+        submitButton.innerHTML = "Submitting...";
+        submitButton.disabled = true;
+        const inputFields = document.querySelectorAll('textarea, select');
+        inputFields.forEach(inputField => inputField.disabled = true);
 
-    //get form data
-    const formData = await request.formData();
-    console.log(Object.fromEntries(formData));
-    const { article, text } = Object.fromEntries(formData);
+        //get magazine section
+        const category = await getMagazineSectionByTitle('Reply to an article');
+        const magazineSection = category[0].id;
+        console.log(magazineSection);
 
-    //create submission
-    const submission = await newReplySubmission(article, text, magazineSection);
-    console.log(submission);
-    throw redirect("/submit");
+        //get form data
+        const formData = await request.formData();
+        console.log(Object.fromEntries(formData));
+        const { article, text } = Object.fromEntries(formData);
+
+        //create submission
+        const submission = await newReplySubmission(article, text, magazineSection);
+        console.log(submission);
+        return redirect("/submit");
+    } catch (error) {
+        console.error(error);
+        // Handle the error or display an error message to the user
+    }
 }
 
 export default function Reply() {
