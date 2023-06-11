@@ -4,7 +4,7 @@ import { Form, useLoaderData } from "react-router-dom";
 import { GlobalContext } from "../routes/root";
 
 import { getCurrentPoll, updateVoteAmountOne, updateVoteAmountTwo } from "../polls";
-import { newPollSubmission, getMagazineSectionByTitle, getCurrentFeaturedSubmissions } from "../submissions";
+import { newPollSubmission, getMagazineSectionByTitle, getCurrentFeaturedSubmissions, getApprovedSubmissions } from "../submissions";
 import { getCurrentIssue } from "../magazines";
 
 let date;
@@ -51,6 +51,18 @@ export async function loader() {
     console.log(shuffledFeaturedSubmissions);
 
 
+    //get amount of approved submissions for next issue
+    // const nextIssueNumber = currentIssueNumber + 1;
+    const nextIssueNumber = currentIssueNumber;
+    const approvedSubmissions = await getApprovedSubmissions(nextIssueNumber);
+    const approvedSubmissionsAmount = approvedSubmissions.length;
+    console.log(approvedSubmissionsAmount);
+
+    //calculate progress bar percentage
+    const maxSubmissions = 20;
+    const progressBarPercentage = ((approvedSubmissionsAmount / maxSubmissions) * 100).toFixed(0);
+    console.log(progressBarPercentage);
+
     return {
         optionOne,
         optionTwo,
@@ -59,7 +71,8 @@ export async function loader() {
         voted,
         submissionPosted,
         currentIssue,
-        shuffledFeaturedSubmissions
+        shuffledFeaturedSubmissions,
+        progressBarPercentage
     };
 }
 
@@ -101,7 +114,8 @@ export default function Home() {
         voted,
         submissionPosted,
         currentIssue,
-        shuffledFeaturedSubmissions: featuredSubmissions
+        shuffledFeaturedSubmissions: featuredSubmissions,
+        progressBarPercentage
     } = useLoaderData();
 
     //get global context variables
@@ -205,13 +219,17 @@ export default function Home() {
 
             <div>
                 {featuredSubmissions.length > 0 && (
-                    <div>
+                    <>
                         <h2>Featured Submissions</h2>
                         <FeaturedSubmissions featuredSubmissions={featuredSubmissions} imgURL={imgURL} />
-                    </div>
+                    </>
                 )}
             </div>
 
+            <div>
+                <h2>Progress</h2>
+                <progress value={progressBarPercentage} max="100"> {progressBarPercentage}% </progress>
+            </div>
 
         </div>
     );

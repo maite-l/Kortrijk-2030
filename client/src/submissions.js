@@ -72,6 +72,30 @@ export async function getCurrentFeaturedSubmissions(issueNumber) {
     return featuredSubmissions;
 }
 
+export async function getApprovedSubmissions(issueNumber) {
+    const graphqlQuery = `
+    query MyQuery($issueNumber: [QueryArgument]) {
+        submissionsEntries(approvalStatus: "approved", issueNumber: $issueNumber) {
+            ... on submissions_textSubmission_Entry {
+            id
+            }
+            ... on submissions_imageSubmission_Entry {
+            id
+            }
+            ... on submissions_mixedSubmission_Entry {
+            id
+            }
+            ... on submissions_replySubmission_Entry {
+            id
+            }
+        }
+    }
+    `;
+    const approvedSubmissions = (await graphQLRequest(graphqlQuery, { issueNumber: issueNumber })).data.submissionsEntries;
+    console.log(approvedSubmissions);
+    return approvedSubmissions;
+}
+
 
 // edit authorId when we have a user system
 export async function newTextSubmission(title, text, magazineSection) {
