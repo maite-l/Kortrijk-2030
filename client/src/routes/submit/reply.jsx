@@ -36,36 +36,43 @@ export default function Reply() {
 
 
     return (
-        <div>
-            <h1>Reply to an article</h1>
+        //if there are no articles to reply to, display a message
+        articlesToReplyTo.length === 0 ?
             <div>
-                <h2>Submission tips</h2>
-                <p>tips</p>
+                <h1>Reply to an article</h1>
+                <p>There are currently no articles to reply to.</p>
             </div>
-            <Form method="post">
-                <label htmlFor="article">
-                    <span>Select an article to reply to:</span>
-                    <select name="article" id="article">
-                        {articlesToReplyTo.map((article) => (
-                            <option key={article.id} value={article.articleTitle}>
-                                {article.articleTitle}
-                            </option>
-                        ))}
-                    </select>
-                </label>
-                <label htmlFor="text">
-                    <span>Your reply</span>
-                    <textarea
-                        rows="4"
-                        cols="50"
-                        name="text"
-                        placeholder="placeholder"
-                        style={{ resize: "none" }}
-                    />
-                </label>
-                <button type='submit'>Submit</button>
-            </Form>
-        </div>
+            :
+            <div>
+                <h1>Reply to an article</h1>
+                <div>
+                    <h2>Submission tips</h2>
+                    <p>tips</p>
+                </div>
+                <Form method="post">
+                    <label htmlFor="article">
+                        <span>Select an article to reply to:</span>
+                        <select name="article" id="article">
+                            {articlesToReplyTo.map((article) => (
+                                <option key={article.id} value={article.articleTitle}>
+                                    {article.articleTitle}
+                                </option>
+                            ))}
+                        </select>
+                    </label>
+                    <label htmlFor="text">
+                        <span>Your reply</span>
+                        <textarea
+                            rows="4"
+                            cols="50"
+                            name="text"
+                            placeholder="placeholder"
+                            style={{ resize: "none" }}
+                        />
+                    </label>
+                    <button type='submit'>Submit</button>
+                </Form>
+            </div>
     );
 
 }
