@@ -44,14 +44,14 @@ export async function action({ request }) {
         console.log(title, text);
 
         //get magazine section
-        const category = await getMagazineSectionByTitle('meme');
+        const category = await getMagazineSectionByTitle('Memes');
         const magazineSection = category[0].id;
         console.log(magazineSection);
 
         //create submission
         const submission = await newMixedSubmission(title, text, imgIds, magazineSection);
         console.log(submission);
-        throw redirect("/submit");
+        return redirect("/submit");
     } catch (error) {
         console.error(error);
         // Handle the error or display an error message to the user

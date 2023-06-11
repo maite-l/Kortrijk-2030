@@ -22,7 +22,7 @@ export async function action({ request }) {
         inputFields.forEach(inputField => inputField.disabled = true);
 
         //get magazine section
-        const category = await getMagazineSectionByTitle('reply');
+        const category = await getMagazineSectionByTitle('Reply to an article');
         const magazineSection = category[0].id;
         console.log(magazineSection);
 
@@ -34,7 +34,7 @@ export async function action({ request }) {
         //create submission
         const submission = await newReplySubmission(article, text, magazineSection);
         console.log(submission);
-        throw redirect("/submit");
+        return redirect("/submit");
     } catch (error) {
         console.error(error);
         // Handle the error or display an error message to the user

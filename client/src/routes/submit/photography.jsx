@@ -44,14 +44,14 @@ export async function action({ request }) {
         console.log(title);
 
         //get magazine section
-        const category = await getMagazineSectionByTitle('photography');
+        const category = await getMagazineSectionByTitle('Photography');
         const magazineSection = category[0].id;
         console.log(magazineSection);
 
         //create submission
         const submission = await newImageSubmission(title, imgIds, magazineSection);
         console.log(submission);
-        throw redirect("/submit");
+        return redirect("/submit");
     } catch (error) {
         console.error(error);
         // Handle the error or display an error message to the user

@@ -1,0 +1,19 @@
+columnSuffix: xejsmksn
+contentColumnType: text
+fieldGroup: a6720840-f082-4e30-bafe-b8176bf62ccc # Common
+handle: time
+instructions: 'The time needed to make something to submit to this section'
+name: time
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  columnType: null
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

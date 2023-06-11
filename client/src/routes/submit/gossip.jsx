@@ -25,7 +25,7 @@ export async function action({ request }) {
         const submission = await newTextSubmission(title, text, magazineSection);
         console.log(submission);
 
-        throw redirect("/submit");
+        return redirect("/submit");
     } catch (error) {
         console.error(error);
         // Handle the error or display an error message to the user
