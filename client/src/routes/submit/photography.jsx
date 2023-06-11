@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { GlobalContext } from '../root';
 
 //submission queries and mutations
-import { getMagazineSectionByTitle, newImageAsset, newImageSubmission } from "../../submissions";
+import { getMagazineSectionByTitle, newImageAsset, newSubmission } from "../../submissions";
 
 import { fileInputChange } from '../../util/util';
 
@@ -49,7 +49,7 @@ export async function action({ request }) {
         console.log(magazineSection);
 
         //create submission
-        const submission = await newImageSubmission(title, imgIds, magazineSection);
+        const submission = await newSubmission(title, null, imgIds, magazineSection);
         console.log(submission);
         return redirect("/submit");
     } catch (error) {

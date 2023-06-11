@@ -1,6 +1,6 @@
 import { Form, redirect, useLoaderData } from 'react-router-dom';
 
-import { getMagazineSectionByTitle, newReplySubmission } from "../../submissions";
+import { getMagazineSectionByTitle, newSubmission } from "../../submissions";
 import { getCurrentIssue } from "../../magazines";
 
 export async function loader() {
@@ -30,11 +30,13 @@ export async function action({ request }) {
         const formData = await request.formData();
         console.log(Object.fromEntries(formData));
         const { article, text } = Object.fromEntries(formData);
+        const title = `Reply to: ${article}`;
 
         //create submission
-        const submission = await newReplySubmission(article, text, magazineSection);
+        const submission = await newSubmission(title, text, [], magazineSection);
         console.log(submission);
         return redirect("/submit");
+
     } catch (error) {
         console.error(error);
         // Handle the error or display an error message to the user

@@ -86,7 +86,8 @@ export async function action({ request }) {
     const { text } = Object.fromEntries(formData);
 
     //get title from local storage (contains poll option title)
-    const title = localStorage.getItem(date);
+    let title = localStorage.getItem(date);
+    title = `poll answer, chose '${title}'`;
 
     //get issue number from global variable
     const issueNumber = number;
