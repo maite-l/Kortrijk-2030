@@ -120,6 +120,28 @@ export async function newTextSubmission(title, text, magazineSection) {
     return submission;
 }
 
+export async function newReplySubmission(article, text, magazineSection) {
+    console.log(article, text, magazineSection);
+    const graphqlQuery = `
+    mutation NewReplySubmission($title: String, $text: String, $magazineSection: [Int]) {
+        save_submissions_replySubmission_Entry(
+            title: $title
+            text: $text
+            magazineSection: $magazineSection
+            authorId: 1
+        ) {
+            id
+        }
+    }`;
+
+    const submission = (await graphQLRequest(
+        graphqlQuery,
+        { title: article, text: text, magazineSection: parseInt(magazineSection) }
+    )).data.save_submissions_replySubmission_Entry;
+    console.log(submission);
+    return submission;
+}
+
 export async function newPollSubmission(title, text, magazineSection, issueNumber) {
     console.log(issueNumber)
     console.log(title, text, magazineSection, issueNumber);
