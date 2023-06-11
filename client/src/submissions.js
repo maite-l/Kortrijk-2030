@@ -50,6 +50,52 @@ export async function getMagazineSectionByTitle(categoryTitle) {
     return magazineSections;
 }
 
+export async function getCurrentFeaturedSubmissions(issueNumber) {
+    const graphqlQuery = `
+    query getCurrentFeaturedSubmissions($issueNumber: [QueryArgument]) {
+        submissionsEntries(featured: true, issueNumber: $issueNumber) {
+            ... on submissions_mixedSubmission_Entry {
+            id
+            title
+            text
+            image {
+                id
+                path
+            }
+            pageNumber
+            }
+        }
+    }
+    `;
+    const featuredSubmissions = (await graphQLRequest(graphqlQuery, { issueNumber: issueNumber })).data.submissionsEntries;
+    console.log(featuredSubmissions);
+    return featuredSubmissions;
+}
+
+export async function getApprovedSubmissions(issueNumber) {
+    const graphqlQuery = `
+    query MyQuery($issueNumber: [QueryArgument]) {
+        submissionsEntries(approvalStatus: "approved", issueNumber: $issueNumber) {
+            ... on submissions_textSubmission_Entry {
+            id
+            }
+            ... on submissions_imageSubmission_Entry {
+            id
+            }
+            ... on submissions_mixedSubmission_Entry {
+            id
+            }
+            ... on submissions_replySubmission_Entry {
+            id
+            }
+        }
+    }
+    `;
+    const approvedSubmissions = (await graphQLRequest(graphqlQuery, { issueNumber: issueNumber })).data.submissionsEntries;
+    console.log(approvedSubmissions);
+    return approvedSubmissions;
+}
+
 
 // edit authorId when we have a user system
 export async function newTextSubmission(title, text, magazineSection) {
@@ -70,6 +116,28 @@ export async function newTextSubmission(title, text, magazineSection) {
         graphqlQuery,
         { title: title, text: text, magazineSection: parseInt(magazineSection) }
     )).data.save_submissions_textSubmission_Entry;
+    console.log(submission);
+    return submission;
+}
+
+export async function newReplySubmission(article, text, magazineSection) {
+    console.log(article, text, magazineSection);
+    const graphqlQuery = `
+    mutation NewReplySubmission($title: String, $text: String, $magazineSection: [Int]) {
+        save_submissions_replySubmission_Entry(
+            title: $title
+            text: $text
+            magazineSection: $magazineSection
+            authorId: 1
+        ) {
+            id
+        }
+    }`;
+
+    const submission = (await graphQLRequest(
+        graphqlQuery,
+        { title: article, text: text, magazineSection: parseInt(magazineSection) }
+    )).data.save_submissions_replySubmission_Entry;
     console.log(submission);
     return submission;
 }

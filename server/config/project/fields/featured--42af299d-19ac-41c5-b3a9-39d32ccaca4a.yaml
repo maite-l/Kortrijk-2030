@@ -1,0 +1,14 @@
+columnSuffix: qlhfsnzs
+contentColumnType: boolean
+fieldGroup: a6720840-f082-4e30-bafe-b8176bf62ccc # Common
+handle: featured
+instructions: 'turn this on when this submission needs to be featured on the homepage. limit the amount of featured submissions to 4.'
+name: 'featured?'
+searchable: false
+settings:
+  default: false
+  offLabel: null
+  onLabel: featured
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Lightswitch

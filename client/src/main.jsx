@@ -15,6 +15,7 @@ import Submit from "./routes/submit";
 import Gossip, { action as gossipAction } from "./routes/submit/gossip";
 import Photography, { action as photographyAction } from "./routes/submit/photography";
 import Meme, { action as memeAction } from "./routes/submit/meme";
+import Reply, { loader as replyLoader, action as replyAction } from "./routes/submit/reply";
 
 import ErrorPage from "./routes/error-page";
 
@@ -63,6 +64,12 @@ const router = createBrowserRouter([
                 path: "meme",
                 element: <Meme />,
                 action: memeAction,
+              },
+              {
+                path: "reply",
+                element: <Reply />,
+                loader: replyLoader,
+                action: replyAction,
               }
             ],
           },

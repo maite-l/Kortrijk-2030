@@ -75,7 +75,7 @@ fieldLayouts:
           -
             elementCondition: null
             fieldUid: 43d610cc-1f89-426c-b57f-9f1def3f22f5 # issue number
-            instructions: null
+            instructions: 'specify what issue this submission will be included in when you approve a submission.'
             label: null
             required: false
             tip: null
