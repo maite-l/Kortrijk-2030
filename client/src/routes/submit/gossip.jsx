@@ -1,6 +1,6 @@
 import { Form, redirect } from 'react-router-dom';
 
-import { getMagazineSectionByTitle, newTextSubmission } from "../../submissions";
+import { getMagazineSectionByTitle, newSubmission } from "../../submissions";
 
 export async function action({ request }) {
     try {
@@ -22,7 +22,7 @@ export async function action({ request }) {
         const { title, text } = Object.fromEntries(formData);
 
         // Create submission
-        const submission = await newTextSubmission(title, text, magazineSection);
+        const submission = await newSubmission(title, text, [], magazineSection);
         console.log(submission);
 
         return redirect("/submit");
@@ -34,7 +34,7 @@ export async function action({ request }) {
 
 export default function Gossip() {
     return (
-        <div>
+        <main>
             <h1>Submit a local gossip!</h1>
             <div>
                 <h2>Submission tips</h2>
@@ -63,6 +63,6 @@ export default function Gossip() {
                 </label>
                 <button type='submit'>Submit</button>
             </Form>
-        </div>
+        </main>
     );
 }

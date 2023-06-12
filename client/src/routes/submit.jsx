@@ -17,12 +17,12 @@ export default function Submit() {
     console.log(magazineSections);
 
     return (
-        <div>
+        <main>
             <h1>Submit your work</h1>
             {magazineSections.map((section) => (
                 <SectionCard key={section.id} section={section} />
             ))}
-        </div>
+        </main>
     );
 }
 

@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { GlobalContext } from '../root';
 
 //submission queries and mutations
-import { getMagazineSectionByTitle, newImageAsset, newMixedSubmission } from "../../submissions";
+import { getMagazineSectionByTitle, newImageAsset, newSubmission } from "../../submissions";
 
 import { fileInputChange } from '../../util/util';
 
@@ -49,7 +49,7 @@ export async function action({ request }) {
         console.log(magazineSection);
 
         //create submission
-        const submission = await newMixedSubmission(title, text, imgIds, magazineSection);
+        const submission = await newSubmission(title, text, imgIds, magazineSection);
         console.log(submission);
         return redirect("/submit");
     } catch (error) {
@@ -73,7 +73,7 @@ export default function Meme() {
     };
 
     return (
-        <div>
+        <main>
             <h1>Submit your meme/joke</h1>
             <div>
                 <h2>Submission tips</h2>
@@ -110,6 +110,6 @@ export default function Meme() {
                 </label>
                 <button type='submit'>Submit</button>
             </Form>
-        </div>
+        </main>
     );
 }

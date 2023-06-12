@@ -1,0 +1,59 @@
+nav {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.76) 14.58%, rgba(255, 255, 255, 0) 100%);
+    backdrop-filter: blur(2.5px);
+    width: 100vw;
+    height: 5rem;
+    display: grid;
+    place-items: center;
+    position: fixed;
+    top: 0;
+}
+
+nav ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 92vw;
+}
+
+nav ul div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+}
+
+nav ul div a {
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+
+nav ul div a:hover {
+    font-family: 'Metropolis Semibold';
+}
+
+.active {
+    text-decoration: solid underline 2px;
+    font-family: 'Metropolis Semibold';
+}
+
+.logo-link {
+    font-family: 'Trappist';
+    text-transform: uppercase;
+    font-size: 2.9rem;
+}
+.logo-link .active {
+    font-family: inherit;
+    text-decoration: inherit;
+}
+
+.login-link {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0.8rem;
+}
+

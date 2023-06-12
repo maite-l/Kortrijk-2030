@@ -7,10 +7,10 @@ scope:
   - 'sections.69053c9d-206a-42d1-83b7-3282638db454:read' # Polls
   - 'entrytypes.7c04bd97-c2ed-4afb-a845-3fadfd2bc967:read' # Default
   - 'sections.b192fdca-10c6-4d05-9523-9a3c207b4894:read' # Submissions
-  - 'entrytypes.9c439a09-f867-4dcc-9afc-877e31c0d334:read' # text submission
-  - 'entrytypes.60ea4578-e184-452f-858b-71d8085d2364:read' # image submission
-  - 'entrytypes.0a679b1b-7494-4145-9b3e-b61d860ad689:read' # mixed submission
-  - 'entrytypes.ce8f2d7a-0d20-47e2-bf26-07ff8d530ffb:read' # reply submission
+  - 'entrytypes.9c439a09-f867-4dcc-9afc-877e31c0d334:read'
+  - 'entrytypes.60ea4578-e184-452f-858b-71d8085d2364:read'
+  - 'entrytypes.0a679b1b-7494-4145-9b3e-b61d860ad689:read' # default
+  - 'entrytypes.ce8f2d7a-0d20-47e2-bf26-07ff8d530ffb:read'
   - 'volumes.3be20871-ea45-45e2-a115-78a17368d0dd:read' # submissions
   - 'volumes.f1b76377-5de4-4c7e-88bc-1bd49d48eaf9:read' # magazines
   - 'usergroups.everyone:read'
@@ -24,18 +24,18 @@ scope:
   - 'entrytypes.7c04bd97-c2ed-4afb-a845-3fadfd2bc967:create' # Default
   - 'entrytypes.7c04bd97-c2ed-4afb-a845-3fadfd2bc967:save' # Default
   - 'sections.b192fdca-10c6-4d05-9523-9a3c207b4894:edit' # Submissions
-  - 'entrytypes.9c439a09-f867-4dcc-9afc-877e31c0d334:edit' # text submission
-  - 'entrytypes.9c439a09-f867-4dcc-9afc-877e31c0d334:create' # text submission
-  - 'entrytypes.9c439a09-f867-4dcc-9afc-877e31c0d334:save' # text submission
-  - 'entrytypes.60ea4578-e184-452f-858b-71d8085d2364:edit' # image submission
-  - 'entrytypes.60ea4578-e184-452f-858b-71d8085d2364:create' # image submission
-  - 'entrytypes.60ea4578-e184-452f-858b-71d8085d2364:save' # image submission
-  - 'entrytypes.0a679b1b-7494-4145-9b3e-b61d860ad689:edit' # mixed submission
-  - 'entrytypes.0a679b1b-7494-4145-9b3e-b61d860ad689:create' # mixed submission
-  - 'entrytypes.0a679b1b-7494-4145-9b3e-b61d860ad689:save' # mixed submission
-  - 'entrytypes.ce8f2d7a-0d20-47e2-bf26-07ff8d530ffb:edit' # reply submission
-  - 'entrytypes.ce8f2d7a-0d20-47e2-bf26-07ff8d530ffb:create' # reply submission
-  - 'entrytypes.ce8f2d7a-0d20-47e2-bf26-07ff8d530ffb:save' # reply submission
+  - 'entrytypes.9c439a09-f867-4dcc-9afc-877e31c0d334:edit'
+  - 'entrytypes.9c439a09-f867-4dcc-9afc-877e31c0d334:create'
+  - 'entrytypes.9c439a09-f867-4dcc-9afc-877e31c0d334:save'
+  - 'entrytypes.60ea4578-e184-452f-858b-71d8085d2364:edit'
+  - 'entrytypes.60ea4578-e184-452f-858b-71d8085d2364:create'
+  - 'entrytypes.60ea4578-e184-452f-858b-71d8085d2364:save'
+  - 'entrytypes.0a679b1b-7494-4145-9b3e-b61d860ad689:edit' # default
+  - 'entrytypes.0a679b1b-7494-4145-9b3e-b61d860ad689:create' # default
+  - 'entrytypes.0a679b1b-7494-4145-9b3e-b61d860ad689:save' # default
+  - 'entrytypes.ce8f2d7a-0d20-47e2-bf26-07ff8d530ffb:edit'
+  - 'entrytypes.ce8f2d7a-0d20-47e2-bf26-07ff8d530ffb:create'
+  - 'entrytypes.ce8f2d7a-0d20-47e2-bf26-07ff8d530ffb:save'
   - 'volumes.3be20871-ea45-45e2-a115-78a17368d0dd:edit' # submissions
   - 'volumes.3be20871-ea45-45e2-a115-78a17368d0dd:create' # submissions
   - 'volumes.3be20871-ea45-45e2-a115-78a17368d0dd:save' # submissions
