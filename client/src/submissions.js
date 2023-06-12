@@ -175,7 +175,20 @@ export async function getApprovedSubmissions(issueNumber) {
 }
 
 
-
+export async function getAllSubmissions() {
+    const graphqlQuery = `
+    query getAllMagazineSections {
+        submissionsEntries {
+            ... on submissions_default_Entry {
+            id
+            }
+        }
+    }
+    `;
+    const allSubmissions = (await graphQLRequest(graphqlQuery)).data.submissionsEntries;
+    console.log(allSubmissions);
+    return allSubmissions;
+}
 
 
 

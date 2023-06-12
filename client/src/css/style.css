@@ -7,6 +7,14 @@ html {
 }
 
 @font-face {
+    font-family: 'Metropolis Light';
+    src: url(../assets/fonts/Metropolis-Light.woff2);
+}
+@font-face {
+    font-family: 'Metropolis Light Italic';
+    src: url(../assets/fonts/Metropolis-LightItalic.woff2);
+}
+@font-face {
     font-family: 'Metropolis Regular';
     src: url(../assets/fonts/Metropolis-Regular.woff2);
 }
