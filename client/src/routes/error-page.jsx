@@ -10,7 +10,7 @@ export default function ErrorPage() {
     };
 
     return (
-        <div id="error-page">
+        <main id="error-page">
             <h1>Oops!</h1>
             <div>
                 <p>Sorry, an unexpected error has occurred.</p>
@@ -19,6 +19,6 @@ export default function ErrorPage() {
                 </p>
             </div>
             <button onClick={handleBackClick}>back</button>
-        </div>
+        </main>
     );
 }

@@ -73,7 +73,7 @@ export default function Meme() {
     };
 
     return (
-        <div>
+        <main>
             <h1>Submit your meme/joke</h1>
             <div>
                 <h2>Submission tips</h2>
@@ -110,6 +110,6 @@ export default function Meme() {
                 </label>
                 <button type='submit'>Submit</button>
             </Form>
-        </div>
+        </main>
     );
 }

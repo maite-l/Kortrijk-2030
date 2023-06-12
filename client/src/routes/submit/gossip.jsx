@@ -34,7 +34,7 @@ export async function action({ request }) {
 
 export default function Gossip() {
     return (
-        <div>
+        <main>
             <h1>Submit a local gossip!</h1>
             <div>
                 <h2>Submission tips</h2>
@@ -63,6 +63,6 @@ export default function Gossip() {
                 </label>
                 <button type='submit'>Submit</button>
             </Form>
-        </div>
+        </main>
     );
 }

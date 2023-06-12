@@ -1,6 +1,8 @@
 import { useState, useContext } from "react";
 import { Form, useLoaderData } from "react-router-dom";
 
+import "../css/home.css";
+
 import { GlobalContext } from "../routes/root";
 
 import { getCurrentPoll, updateVoteAmountOne, updateVoteAmountTwo } from "../polls";
@@ -168,8 +170,17 @@ export default function Home() {
     }
 
     return (
-        <div>
-            <h1>Home</h1>
+        <main>
+
+            <div className="header">
+                <div className="introduction">
+                    <p>We are <span className="italic-semibold">klinkt.</span></p>
+                    <p>Kortrijk-based <span className="italic">digital & printed</span> youth magazine, where we value <span className="semibold">your</span> (cultural) inputs</p>
+                    {/* button */}
+                    <a href="">Find a printed copy of <span>klinkt.</span></a>
+                </div>
+
+            </div>
 
             <div>
                 <h2>Would you rather?</h2>
@@ -232,7 +243,7 @@ export default function Home() {
                 <progress value={progressBarPercentage} max="100"> {progressBarPercentage}% </progress>
             </div>
 
-        </div>
+        </main>
     );
 
 }

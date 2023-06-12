@@ -52,12 +52,12 @@ export default function Reply() {
     return (
         //if there are no articles to reply to, display a message
         articlesToReplyTo.length === 0 ?
-            <div>
+            <main>
                 <h1>Reply to an article</h1>
                 <p>There are currently no articles to reply to.</p>
-            </div>
+            </main>
             :
-            <div>
+            <main>
                 <h1>Reply to an article</h1>
                 <div>
                     <h2>Submission tips</h2>
@@ -86,7 +86,7 @@ export default function Reply() {
                     </label>
                     <button type='submit'>Submit</button>
                 </Form>
-            </div>
+            </main>
     );
 
 }

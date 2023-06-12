@@ -1,0 +1,42 @@
+
+html {
+    box-sizing: border-box;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+@font-face {
+    font-family: 'Metropolis Regular';
+    src: url(../assets/fonts/Metropolis-Regular.woff2);
+}
+@font-face {
+    font-family: 'Metropolis Italic';
+    src: url(../assets/fonts/Metropolis-RegularItalic.woff2);
+}
+@font-face {
+    font-family: 'Metropolis Semibold';
+    src: url(../assets/fonts/Metropolis-SemiBold.woff2);
+}
+@font-face {
+    font-family: 'Metropolis Semibold Italic';
+    src: url(../assets/fonts/Metropolis-SemiBoldItalic.woff2);
+}
+
+@font-face {
+    font-family: 'Trappist';
+    src: url(../assets/fonts/Trappist-Regular.woff2);
+}
+
+body {
+    font-family: 'Metropolis Regular';
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+main {
+    margin-top: 5rem;
+}

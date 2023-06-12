@@ -73,7 +73,7 @@ export default function Photography() {
     };
 
     return (
-        <div>
+        <main>
             <h1>Submit your photography</h1>
             <div>
                 <h2>Submission tips</h2>
@@ -100,6 +100,6 @@ export default function Photography() {
                 </label>
                 <button type='submit'>Submit</button>
             </Form>
-        </div>
+        </main>
     );
 }

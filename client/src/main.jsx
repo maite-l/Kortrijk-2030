@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import "./css/reset.css";
+import "./css/style.css";
 
 import Root, { loader as rootLoader } from "./routes/root";
 import Home, { loader as homeLoader, action as homeAction } from "./routes/home";

@@ -1,7 +1,7 @@
 export default function MySubmissions() {
     return (
-        <div>
+        <main>
             <h1>My submissions</h1>
-        </div>
+        </main>
     );
 }
