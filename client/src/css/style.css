@@ -15,6 +15,10 @@ html {
     src: url(../assets/fonts/Metropolis-RegularItalic.woff2);
 }
 @font-face {
+    font-family: 'Metropolis Medium';
+    src: url(../assets/fonts/Metropolis-Medium.woff2);
+}
+@font-face {
     font-family: 'Metropolis Semibold';
     src: url(../assets/fonts/Metropolis-SemiBold.woff2);
 }
@@ -30,6 +34,7 @@ html {
 
 body {
     font-family: 'Metropolis Regular';
+    line-height: 1.2;
 }
 
 a {
@@ -39,4 +44,34 @@ a {
 
 main {
     margin-top: 5rem;
+}
+
+span.semibold {
+    font-family: 'Metropolis Semibold';
+}
+
+span.italic {
+    font-family: 'Metropolis Italic';
+}
+
+span.italic-semibold {
+    font-family: 'Metropolis Semibold Italic';
+}
+
+
+
+.custom-button {
+    font-family: 'Metropolis Medium';
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.8rem;
+    width: fit-content;
+    font-size: 1.2rem;
+    padding: 0.5rem 1.2rem;
+    border: solid 2px #000000;
+    border-radius: 3px;
+    background-color: #ffffff;
+    transition: all 0.2s ease-in-out;
 }
