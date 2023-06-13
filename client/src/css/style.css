@@ -68,7 +68,7 @@ span.italic-semibold {
 
 
 
-.custom-button {
+.custom-button, .poll-form button {
     font-family: 'Metropolis Medium';
     text-transform: uppercase;
     display: flex;

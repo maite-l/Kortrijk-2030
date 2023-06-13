@@ -213,3 +213,106 @@
     grid-column: 1;
     grid-row: 1;
 }
+
+.would-you-rather {
+    width: 90vw;
+    margin-inline: auto;
+    margin-block-end: 8rem;
+}
+
+.would-you-rather__title {
+    font-family: 'Trappist';
+    text-transform: uppercase;
+    font-size: 8rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+}
+.would-you-rather__title--text {
+    margin-inline-start: -10rem;
+    margin-block-start: 4.5rem;
+}
+
+.poll-options{
+    width: 70vw;
+    margin-inline: auto;
+    margin-block-start: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 5%; */
+}
+.poll-option, .poll-option--voted {
+    border: 2px solid #000000;
+    border-radius: 5px;
+    width: 30vw;
+    height: 25vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+    font-family: 'Metropolis Semibold';
+    font-size: 2.2rem;
+    line-height: 1.5;
+    padding: 6%;
+    text-align: center;
+}
+.poll-option:hover, .poll-option--voted.selected {
+    background-color: #DFFF17;
+    border: none;
+}
+
+.poll-option__title {
+    font-family: 'Metropolis Medium';
+    font-size: 1.5rem;
+    margin-block-end: 5.5%;
+}
+.poll-option__votes {
+    font-family: 'Trappist';
+    font-size: 10rem;
+    line-height: 1.2;
+}
+
+.poll-form {
+    width: 70vw;
+    margin-block-start: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+.poll-form__wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.poll-form label, .poll-form textarea {
+    width: 100%;
+    font-family: 'Metropolis Medium';
+}
+
+.poll-form textarea {
+    height: 8rem;
+    padding: 1rem;    
+    border: 2px solid #0000002a;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+.poll-form textarea::placeholder {
+    color: #0000002a;
+}
+
+.poll-form__conformation {
+    width: 80vw;
+    margin: auto;
+    text-align: center;
+    font-family: 'Metropolis Semibold';
+    font-size: 1.1rem;
+    margin-block-start: 3rem;
+}
