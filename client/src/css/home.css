@@ -134,7 +134,6 @@
 .total-submissions {
     width: 100vw;
     margin-block-start: 8rem;
-    margin-block-end: 10rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -157,6 +156,7 @@
     background-color: #547AA5;
     z-index: -1;
     position: absolute;
+    border-radius: 5px;
 }
 
 .total-submissions__title {
@@ -179,4 +179,37 @@
     -webkit-text-fill-color: white;
     -webkit-text-stroke-width: 3px;
     -webkit-text-stroke-color: black;
+}
+
+.cursor-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    color: white;
+    place-items: center;
+    display: none;
+}
+
+.total-submissions:hover+.cursor-content {
+    display: grid;
+}
+
+.cursor-content__text {
+    font-size: 1.1rem;
+    font-family: 'Metropolis Semibold';
+    grid-column: 1;
+    grid-row: 1;
+    z-index: 10000;
+}
+
+.cursor-content__bg {
+    width: 5.5rem;
+    height: 5.5rem;
+    background-color: #FF5714;
+    border-radius: 100%;
+    filter: blur(3px);
+    grid-column: 1;
+    grid-row: 1;
 }
