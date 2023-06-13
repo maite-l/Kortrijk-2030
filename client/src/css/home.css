@@ -324,3 +324,181 @@
     font-size: 1.5rem;
     margin-block-start: 3rem;
 }
+
+
+/* .progress-bar {
+    width: 100%;
+    height: 8rem;
+    margin-block-start: 1rem;
+    margin-block-end: 1rem;
+    border-block: var(--border);
+    display: grid;
+}
+
+.progress-bar__bar {
+    width: 0%;
+    height: 100%;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    transition: all 0.2s ease-in-out;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.progress-bar__info {
+    height: 100%;
+    padding-inline: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+}
+.progress-bar__info--wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.progress-bar__percentage {
+    font-family: 'Trappist';
+    font-size: 3.8rem;
+    line-height: 1;
+}
+.progress-bar__text {
+    font-family: 'Metropolis Medium';
+    font-size: 1.7rem;
+}
+
+
+.progress-bar__cta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    grid-column: 1;
+    grid-row: 1;
+}
+.progress-bar__cta--wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    text-transform: uppercase;
+    padding-inline: 1rem;
+}
+.progress-bar__issue {
+    font-family: 'Metropolis Semibold';
+    font-size: 1.5rem;
+    margin-block-end: .5rem;
+}
+.progress-bar__issue .italic-semibold {
+    text-transform: lowercase;
+}
+.progress-bar__contribute {
+    text-decoration: underline 2px var(--color-black);
+} */
+
+.progress-bar {
+    width: 100%;
+    height: 8rem;
+    margin-block-start: 1rem;
+    margin-block-end: 1rem;
+    border-block: var(--border);
+    display: grid;
+}
+
+.progress-bar__bar {
+    width: 0%;
+    height: 100%;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    transition: all 0.2s ease-in-out;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.progress-bar__info {
+    height: 100%;
+    padding-inline: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.progress-bar__info .small {
+    align-items: start;
+}
+
+.progress-bar__info--wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-bar__percentage {
+    font-family: 'Trappist';
+    font-size: 3.8rem;
+    line-height: 1;
+}
+
+.progress-bar__text {
+    font-family: 'Metropolis Medium';
+    font-size: 1.7rem;
+}
+
+
+.progress-bar__cta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.progress-bar__cta--wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    padding-inline: 1rem;
+}
+
+.progress-bar__issue {
+    text-transform: uppercase;
+    font-family: 'Metropolis Semibold';
+    font-size: 1.5rem;
+    margin-block-end: .5rem;
+}
+.progress-bar__issue.big {
+    margin-block-end: -0.5rem;
+    width: 100%;
+    padding-inline: 1.5rem;
+    text-align: end;
+}
+.progress-bar__issue .italic-semibold {
+    text-transform: lowercase;
+}
+
+.progress-bar__contribute {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    text-decoration: underline 2px var(--color-black);
+}
+.progress-bar__contribute.big {
+    display: block;
+    width: 100%;
+    padding-inline: 1.65rem;
+    text-align: end;
+}
+
+.progress-bar__bar--wrapper {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: row;
+}
