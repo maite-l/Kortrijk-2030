@@ -4,8 +4,10 @@
     /* padding-block-start: 5rem; */
     display: grid;
     align-items: end;
-    border-bottom: solid 2px #000000;
+    border-bottom: var(--border);
 }
+
+
 
 .introduction {
     font-size: 2.3rem;
@@ -17,12 +19,9 @@
     align-items: center;
 }
 
-
-
 .introduction p:first-of-type {
     margin-block-end: 1rem;
 }
-
 
 .introduction .ctas {
     display: flex;
@@ -42,6 +41,8 @@
     margin-block-end: 2rem;
     margin-block-start: 18vh;
 }
+
+
 
 
 .featured-submissions {
@@ -76,7 +77,7 @@
     content: '';
     width: 70vw;
     height: 70vw;
-    background-color: #DFFF17;
+    background-color: var(--color-yellow);
     z-index: -1;
     position: absolute;
     margin-block-start: 15vh;
@@ -108,7 +109,7 @@
 .submission--img {
     width: 100%;
     height: auto;
-    box-shadow: 2px 2px 18px 3px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--drop-shadow);
 }
 
 .submission--title {
@@ -119,7 +120,7 @@
 
 .submission--text {
     padding-block-end: 0.5rem;
-    border-bottom: #000000 solid 2px;
+    border-bottom: var(--border);
 }
 
 .submission--page {
@@ -131,6 +132,8 @@
 }
 
 
+
+
 .total-submissions {
     width: 100vw;
     margin-block-start: 8rem;
@@ -138,7 +141,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    color: #FFFFFF;
+    color: var(--color-white);
 }
 
 .total-submissions div {
@@ -153,10 +156,10 @@
     width: 100vw;
     height: 33rem;
     margin-block-start: -15rem;
-    background-color: #547AA5;
+    background-color: var(--color-blue);
     z-index: -1;
     position: absolute;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
 }
 
 .total-submissions__title {
@@ -175,11 +178,13 @@
     letter-spacing: 0.150em;
     margin-inline-end: -0.150em;
     text-align: center;
-    color: black;
-    -webkit-text-fill-color: white;
+    color: var(--color-black);
+    -webkit-text-fill-color: var(--color-white);
     -webkit-text-stroke-width: 3px;
-    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-color: var(--color-black);
 }
+
+
 
 .cursor-content {
     position: fixed;
@@ -187,7 +192,7 @@
     left: 0;
     pointer-events: none;
     z-index: 9999;
-    color: white;
+    color: var(--color-white);
     place-items: center;
     display: none;
 }
@@ -207,9 +212,293 @@
 .cursor-content__bg {
     width: 5.5rem;
     height: 5.5rem;
-    background-color: #FF5714;
+    background-color: var(--color-orange);
     border-radius: 100%;
     filter: blur(3px);
     grid-column: 1;
     grid-row: 1;
+}
+
+
+
+
+.would-you-rather {
+    width: 90vw;
+    margin-inline: auto;
+    margin-block-end: 8rem;
+}
+
+.would-you-rather__title {
+    font-family: 'Trappist';
+    text-transform: uppercase;
+    font-size: 8rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+}
+.would-you-rather__title--text {
+    margin-inline-start: -10rem;
+    margin-block-start: 4.5rem;
+}
+
+.poll-options{
+    width: 70vw;
+    margin-inline: auto;
+    margin-block-start: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 5%; */
+}
+.poll-option, .poll-option--voted {
+    border: var(--border);
+    border-radius: var(--border-radius);
+    width: 30vw;
+    height: 25vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+    font-family: 'Metropolis Semibold';
+    font-size: 2.2rem;
+    line-height: 1.5;
+    padding: 6%;
+    text-align: center;
+}
+.poll-option:hover, .poll-option--voted.selected {
+    background-color: var(--color-yellow);
+    border: none;
+}
+
+.poll-option__title {
+    font-family: 'Metropolis Medium';
+    font-size: 1.5rem;
+    margin-block-end: 5.5%;
+}
+.poll-option__votes {
+    font-family: 'Trappist';
+    font-size: 10rem;
+    line-height: 1.2;
+}
+
+.poll-form {
+    width: 70vw;
+    margin-block-start: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+.poll-form__wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.poll-form label, .poll-form textarea {
+    width: 100%;
+    font-family: 'Metropolis Medium';
+}
+
+.poll-form textarea {
+    height: 8rem;
+    padding: 1rem;    
+    border: var(--border);
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+.poll-form textarea::placeholder {
+    color: #0000002a;
+}
+
+.poll-form__conformation {
+    width: 80vw;
+    margin: auto;
+    text-align: center;
+    font-family: 'Metropolis Semibold';
+    font-size: 1.5rem;
+    margin-block-start: 3rem;
+}
+
+
+/* .progress-bar {
+    width: 100%;
+    height: 8rem;
+    margin-block-start: 1rem;
+    margin-block-end: 1rem;
+    border-block: var(--border);
+    display: grid;
+}
+
+.progress-bar__bar {
+    width: 0%;
+    height: 100%;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    transition: all 0.2s ease-in-out;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.progress-bar__info {
+    height: 100%;
+    padding-inline: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+}
+.progress-bar__info--wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.progress-bar__percentage {
+    font-family: 'Trappist';
+    font-size: 3.8rem;
+    line-height: 1;
+}
+.progress-bar__text {
+    font-family: 'Metropolis Medium';
+    font-size: 1.7rem;
+}
+
+
+.progress-bar__cta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    grid-column: 1;
+    grid-row: 1;
+}
+.progress-bar__cta--wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    text-transform: uppercase;
+    padding-inline: 1rem;
+}
+.progress-bar__issue {
+    font-family: 'Metropolis Semibold';
+    font-size: 1.5rem;
+    margin-block-end: .5rem;
+}
+.progress-bar__issue .italic-semibold {
+    text-transform: lowercase;
+}
+.progress-bar__contribute {
+    text-decoration: underline 2px var(--color-black);
+} */
+
+.progress-bar {
+    width: 100%;
+    height: 8rem;
+    margin-block-start: 1rem;
+    margin-block-end: 1rem;
+    border-block: var(--border);
+    display: grid;
+}
+
+.progress-bar__bar {
+    width: 0%;
+    height: 100%;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    transition: all 0.2s ease-in-out;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.progress-bar__info {
+    height: 100%;
+    padding-inline: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.progress-bar__info .small {
+    align-items: start;
+}
+
+.progress-bar__info--wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-bar__percentage {
+    font-family: 'Trappist';
+    font-size: 3.8rem;
+    line-height: 1;
+}
+
+.progress-bar__text {
+    font-family: 'Metropolis Medium';
+    font-size: 1.7rem;
+}
+
+
+.progress-bar__cta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.progress-bar__cta--wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    padding-inline: 1rem;
+}
+
+.progress-bar__issue {
+    text-transform: uppercase;
+    font-family: 'Metropolis Semibold';
+    font-size: 1.5rem;
+    margin-block-end: .5rem;
+}
+.progress-bar__issue.big {
+    margin-block-end: -0.5rem;
+    width: 100%;
+    padding-inline: 1.5rem;
+    text-align: end;
+}
+.progress-bar__issue .italic-semibold {
+    text-transform: lowercase;
+}
+
+.progress-bar__contribute {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    text-decoration: underline 2px var(--color-black);
+}
+.progress-bar__contribute.big {
+    display: block;
+    width: 100%;
+    padding-inline: 1.65rem;
+    text-align: end;
+}
+
+.progress-bar__bar--wrapper {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: row;
 }
