@@ -6,8 +6,10 @@ import "../css/home.css";
 import { GlobalContext } from "../routes/root";
 
 import { getCurrentPoll, updateVoteAmountOne, updateVoteAmountTwo } from "../polls";
-import { newPollSubmission, getMagazineSectionByTitle, getCurrentFeaturedSubmissions, getApprovedSubmissions } from "../submissions";
+import { newPollSubmission, getMagazineSectionByTitle, getCurrentFeaturedSubmissions, getApprovedSubmissions, getAllSubmissions } from "../submissions";
 import { getCurrentIssue } from "../magazines";
+
+import CustomButton from "../components/CustomButton";
 
 let date;
 let number;
@@ -52,6 +54,10 @@ export async function loader() {
     shuffledFeaturedSubmissions.sort(() => Math.random() - 0.5);
     console.log(shuffledFeaturedSubmissions);
 
+    //get amount of all submissions ever
+    const allSubmissions = await getAllSubmissions();
+    const allSubmissionsAmount = allSubmissions.length;
+    console.log('all submissions:' + allSubmissionsAmount)
 
     //get amount of approved submissions for next issue
     // const nextIssueNumber = currentIssueNumber + 1;
@@ -74,7 +80,8 @@ export async function loader() {
         submissionPosted,
         currentIssue,
         shuffledFeaturedSubmissions,
-        progressBarPercentage
+        progressBarPercentage,
+        allSubmissionsAmount
     };
 }
 
@@ -118,7 +125,8 @@ export default function Home() {
         submissionPosted,
         currentIssue,
         shuffledFeaturedSubmissions: featuredSubmissions,
-        progressBarPercentage
+        progressBarPercentage,
+        allSubmissionsAmount
     } = useLoaderData();
 
     //get global context variables
@@ -169,18 +177,71 @@ export default function Home() {
         setSubmissionPostedState(true);
     }
 
-    return (
-        <main>
+    //custom cursor
+    const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+    const handleMouseMove = (event) => {
+        setCursorPosition({ x: event.clientX - 20, y: event.clientY - 20 });
+    };
 
+    return (
+        <main onMouseMove={handleMouseMove}>
             <div className="header">
                 <div className="introduction">
-                    <p>We are <span className="italic-semibold">klinkt.</span></p>
-                    <p>Kortrijk-based <span className="italic">digital & printed</span> youth magazine, where we value <span className="semibold">your</span> (cultural) inputs</p>
-                    {/* button */}
-                    <a href="">Find a printed copy of <span>klinkt.</span></a>
+                    <div>
+                        <p>We are <span className="italic-semibold">klinkt.</span></p>
+                        <p>Kortrijk-based <span className="italic">digital & printed</span> youth magazine, where we value <span className="semibold">your</span> (cultural) inputs</p>
+                        <div className="ctas">
+                            <CustomButton text={"View latest issue"} />
+                            <a href="" className="printed-copy-link">Find a printed copy of <span className="italic-semibold">klinkt.</span></a>
+                        </div>
+                    </div>
+                    <a href="" className="scroll-button">
+                        <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fillRule="evenodd" clipRule="evenodd" d="M27 0C12.0883 0 0 12.0883 0 27C0 41.9117 12.0883 54 27 54C41.9117 54 54 41.9117 54 27C54 12.0883 41.9117 0 27 0ZM28.0607 37.8596L37.6066 28.3137C38.1924 27.7279 38.1924 26.7782 37.6066 26.1924C37.0208 25.6066 36.0711 25.6066 35.4853 26.1924L28.5 33.1777V17C28.5 16.1716 27.8284 15.5 27 15.5C26.1716 15.5 25.5 16.1716 25.5 17V33.1777L18.5147 26.1924C17.9289 25.6066 16.9792 25.6066 16.3934 26.1924C15.8076 26.7782 15.8076 27.7279 16.3934 28.3137L25.9393 37.8596C26.5251 38.4454 27.4749 38.4454 28.0607 37.8596Z" fill="#030027" />
+                        </svg>
+                    </a>
                 </div>
 
             </div>
+
+
+            {featuredSubmissions.length > 0 && (
+                <div className="featured-submissions">
+                    <h2 className=""><span className="italic">Klinkt.</span> {issueDate} Featured submissions</h2>
+                    <div className="featured-submissions__submissions">
+                        <FeaturedSubmissions featuredSubmissions={featuredSubmissions} imgURL={imgURL} />
+                    </div>
+                    <CustomButton className="featured-submissions__button" text={"View full issue"} />
+                </div>
+            )}
+
+            <div className="total-submissions">
+                <svg width="105" height="148" viewBox="0 0 105 148" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24.9688 5C27.1116 5.35714 29.1123 6.72917 30.92 7.82431C41.474 14.2183 51.4832 21.5015 61.6343 28.5023C73.1514 36.4451 84.8272 44.5876 97.5938 50.3906" stroke="#E55934" strokeWidth="10" strokeLinecap="round" />
+                    <path d="M5 78.5327H99.4125" stroke="#E55934" strokeWidth="10" strokeLinecap="round" />
+                    <path d="M22.25 142.08C35.3878 136.368 48.9397 131.262 62.1938 125.739" stroke="#E55934" strokeWidth="10" strokeLinecap="round" />
+                </svg>
+                <div>
+                    <p className="total-submissions__title">Total number of voices heard in <span className="italic">klinkt.</span></p>
+                    <p className="total-submissions__number">{allSubmissionsAmount}</p>
+                </div>
+                <svg width="93" height="165" viewBox="0 0 93 165" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 60.395C24.7981 41.4218 45.5291 22.3641 66.7518 5" stroke="#E55934" strokeWidth="10" strokeLinecap="round" />
+                    <path d="M6.8125 90.3623H87.6347" stroke="#E55934" strokeWidth="10" strokeLinecap="round" />
+                    <path d="M5.90625 130.319C16.5451 136.122 26.4183 143.37 36.8831 149.491C43.1955 153.183 50.3114 158.153 57.6688 159.379" stroke="#E55934" strokeWidth="10" strokeLinecap="round" />
+                </svg>
+            </div>
+
+            <div
+                className="cursor-content"
+                style={{ left: cursorPosition.x, top: cursorPosition.y }}>
+                <div className="cursor-content__text">
+                    Submit
+                </div>
+                <div className="cursor-content__bg"></div>
+            </div>
+
+
 
             <div>
                 <h2>Would you rather?</h2>
@@ -229,14 +290,7 @@ export default function Home() {
                 </object>
             </div>
 
-            <div>
-                {featuredSubmissions.length > 0 && (
-                    <>
-                        <h2>Featured Submissions</h2>
-                        <FeaturedSubmissions featuredSubmissions={featuredSubmissions} imgURL={imgURL} />
-                    </>
-                )}
-            </div>
+
 
             <div>
                 <h2>Progress</h2>
@@ -249,24 +303,27 @@ export default function Home() {
 }
 
 export function FeaturedSubmissions({ featuredSubmissions, imgURL }) {
-    const charAmount = 50;
+    const charAmount = 60;
 
     return (
-        <div>
+        <>
             {featuredSubmissions.map((submission, index) => (
-                <div key={index}>
-                    <h2>{submission.title}</h2>
+                <div key={index} className="submission">
                     {submission.image.length > 0 && (
-                        <img src={`${imgURL}${submission.image[0].path}`} alt="image" />
+                        <img className="submission--img" src={`${imgURL}${submission.image[0].path}`} alt="image" />
                     )}
-                    {index === 0 ? <p>{submission.text.slice(0, charAmount)}{submission.text.length > charAmount ? "..." : ""}</p> : null}
-                    <p>Read more on page {submission.pageNumber}!</p>
-                    <br />
+                    <h3 className="submission--title">{submission.title}</h3>
+                    <p className="submission--text">{submission.text.slice(0, charAmount)}{submission.text.length > charAmount ? "..." : ""}</p>
+                    <div className="submission--page">
+                        <p>Read more on page {submission.pageNumber}</p>
+                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.11612 12.1161C0.627961 12.6043 0.627961 13.3957 1.11612 13.8839C1.60427 14.372 2.39573 14.372 2.88388 13.8839L1.11612 12.1161ZM14.25 2C14.25 1.30964 13.6904 0.749999 13 0.749999H1.75C1.05965 0.749999 0.500001 1.30964 0.500001 2C0.500001 2.69036 1.05965 3.25 1.75 3.25H11.75V13.25C11.75 13.9404 12.3096 14.5 13 14.5C13.6904 14.5 14.25 13.9404 14.25 13.25V2ZM2.88388 13.8839L13.8839 2.88388L12.1161 1.11612L1.11612 12.1161L2.88388 13.8839Z" fill="#030027" />
+                        </svg>
+                    </div>
+
                 </div>
             ))}
-        </div>
+        </>
     );
 }
-
-
 

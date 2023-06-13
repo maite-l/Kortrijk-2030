@@ -1,8 +1,9 @@
 .header {
     height: 100vh;
     margin-block-start: -5rem;
-    padding-block-start: 5rem;
+    /* padding-block-start: 5rem; */
     display: grid;
+    align-items: end;
     border-bottom: solid 2px #000000;
 }
 
@@ -10,26 +11,205 @@
     font-size: 2.3rem;
     max-width: 42vw;
     line-height: 1.4;
-    margin-block: auto;
-    margin-inline-start: 8vw;
+    margin-inline-start: 7vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.introduction .semibold {
-    font-family: 'Metropolis Semibold';
-}
-.introduction .italic {
-    font-family: 'Metropolis Italic';
-}
-.introduction .italic-semibold {
-    font-family: 'Metropolis Semibold Italic';
-    font-style: italic;
-}
+
 
 .introduction p:first-of-type {
     margin-block-end: 1rem;
 }
 
-.introduction a {
+
+.introduction .ctas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-block-start: 2rem;
+}
+
+.introduction .printed-copy-link {
+    display: block;
     font-size: 1.1rem;
     text-decoration: solid underline 2px;
+    font-family: 'Metropolis Semibold';
+}
+
+.introduction .scroll-button {
+    margin-block-end: 2rem;
+    margin-block-start: 18vh;
+}
+
+
+.featured-submissions {
+    max-width: 92vw;
+    margin-inline: auto;
+    margin-block-start: 8rem;
+    margin-block-end: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.featured-submissions h2 {
+    text-transform: uppercase;
+    font-size: 5.5rem;
+    line-height: 1;
+}
+
+.featured-submissions__submissions {
+    max-width: 88vw;
+    margin-block-start: 5rem;
+    margin-block-end: 10rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    column-gap: 2rem;
+    row-gap: 7rem;
+    justify-items: end;
+}
+
+.featured-submissions__submissions::before {
+    content: '';
+    width: 70vw;
+    height: 70vw;
+    background-color: #DFFF17;
+    z-index: -1;
+    position: absolute;
+    margin-block-start: 15vh;
+    left: 5vw;
+    border-radius: 100%;
+    filter: blur(22.5px);
+}
+
+.submission:nth-of-type(1) {
+    width: 40vw;
+}
+
+.submission:nth-of-type(2) {
+    display: block;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    max-width: 30vw;
+}
+
+.submission:nth-of-type(3) {
+    max-width: 30vw;
+}
+
+.submission {
+    font-size: 1.5rem;
+}
+
+.submission--img {
+    width: 100%;
+    height: auto;
+    box-shadow: 2px 2px 18px 3px rgba(0, 0, 0, 0.25);
+}
+
+.submission--title {
+    font-size: 1.5rem;
+    font-family: 'Metropolis Semibold';
+    margin-block: 1rem 0.7rem;
+}
+
+.submission--text {
+    padding-block-end: 0.5rem;
+    border-bottom: #000000 solid 2px;
+}
+
+.submission--page {
+    font-family: 'Metropolis Semibold';
+    margin-block-start: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.total-submissions {
+    width: 100vw;
+    margin-block-start: 8rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+}
+
+.total-submissions div {
+    margin-inline: 6vw;
+}
+.total-submissions svg {
+    margin-block-start: -10rem;
+}
+
+.total-submissions::before {
+    content: '';
+    width: 100vw;
+    height: 33rem;
+    margin-block-start: -15rem;
+    background-color: #547AA5;
+    z-index: -1;
+    position: absolute;
+    border-radius: 5px;
+}
+
+.total-submissions__title {
+    font-family: 'Metropolis Light';
+    font-size: 2.1rem;
+    margin-block-start: 5rem;
+    margin-block-end: -3rem;
+}
+.total-submissions__title .italic {
+    font-family: 'Metropolis Light Italic';
+}
+
+.total-submissions__number {
+    font-family: 'Trappist';
+    font-size: 35rem;
+    letter-spacing: 0.150em;
+    margin-inline-end: -0.150em;
+    text-align: center;
+    color: black;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: black;
+}
+
+.cursor-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    color: white;
+    place-items: center;
+    display: none;
+}
+
+.total-submissions:hover+.cursor-content {
+    display: grid;
+}
+
+.cursor-content__text {
+    font-size: 1.1rem;
+    font-family: 'Metropolis Semibold';
+    grid-column: 1;
+    grid-row: 1;
+    z-index: 10000;
+}
+
+.cursor-content__bg {
+    width: 5.5rem;
+    height: 5.5rem;
+    background-color: #FF5714;
+    border-radius: 100%;
+    filter: blur(3px);
+    grid-column: 1;
+    grid-row: 1;
 }
