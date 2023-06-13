@@ -5,8 +5,16 @@ import "../css/home.css";
 
 import { GlobalContext } from "../routes/root";
 
-import { getCurrentPoll, updateVoteAmountOne, updateVoteAmountTwo } from "../polls";
-import { newPollSubmission, getMagazineSectionByTitle, getCurrentFeaturedSubmissions, getApprovedSubmissions, getAllSubmissions } from "../submissions";
+import { 
+    getCurrentPoll, 
+    updateVoteAmountOne, 
+    updateVoteAmountTwo } from "../polls";
+import { 
+    newPollSubmission, 
+    getMagazineSectionByTitle, 
+    getCurrentFeaturedSubmissions, 
+    getApprovedSubmissions, 
+    getAllSubmissions } from "../submissions";
 import { getCurrentIssue } from "../magazines";
 
 import CustomButton from "../components/CustomButton";
@@ -15,79 +23,77 @@ let date;
 let number;
 
 export async function loader() {
+    //POLL
     //get poll data
     const poll = await getCurrentPoll();
-    const optionOne = poll.pollOptions[0];
-    const optionTwo = poll.pollOptions[1];
-    const issueDate = poll.issueDate;
-    const issueNumber = poll.issueNumber;
-    const pollId = poll.id;
 
+    //set global variables (to use in action function)
+    date = poll.issueDate;
+    number = poll.issueNumber;
+
+    //check voting status
     let voted = false;
     let submissionPosted = false;
-    let storedOptionVotedFor = localStorage.getItem(issueDate);
+    let storedOptionVotedFor = localStorage.getItem(date);
 
     if (storedOptionVotedFor) {
-        console.log(storedOptionVotedFor);
         voted = true;
         if (storedOptionVotedFor.startsWith('poll answer, chose ')) {
             submissionPosted = true;
             storedOptionVotedFor = storedOptionVotedFor.replace('poll answer, chose ', '');
         }
     }
-    console.log(storedOptionVotedFor);
 
 
-    //set global variables
-    date = issueDate;
-    number = issueNumber;
-
+    //FEATURED SUBMISSIONS
     //get current issue
     const currentIssue = await getCurrentIssue();
-    console.log(currentIssue);
 
     //get current featured submissions in random order
     const currentIssueNumber = currentIssue[0].issueNumber;
-    console.log(currentIssueNumber);
-
     const currentFeaturedSubmissions = await getCurrentFeaturedSubmissions(currentIssueNumber);
-    console.log(currentFeaturedSubmissions);
-
     const shuffledFeaturedSubmissions = Object.values(currentFeaturedSubmissions);
-    console.log(shuffledFeaturedSubmissions);
-
     shuffledFeaturedSubmissions.sort(() => Math.random() - 0.5);
-    console.log(shuffledFeaturedSubmissions);
 
+    //EVERY SUBMISSION EVER AMOUNT
     //get amount of all submissions ever
     const allSubmissions = await getAllSubmissions();
     const allSubmissionsAmount = allSubmissions.length;
-    console.log('all submissions:' + allSubmissionsAmount)
 
+
+
+    //PROGRESS BAR
     //get amount of approved submissions for next issue
     // const nextIssueNumber = currentIssueNumber + 1;
     const nextIssueNumber = currentIssueNumber;
     const approvedSubmissions = await getApprovedSubmissions(nextIssueNumber);
     const approvedSubmissionsAmount = approvedSubmissions.length;
-    console.log(approvedSubmissionsAmount);
 
     //calculate progress bar percentage
     const maxSubmissions = 20;
     const progressBarPercentage = ((approvedSubmissionsAmount / maxSubmissions) * 100).toFixed(0);
-    console.log(progressBarPercentage);
+
+
 
     return {
-        optionOne,
-        optionTwo,
-        issueDate,
-        pollId,
+        //POLL
+        optionOne: poll.pollOptions[0],
+        optionTwo: poll.pollOptions[1],
+        issueDate: poll.issueDate,
+        pollId: poll.id,
         voted,
         submissionPosted,
+        storedOptionVotedFor,
+
+        //FEATURED SUBMISSIONS
         currentIssue,
         shuffledFeaturedSubmissions,
+
+        //PROGRESS BAR
         progressBarPercentage,
-        allSubmissionsAmount,
-        storedOptionVotedFor
+
+        //EVERY SUBMISSION EVER AMOUNT
+        allSubmissionsAmount
     };
 }
 
@@ -107,8 +113,6 @@ export async function action({ request }) {
     //get issue number from global variable
     const issueNumber = number;
 
-    console.log(title, text, magazineSection, issueNumber);
-
     //create submission
     const submission = await newPollSubmission(title, text, magazineSection, issueNumber);
     console.log(submission);
@@ -123,40 +127,40 @@ export default function Home() {
 
     //get data from loader
     const {
+        //POLL
         optionOne,
         optionTwo,
         issueDate,
         pollId,
         voted,
         submissionPosted,
+        storedOptionVotedFor,
+
+        //FEATURED SUBMISSIONS
         currentIssue,
         shuffledFeaturedSubmissions: featuredSubmissions,
+
+        //PROGRESS BAR
         progressBarPercentage,
-        allSubmissionsAmount,
-        storedOptionVotedFor
+
+        //EVERY SUBMISSION EVER AMOUNT
+        allSubmissionsAmount
+
     } = useLoaderData();
 
-    //get global context variables
-    const { imgURL, magazineURL } = useContext(GlobalContext);
 
-    //set current issue path
-    const currentIssuePath = currentIssue[0].magazine[0].path;
-
-    //set states
+    //POLL VOTING
     const [optionOneVotes, setOptionOneVotes] = useState(optionOne.voteAmount);
     const [optionTwoVotes, setOptionTwoVotes] = useState(optionTwo.voteAmount);
     const [totalVotes, setTotalVotes] = useState(optionOneVotes + optionTwoVotes);
     const [votedState, setVotedState] = useState(voted);
-    const [submissionPostedState, setSubmissionPostedState] = useState(submissionPosted);
     const [optionVotedFor, setOptionVotedFor] = useState(storedOptionVotedFor);
 
-    //handle vote to update vote amount
     const handleVote = async (e) => {
         e.preventDefault();
 
         //set local storage to option voted for and set state
         localStorage.setItem(issueDate, e.target.textContent);
-        console.log(localStorage.getItem(issueDate));
         setOptionVotedFor(localStorage.getItem(issueDate));
 
         //update vote amount
@@ -165,14 +169,12 @@ export default function Home() {
             setOptionOneVotes(newVoteAmount);
             //update vote amount in database
             const vote = await updateVoteAmountOne(pollId, newVoteAmount, optionOne.id);
-            console.log(vote);
         }
         else {
             const newVoteAmount = optionTwoVotes + 1;
             setOptionTwoVotes(newVoteAmount);
             //update vote amount in database
             const vote = await updateVoteAmountTwo(pollId, newVoteAmount, optionTwo.id);
-            console.log(vote);
         }
 
         //update states
@@ -180,17 +182,28 @@ export default function Home() {
         setTotalVotes(optionOneVotes + optionTwoVotes + 1);
     }
 
-    //handle submission to display correct state
+    //SUBMITTING POLL ANSWER
+    const [submissionPostedState, setSubmissionPostedState] = useState(submissionPosted);
     const handleSubmit = () => {
-        console.log('submitted');
         setSubmissionPostedState(true);
     }
 
-    //custom cursor
+
+
+    //CUSTOM CURSOR
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
     const handleMouseMove = (event) => {
         setCursorPosition({ x: event.clientX - 20, y: event.clientY - 20 });
     };
+
+
+    //IMAGE AND MAGAZINE PATHS
+    //get global context variables for image and magazine path
+    const { imgURL, magazineURL } = useContext(GlobalContext);
+    //set current issue path
+    const currentIssuePath = currentIssue[0].magazine[0].path;
+
+
 
     return (
         <main onMouseMove={handleMouseMove}>
@@ -210,7 +223,7 @@ export default function Home() {
                         </svg>
                     </a>
                 </div>
-
+                {/* insert rolling cards */}
             </div>
 
 
@@ -223,6 +236,7 @@ export default function Home() {
                     <CustomButton className="featured-submissions__button" text={"View full issue"} />
                 </div>
             )}
+
 
             <div className="total-submissions">
                 <svg width="105" height="148" viewBox="0 0 105 148" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -240,7 +254,6 @@ export default function Home() {
                     <path d="M5.90625 130.319C16.5451 136.122 26.4183 143.37 36.8831 149.491C43.1955 153.183 50.3114 158.153 57.6688 159.379" stroke="#E55934" strokeWidth="10" strokeLinecap="round" />
                 </svg>
             </div>
-
             <div
                 className="cursor-content"
                 style={{ left: cursorPosition.x, top: cursorPosition.y }}>
@@ -250,6 +263,14 @@ export default function Home() {
                 <div className="cursor-content__bg"></div>
             </div>
 
+
+            {/* insert instruction section */}
+
+
+            <div>
+                <h2>Progress</h2>
+                <progress value={progressBarPercentage} max="100"> {progressBarPercentage}% </progress>
+            </div>
 
 
             <div className="would-you-rather">
@@ -311,6 +332,7 @@ export default function Home() {
                 )}
             </div>
 
+
             <div>
                 <h2>Latest Issue</h2>
                 <object data={`${magazineURL}${currentIssuePath}`} type="application/pdf" width="100%" height="600px">
@@ -319,11 +341,9 @@ export default function Home() {
             </div>
 
 
+            {/* insert social media section */}
 
-            <div>
-                <h2>Progress</h2>
-                <progress value={progressBarPercentage} max="100"> {progressBarPercentage}% </progress>
-            </div>
+            {/* insert map section */}
 
         </main>
     );

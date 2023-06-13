@@ -4,8 +4,10 @@
     /* padding-block-start: 5rem; */
     display: grid;
     align-items: end;
-    border-bottom: solid 2px #000000;
+    border-bottom: var(--border);
 }
+
+
 
 .introduction {
     font-size: 2.3rem;
@@ -17,12 +19,9 @@
     align-items: center;
 }
 
-
-
 .introduction p:first-of-type {
     margin-block-end: 1rem;
 }
-
 
 .introduction .ctas {
     display: flex;
@@ -42,6 +41,8 @@
     margin-block-end: 2rem;
     margin-block-start: 18vh;
 }
+
+
 
 
 .featured-submissions {
@@ -76,7 +77,7 @@
     content: '';
     width: 70vw;
     height: 70vw;
-    background-color: #DFFF17;
+    background-color: var(--color-yellow);
     z-index: -1;
     position: absolute;
     margin-block-start: 15vh;
@@ -108,7 +109,7 @@
 .submission--img {
     width: 100%;
     height: auto;
-    box-shadow: 2px 2px 18px 3px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--drop-shadow);
 }
 
 .submission--title {
@@ -119,7 +120,7 @@
 
 .submission--text {
     padding-block-end: 0.5rem;
-    border-bottom: #000000 solid 2px;
+    border-bottom: var(--border);
 }
 
 .submission--page {
@@ -131,6 +132,8 @@
 }
 
 
+
+
 .total-submissions {
     width: 100vw;
     margin-block-start: 8rem;
@@ -138,7 +141,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    color: #FFFFFF;
+    color: var(--color-white);
 }
 
 .total-submissions div {
@@ -153,10 +156,10 @@
     width: 100vw;
     height: 33rem;
     margin-block-start: -15rem;
-    background-color: #547AA5;
+    background-color: var(--color-blue);
     z-index: -1;
     position: absolute;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
 }
 
 .total-submissions__title {
@@ -175,11 +178,13 @@
     letter-spacing: 0.150em;
     margin-inline-end: -0.150em;
     text-align: center;
-    color: black;
-    -webkit-text-fill-color: white;
+    color: var(--color-black);
+    -webkit-text-fill-color: var(--color-white);
     -webkit-text-stroke-width: 3px;
-    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-color: var(--color-black);
 }
+
+
 
 .cursor-content {
     position: fixed;
@@ -187,7 +192,7 @@
     left: 0;
     pointer-events: none;
     z-index: 9999;
-    color: white;
+    color: var(--color-white);
     place-items: center;
     display: none;
 }
@@ -207,12 +212,15 @@
 .cursor-content__bg {
     width: 5.5rem;
     height: 5.5rem;
-    background-color: #FF5714;
+    background-color: var(--color-orange);
     border-radius: 100%;
     filter: blur(3px);
     grid-column: 1;
     grid-row: 1;
 }
+
+
+
 
 .would-you-rather {
     width: 90vw;
@@ -245,8 +253,8 @@
     /* gap: 5%; */
 }
 .poll-option, .poll-option--voted {
-    border: 2px solid #000000;
-    border-radius: 5px;
+    border: var(--border);
+    border-radius: var(--border-radius);
     width: 30vw;
     height: 25vw;
     display: flex;
@@ -261,7 +269,7 @@
     text-align: center;
 }
 .poll-option:hover, .poll-option--voted.selected {
-    background-color: #DFFF17;
+    background-color: var(--color-yellow);
     border: none;
 }
 
@@ -299,8 +307,8 @@
 .poll-form textarea {
     height: 8rem;
     padding: 1rem;    
-    border: 2px solid #0000002a;
-    border-radius: 5px;
+    border: var(--border);
+    border-radius: var(--border-radius);
     margin-bottom: 1rem;
     font-size: 1.1rem;
 }
@@ -313,6 +321,6 @@
     margin: auto;
     text-align: center;
     font-family: 'Metropolis Semibold';
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     margin-block-start: 3rem;
 }
