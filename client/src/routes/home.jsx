@@ -15,11 +15,13 @@ import {
     getMagazineSectionByTitle,
     getCurrentFeaturedSubmissions,
     getApprovedSubmissions,
-    getAllSubmissions
+    getAllSubmissions, 
+    getAllMagazineSections
 } from "../submissions";
 import { getCurrentIssue } from "../magazines";
 
 import CustomButton from "../components/CustomButton";
+import RollingCards from "../components/RollingCards";
 
 import insta1 from "../assets/img/insta/insta1.png";
 import insta2 from "../assets/img/insta/insta2.png";
@@ -29,6 +31,9 @@ import insta5 from "../assets/img/insta/insta5.png";
 import insta6 from "../assets/img/insta/insta6.png";
 import insta7 from "../assets/img/insta/insta7.png";
 import insta8 from "../assets/img/insta/insta8.png";
+
+import tiktok from "../assets/img/tiktok.png";
+
 
 let date;
 let number;
@@ -85,6 +90,11 @@ export async function loader() {
     const progressBarPercentage = ((approvedSubmissionsAmount / maxSubmissions) * 100).toFixed(0);
 
 
+    //ROLLING CARDS HEADER
+    //get all magazine sections
+    let allMagazineSections = await getAllMagazineSections();
+    allMagazineSections = allMagazineSections.filter((section) => section.title !== 'poll answer' && section.title !== 'Reply to an article');
+    console.log(allMagazineSections);
 
     return {
         //POLL
@@ -104,7 +114,10 @@ export async function loader() {
         progressBarPercentage,
 
         //EVERY SUBMISSION EVER AMOUNT
-        allSubmissionsAmount
+        allSubmissionsAmount,
+
+        //ROLLING CARDS HEADER
+        allMagazineSections
     };
 }
 
@@ -155,7 +168,10 @@ export default function Home() {
         progressBarPercentage,
 
         //EVERY SUBMISSION EVER AMOUNT
-        allSubmissionsAmount
+        allSubmissionsAmount,
+
+        //ROLLING CARDS HEADER
+        allMagazineSections
 
     } = useLoaderData();
 
@@ -246,8 +262,9 @@ export default function Home() {
                         </svg>
                     </a>
                 </div>
-                {/* insert rolling cards */}
+                <RollingCards allMagazineSections={allMagazineSections} />
             </div>
+
 
 
             {featuredSubmissions.length > 0 && (
@@ -378,7 +395,7 @@ export default function Home() {
                         <h2 className="style2 tiktok-title__2">Find us on Tiktok</h2>
                         <h2 className="style2 tiktok-title__3">Find us on Tiktok</h2>
                     </div>
-                    <img className="tiktok-gif" src="../src/assets/img/tiktok.png" alt="Tiktok Post" />
+                    <img className="tiktok-gif" src={tiktok} alt="Tiktok Post" />
                 </div>
             </div>
 
@@ -465,6 +482,9 @@ export function FeaturedSubmissions({ featuredSubmissions, imgURL }) {
         </>
     );
 }
+
+
+
 
 export function ProgressBar({ date, progressBarPercentage }) {
 

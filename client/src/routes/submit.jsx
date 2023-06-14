@@ -6,8 +6,8 @@ import { getAllMagazineSections } from "../submissions";
 
 export async function loader() {
     //get all magazine sections
-    const category = await getAllMagazineSections('gossip');
-    const magazineSections = category.filter((section) => section.title !== 'poll answer');
+    const categories = await getAllMagazineSections();
+    const magazineSections = categories.filter((section) => section.title !== 'poll answer');
     console.log(magazineSections);
     return { magazineSections };
 }
