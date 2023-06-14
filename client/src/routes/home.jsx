@@ -206,6 +206,18 @@ export default function Home() {
     const currentIssuePath = currentIssue[0].magazine[0].path;
 
 
+    //INSTA FEED IMG PATHS
+    const instaFeedImgPaths = [
+        `../src/assets/img/insta/insta1.png`,
+        `../src/assets/img/insta/insta2.png`,
+        `../src/assets/img/insta/insta3.png`,
+        `../src/assets/img/insta/insta4.png`,
+        `../src/assets/img/insta/insta5.png`,
+        `../src/assets/img/insta/insta6.png`,
+        `../src/assets/img/insta/insta7.png`,
+        `../src/assets/img/insta/insta8.png`,
+    ];
+
 
     return (
         <main onMouseMove={handleMouseMove}>
@@ -331,16 +343,35 @@ export default function Home() {
                 )}
             </div>
 
-
+            {/* 
             <div>
                 <h2>Latest Issue</h2>
                 <object data={`${magazineURL}${currentIssuePath}`} type="application/pdf" width="100%" height="600px">
                     <p>This browser does not support PDFs. Please download the PDF to view it: <a href={`${magazineURL}${currentIssuePath}`}>Download PDF</a></p>
                 </object>
+            </div> */}
+
+
+            <div className="social-media">
+                <div className="instagram">
+                    <h2>Tag us on Instagram</h2>
+                    <p className="hashtag">#klinktkortrijk</p>
+                    <div className="instagram-content">
+                        {instaFeedImgPaths.map((imgPath, index) => (
+                            <img key={index} src={imgPath} alt={`Instagram Post ${index + 1}`} />
+                        ))}
+                    </div>
+                </div>
+
+                <div className="tiktok">
+                    <div className="tiktok-title">
+                        <h2 className="style2 tiktok-title__1">Find us on Tiktok</h2>
+                        <h2 className="style2 tiktok-title__2">Find us on Tiktok</h2>
+                        <h2 className="style2 tiktok-title__3">Find us on Tiktok</h2>
+                    </div>
+                    <img className="tiktok-gif" src="../src/assets/img/tiktok.png" alt="Tiktok Post" />
+                </div>
             </div>
-
-
-            {/* insert social media section */}
 
             <div className="map-wrapper">
                 <div className="map">

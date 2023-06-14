@@ -493,3 +493,90 @@
     border-radius: 100%;
     filter: blur(22.5px);
 }
+
+
+
+.instagram {
+    width: 100vw;
+    margin-block-start: 10rem;
+    margin-block-end: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.instagram h2 {
+    font-family: 'Metropolis Light';
+    font-size: 2.2rem;
+    margin-block-end: 1rem;
+}
+.instagram .hashtag {
+    font-family: 'Metropolis Italic'; 
+    text-transform: uppercase;
+    font-size: 5.5rem;
+    line-height: 1.1;
+    margin-block-end: 3rem;
+}
+
+.instagram-content {
+    width: 95%;
+    margin-block: auto;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    width: 100%;
+    padding: 3rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1.8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.instagram-content img {
+    width: 23%;
+    height: 23%;
+    object-fit: cover;
+    border-radius: 1px;
+    box-shadow: var(--drop-shadow);
+}
+
+
+
+.tiktok-title {
+    width: 100vw;
+    margin-block-start: 10rem;
+    margin-block-end: 10rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+
+.tiktok {
+    width: 100vw;
+    margin-block-end: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tiktok-title__1 {
+    text-align: end;
+    margin-inline-end: 6rem;
+}
+.tiktok-title__2 {
+    text-align: start;
+    margin-inline-start: -8rem;
+}
+.tiktok-title__3 {
+    text-align: end;
+    margin-inline-end: -10rem;
+}
+
+.tiktok-gif {
+    width: 20rem;
+    height: auto;
+    position: absolute;
+    margin: auto;
+}
