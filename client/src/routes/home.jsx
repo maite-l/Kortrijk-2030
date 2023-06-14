@@ -206,6 +206,18 @@ export default function Home() {
     const currentIssuePath = currentIssue[0].magazine[0].path;
 
 
+    //INSTA FEED IMG PATHS
+    const instaFeedImgPaths = [
+        `../src/assets/img/insta/insta1.png`,
+        `../src/assets/img/insta/insta2.png`,
+        `../src/assets/img/insta/insta3.png`,
+        `../src/assets/img/insta/insta4.png`,
+        `../src/assets/img/insta/insta5.png`,
+        `../src/assets/img/insta/insta6.png`,
+        `../src/assets/img/insta/insta7.png`,
+        `../src/assets/img/insta/insta8.png`,
+    ];
+
 
     return (
         <main onMouseMove={handleMouseMove}>
@@ -231,7 +243,7 @@ export default function Home() {
 
             {featuredSubmissions.length > 0 && (
                 <div className="featured-submissions">
-                    <h2 className=""><span className="italic">Klinkt.</span> {issueDate} Featured submissions</h2>
+                    <h2 className="style1"><span className="italic">Klinkt.</span> {issueDate} Featured submissions</h2>
                     <div className="featured-submissions__submissions">
                         <FeaturedSubmissions featuredSubmissions={featuredSubmissions} imgURL={imgURL} />
                     </div>
@@ -283,7 +295,7 @@ export default function Home() {
                             </clipPath>
                         </defs>
                     </svg>
-                    <h2 className="would-you-rather__title--text">Would you rather...</h2>
+                    <h2 className="would-you-rather__title--text style2">Would you rather...</h2>
                 </div>
 
                 {votedState ? (
@@ -310,6 +322,7 @@ export default function Home() {
                                             cols="50"
                                             name="text"
                                             placeholder="Tell us why...?"
+                                            required
                                             style={{ resize: "none" }}
                                         />
                                     </label>
@@ -330,18 +343,89 @@ export default function Home() {
                 )}
             </div>
 
-
+            {/* 
             <div>
                 <h2>Latest Issue</h2>
                 <object data={`${magazineURL}${currentIssuePath}`} type="application/pdf" width="100%" height="600px">
                     <p>This browser does not support PDFs. Please download the PDF to view it: <a href={`${magazineURL}${currentIssuePath}`}>Download PDF</a></p>
                 </object>
+            </div> */}
+
+
+            <div className="social-media">
+                <div className="instagram">
+                    <h2>Tag us on Instagram</h2>
+                    <p className="hashtag">#klinktkortrijk</p>
+                    <div className="instagram-content">
+                        {instaFeedImgPaths.map((imgPath, index) => (
+                            <img key={index} src={imgPath} alt={`Instagram Post ${index + 1}`} />
+                        ))}
+                    </div>
+                </div>
+
+                <div className="tiktok">
+                    <div className="tiktok-title">
+                        <h2 className="style2 tiktok-title__1">Find us on Tiktok</h2>
+                        <h2 className="style2 tiktok-title__2">Find us on Tiktok</h2>
+                        <h2 className="style2 tiktok-title__3">Find us on Tiktok</h2>
+                    </div>
+                    <img className="tiktok-gif" src="../src/assets/img/tiktok.png" alt="Tiktok Post" />
+                </div>
+            </div>
+
+            <div className="map-wrapper">
+                <div className="map">
+                    <h2 className="style1">Find a printed copy of <span className="italic">Klinkt.</span> here</h2>
+                    <div className="map-content">
+                        <iframe
+                            src="https://www.google.com/maps/d/u/2/embed?mid=1NtMn2L0b-GGkcNJczUkwSPbhsgOInvk&ehbc=2E312F"
+                            width="640"
+                            height="480"
+                            className="my-map">
+                        </iframe>
+                        <div className="map-info">
+                            <div className="place">
+                                <p className="place__name">The Penta</p>
+                                <p className="place__specification">Howest Campus Kortrijk Weide</p>
+                            </div>
+                            <p className="address">Sint-Martens-Latemlaan 1B, 8500 Kortrijk</p>
+                            <div className="opening-hours">
+                                <div className="opening-hours__day">
+                                    <p>Monday</p>
+                                    <p>8am - 6pm</p>
+                                </div>
+                                <div className="opening-hours__day">
+                                    <p>Tuesday</p>
+                                    <p>8am - 6pm</p>
+                                </div>
+                                <div className="opening-hours__day">
+                                    <p>Wednesday</p>
+                                    <p>8am - 6pm</p>
+                                </div>
+                                <div className="opening-hours__day">
+                                    <p>Thursday</p>
+                                    <p>8am - 6pm</p>
+                                </div>
+                                <div className="opening-hours__day">
+                                    <p>Friday</p>
+                                    <p>8am - 6pm</p>
+                                </div>
+                                <div className="opening-hours__day">
+                                    <p>Saturday</p>
+                                    <p>Closed</p>
+                                </div>
+                                <div className="opening-hours__day">
+                                    <p>Sunday</p>
+                                    <p>Closed</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
 
-            {/* insert social media section */}
-
-            {/* insert map section */}
 
         </main>
     );
