@@ -19,10 +19,6 @@
     align-items: center;
 }
 
-.introduction p:first-of-type {
-    margin-block-end: 1rem;
-}
-
 .introduction .ctas {
     display: flex;
     flex-direction: column;
@@ -53,12 +49,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.featured-submissions h2 {
-    text-transform: uppercase;
-    font-size: 5.5rem;
-    line-height: 1;
 }
 
 .featured-submissions__submissions {
@@ -223,20 +213,18 @@
 
 
 .would-you-rather {
-    width: 90vw;
+    width: 88vw;
     margin-inline: auto;
     margin-block-end: 8rem;
 }
 
 .would-you-rather__title {
-    font-family: 'Trappist';
-    text-transform: uppercase;
-    font-size: 8rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: end;
 }
+
 .would-you-rather__title--text {
     margin-inline-start: -10rem;
     margin-block-start: 4.5rem;
@@ -317,7 +305,7 @@
 }
 
 .poll-form__conformation {
-    width: 80vw;
+    width: 70vw;
     margin: auto;
     text-align: center;
     font-family: 'Metropolis Semibold';
@@ -326,77 +314,6 @@
 }
 
 
-/* .progress-bar {
-    width: 100%;
-    height: 8rem;
-    margin-block-start: 1rem;
-    margin-block-end: 1rem;
-    border-block: var(--border);
-    display: grid;
-}
-
-.progress-bar__bar {
-    width: 0%;
-    height: 100%;
-    background-color: var(--color-black);
-    color: var(--color-white);
-    transition: all 0.2s ease-in-out;
-    grid-column: 1;
-    grid-row: 1;
-}
-
-.progress-bar__info {
-    height: 100%;
-    padding-inline: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    justify-content: center;
-}
-.progress-bar__info--wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.progress-bar__percentage {
-    font-family: 'Trappist';
-    font-size: 3.8rem;
-    line-height: 1;
-}
-.progress-bar__text {
-    font-family: 'Metropolis Medium';
-    font-size: 1.7rem;
-}
-
-
-.progress-bar__cta {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: end;
-    grid-column: 1;
-    grid-row: 1;
-}
-.progress-bar__cta--wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: end;
-    text-transform: uppercase;
-    padding-inline: 1rem;
-}
-.progress-bar__issue {
-    font-family: 'Metropolis Semibold';
-    font-size: 1.5rem;
-    margin-block-end: .5rem;
-}
-.progress-bar__issue .italic-semibold {
-    text-transform: lowercase;
-}
-.progress-bar__contribute {
-    text-decoration: underline 2px var(--color-black);
-} */
 
 .progress-bar {
     width: 100%;
@@ -501,4 +418,78 @@
     grid-row: 1;
     display: flex;
     flex-direction: row;
+}
+
+
+.map-wrapper {
+    width: 100vw;
+    border-block-start: var(--border);
+    margin-block-end: 10rem;
+}
+.map {
+    width: 88vw;
+    margin-inline: auto;
+}
+
+.map h2 {
+    margin-block-start: 4rem;
+    margin-block-end: 6rem;
+}
+
+.map-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.my-map {
+    border: var(--border);
+    border-radius: var(--border-radius);
+    width: 60vw;
+    height: 45vw;
+}
+
+.map-info {
+    width: 21vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-block-start: 3rem;
+}
+
+.place__name {
+    font-family: 'Metropolis Semibold';
+    font-size: 2.5rem;
+}
+.place__specification {
+    font-family: 'Metropolis Medium';
+}
+
+.opening-hours {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem
+}
+
+.opening-hours__day {
+    display: flex;
+    flex-direction: row;
+}
+
+.opening-hours__day :first-child {
+    width: 45%;
+    font-family: 'Metropolis Medium';
+}
+
+.map::before {
+    content: '';
+    width: 58vw;
+    height: 58vw;
+    background-color: var(--color-yellow);
+    z-index: -1;
+    position: absolute;
+    margin-block-start: 5vh;
+    left: -3vw;
+    border-radius: 100%;
+    filter: blur(22.5px);
 }

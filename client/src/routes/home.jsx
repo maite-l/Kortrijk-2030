@@ -231,7 +231,7 @@ export default function Home() {
 
             {featuredSubmissions.length > 0 && (
                 <div className="featured-submissions">
-                    <h2 className=""><span className="italic">Klinkt.</span> {issueDate} Featured submissions</h2>
+                    <h2 className="style1"><span className="italic">Klinkt.</span> {issueDate} Featured submissions</h2>
                     <div className="featured-submissions__submissions">
                         <FeaturedSubmissions featuredSubmissions={featuredSubmissions} imgURL={imgURL} />
                     </div>
@@ -283,7 +283,7 @@ export default function Home() {
                             </clipPath>
                         </defs>
                     </svg>
-                    <h2 className="would-you-rather__title--text">Would you rather...</h2>
+                    <h2 className="would-you-rather__title--text style2">Would you rather...</h2>
                 </div>
 
                 {votedState ? (
@@ -310,6 +310,7 @@ export default function Home() {
                                             cols="50"
                                             name="text"
                                             placeholder="Tell us why...?"
+                                            required
                                             style={{ resize: "none" }}
                                         />
                                     </label>
@@ -341,7 +342,59 @@ export default function Home() {
 
             {/* insert social media section */}
 
-            {/* insert map section */}
+            <div className="map-wrapper">
+                <div className="map">
+                    <h2 className="style1">Find a printed copy of <span className="italic">Klinkt.</span> here</h2>
+                    <div className="map-content">
+                        <iframe
+                            src="https://www.google.com/maps/d/u/2/embed?mid=1NtMn2L0b-GGkcNJczUkwSPbhsgOInvk&ehbc=2E312F"
+                            width="640"
+                            height="480"
+                            className="my-map">
+                        </iframe>
+                        <div className="map-info">
+                            <div className="place">
+                                <p className="place__name">The Penta</p>
+                                <p className="place__specification">Howest Campus Kortrijk Weide</p>
+                            </div>
+                            <p className="address">Sint-Martens-Latemlaan 1B, 8500 Kortrijk</p>
+                            <div className="opening-hours">
+                                <div className="opening-hours__day">
+                                    <p>Monday</p>
+                                    <p>8am - 6pm</p>
+                                </div>
+                                <div className="opening-hours__day">
+                                    <p>Tuesday</p>
+                                    <p>8am - 6pm</p>
+                                </div>
+                                <div className="opening-hours__day">
+                                    <p>Wednesday</p>
+                                    <p>8am - 6pm</p>
+                                </div>
+                                <div className="opening-hours__day">
+                                    <p>Thursday</p>
+                                    <p>8am - 6pm</p>
+                                </div>
+                                <div className="opening-hours__day">
+                                    <p>Friday</p>
+                                    <p>8am - 6pm</p>
+                                </div>
+                                <div className="opening-hours__day">
+                                    <p>Saturday</p>
+                                    <p>Closed</p>
+                                </div>
+                                <div className="opening-hours__day">
+                                    <p>Sunday</p>
+                                    <p>Closed</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
 
         </main>
     );
