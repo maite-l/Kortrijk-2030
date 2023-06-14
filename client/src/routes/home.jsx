@@ -21,6 +21,15 @@ import { getCurrentIssue } from "../magazines";
 
 import CustomButton from "../components/CustomButton";
 
+import insta1 from "../assets/img/insta/insta1.png";
+import insta2 from "../assets/img/insta/insta2.png";
+import insta3 from "../assets/img/insta/insta3.png";
+import insta4 from "../assets/img/insta/insta4.png";
+import insta5 from "../assets/img/insta/insta5.png";
+import insta6 from "../assets/img/insta/insta6.png";
+import insta7 from "../assets/img/insta/insta7.png";
+import insta8 from "../assets/img/insta/insta8.png";
+
 let date;
 let number;
 
@@ -208,14 +217,14 @@ export default function Home() {
 
     //INSTA FEED IMG PATHS
     const instaFeedImgPaths = [
-        `../src/assets/img/insta/insta1.png`,
-        `../src/assets/img/insta/insta2.png`,
-        `../src/assets/img/insta/insta3.png`,
-        `../src/assets/img/insta/insta4.png`,
-        `../src/assets/img/insta/insta5.png`,
-        `../src/assets/img/insta/insta6.png`,
-        `../src/assets/img/insta/insta7.png`,
-        `../src/assets/img/insta/insta8.png`,
+        insta1,
+        insta2,
+        insta3,
+        insta4,
+        insta5,
+        insta6,
+        insta7,
+        insta8,
     ];
 
 
