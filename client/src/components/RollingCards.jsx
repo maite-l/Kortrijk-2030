@@ -5,7 +5,7 @@ export default function RollingCards({ allMagazineSections }) {
     const elementRef = useRef(null)
 
     useEffect(() => {
-        gsap.fromTo(elementRef.current, 30, { y: 0 }, { y: -1660, ease: "power0.inOut", yoyo: true, repeat: 1 });
+        gsap.fromTo(elementRef.current, 30, { y: 0 }, { y: -1660, ease: "power0.inOut", yoyo: true, repeat: -1 });
     }, [])
 
     return (
