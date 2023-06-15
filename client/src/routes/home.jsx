@@ -317,7 +317,7 @@ export default function Home() {
 
             <div className="instructions">
                 <h2 className="style2">How does it work?</h2>
-                <div className="instructions__wrapper">
+                <div className="instructions">
                     <div className="instructions__steps">
                         <div className="instructions__step">
                             <div>

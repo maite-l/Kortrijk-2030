@@ -37,25 +37,25 @@ const pdfToImgDivs = (pdfDocument) => {
     });
 };
 
-// const attachDivs = (divs) => {
-//     const flipbookContainer = document.querySelector('magazine');
-//     divs.forEach((div) => {
-//         flipbookContainer.appendChild(div);
-//     });
+const attachDivs = (divs) => {
+    const flipbookContainer = document.querySelector('magazine');
+    divs.forEach((div) => {
+        flipbookContainer.appendChild(div);
+    });
 
-//     $("#flipbook_desktop").turn({
-//         width: 564 * 2,
-//         height: 564,
-//         duration: 1000,
-//         // autoCenter: true,
-//         // elevation: 50,
-//     });
-// };
+    // $("#flipbook_desktop").turn({
+    //     width: 564 * 2,
+    //     height: 564,
+    //     duration: 1000,
+    //     // autoCenter: true,
+    //     // elevation: 50,
+    // });
+};
 
 const initializeMagazineFlipbook = (pdfPath) => {
     pdfToImgDivs(pdfPath).then((divs) => {
         console.log(divs);
-        // attachDivs(divs);
+        attachDivs(divs);
     });
 };
 

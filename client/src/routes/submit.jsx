@@ -45,7 +45,7 @@ export function SectionCard({ section }) {
     };
 
     return (
-        <div
+        <a
             key={section.id}
             href={`submit/${section.slug}`}
             style={colorStyle}
@@ -57,6 +57,6 @@ export function SectionCard({ section }) {
                 <p>{section.text}</p>
                 <p>{section.time}</p>
             </div>
-        </div>
+        </a>
     );
 }
