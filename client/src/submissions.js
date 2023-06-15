@@ -127,6 +127,7 @@ export async function getAllMagazineSections() {
                 title
                 text
                 time
+                sectionGroup
                 slug
             }
         }

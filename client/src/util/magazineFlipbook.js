@@ -45,7 +45,7 @@ const pdfToImgDivs = async (pdfDocument) => {
 };
 
 const attachDivs = (divs) => {
-    const flipbookContainer = document.querySelector('.magazine');
+    const flipbookContainer = document.querySelector('.magazine-flipbook');
     console.log(flipbookContainer);
     divs.forEach((div) => {
         flipbookContainer.appendChild(div);

@@ -279,7 +279,7 @@ export default function Home() {
 
             {featuredSubmissions.length > 0 && (
                 <div className="featured-submissions">
-                    <h2 className="style1"><span className="italic">Klinkt.</span> {issueDate} Featured submissions</h2>
+                    <h2 className="title--style1"><span className="italic">Klinkt.</span> {issueDate} Featured submissions</h2>
                     <div className="featured-submissions__submissions">
                         <FeaturedSubmissions featuredSubmissions={featuredSubmissions} imgURL={imgURL} />
                     </div>
@@ -315,7 +315,7 @@ export default function Home() {
 
 
             <div className="instructions">
-                <h2 className="style2">How does it work?</h2>
+                <h2 className="title--style2">How does it work?</h2>
                 <div className="instructions">
                     <div className="instructions__steps">
                         <div className="instructions__step">
@@ -361,7 +361,7 @@ export default function Home() {
                             </clipPath>
                         </defs>
                     </svg>
-                    <h2 className="would-you-rather__title--text style2">Would you rather...</h2>
+                    <h2 className="would-you-rather__title--text title--style2">Would you rather...</h2>
                 </div>
 
                 {votedState ? (
@@ -410,14 +410,9 @@ export default function Home() {
             </div>
 
 
-            {/* <div>
-                <h2>Latest Issue</h2>
-                <object data={`${magazineURL}${currentIssuePath}`} type="application/pdf" width="100%" height="600px">
-                    <p>This browser does not support PDFs. Please download the PDF to view it: <a href={`${magazineURL}${currentIssuePath}`}>Download PDF</a></p>
-                </object>
-            </div> */}
-
-            <div className="magazine"></div>
+            <div className="magazine">
+                <div className="magazine-flipbook"></div>
+            </div>
 
 
             <div className="social-media">
@@ -433,9 +428,9 @@ export default function Home() {
 
                 <div className="tiktok">
                     <div className="tiktok-title">
-                        <h2 className="style2 tiktok-title__1">Find us on Tiktok</h2>
-                        <h2 className="style2 tiktok-title__2">Find us on Tiktok</h2>
-                        <h2 className="style2 tiktok-title__3">Find us on Tiktok</h2>
+                        <h2 className="title--style2 tiktok-title__1">Find us on Tiktok</h2>
+                        <h2 className="title--style2 tiktok-title__2">Find us on Tiktok</h2>
+                        <h2 className="title--style2 tiktok-title__3">Find us on Tiktok</h2>
                     </div>
                     <img className="tiktok-gif" src={tiktok} alt="Tiktok Post" />
                 </div>
@@ -443,7 +438,7 @@ export default function Home() {
 
             <div className="map-wrapper">
                 <div className="map">
-                    <h2 className="style1">Find a printed copy of <span className="italic">Klinkt.</span> here</h2>
+                    <h2 className="title--style1">Find a printed copy of <span className="italic">Klinkt.</span> here</h2>
                     <div className="map-content">
                         <iframe
                             src="https://www.google.com/maps/d/u/2/embed?mid=1NtMn2L0b-GGkcNJczUkwSPbhsgOInvk&ehbc=2E312F"

@@ -1,4 +1,4 @@
-dateModified: 1686508396
+dateModified: 1686859005
 email:
   fromEmail: maite.lejeune@student.howest.be
   fromName: 'Kortrijk 2030'
@@ -33,6 +33,7 @@ meta:
     42af299d-19ac-41c5-b3a9-39d32ccaca4a: 'featured?' # featured?
     43d610cc-1f89-426c-b57f-9f1def3f22f5: 'issue number' # issue number
     54fea167-e282-4701-8f9c-c5a9d65f85b5: option2 # option2
+    93d3d13d-83fd-4ffc-9ec8-99e36ab263aa: 'section group' # section group
     99c508e5-a234-4f38-80f1-9bade78787f0: time # time
     238f07e6-f4bd-48c1-8de9-8eb03b03202f: Topic # Topic
     825d900f-d973-45c3-bb99-5b5fb09d7ccd: 'Kortrijk 2030' # Kortrijk 2030

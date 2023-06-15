@@ -1,7 +1,6 @@
 .header {
     height: 100vh;
     margin-block-start: -5rem;
-    /* padding-block-start: 5rem; */
     display: grid;
     grid-template-columns: 1fr auto;
     border-bottom: var(--border);
@@ -715,12 +714,12 @@
     height: calc(0.85 * 842px);
 }
 
-.magazine {
+.magazine-flipbook {
     width: calc(0.85 * 595px * 2);
     height: calc(0.85 * 842px);
     margin: auto;
 }
 
-.magazine .shadow {
+.magazine-flipbook .shadow {
     box-shadow: var(--drop-shadow);
 }

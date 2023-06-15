@@ -3,60 +3,98 @@ import { useState } from "react";
 
 import { getAllMagazineSections } from "../submissions";
 
+import "../css/submit.css";
+
 
 export async function loader() {
     //get all magazine sections
     const categories = await getAllMagazineSections();
-    const magazineSections = categories.filter((section) => section.title !== 'poll answer');
-    console.log(magazineSections);
-    return { magazineSections };
+    const shortFunSections = categories.filter((section) => section.sectionGroup === 'Short & Fun');
+    const meaningfulSections = categories.filter((section) => section.sectionGroup === 'Meaningful & Impactful');
+    const creativeSections = categories.filter((section) => section.sectionGroup === 'Creative & Promo');
+    const specialSections = categories.filter((section) => section.sectionGroup === 'Special');
+    return { shortFunSections, meaningfulSections, creativeSections, specialSections };
 }
 
 export default function Submit() {
-    const { magazineSections } = useLoaderData();
-    console.log(magazineSections);
+    const { shortFunSections, meaningfulSections, creativeSections, specialSections } = useLoaderData();
+    console.log(shortFunSections, meaningfulSections, creativeSections, specialSections);
 
     return (
         <main>
-            <h1>Submit your work</h1>
-            {magazineSections.map((section) => (
-                <SectionCard key={section.id} section={section} />
-            ))}
+            <div className="submit-sections__title">
+                <h1 className="style1">Submit your input</h1>
+            </div>
+            <div className="sections">
+                <div className="section-group">
+                    <h2 className="section-group__title">Short & Fun</h2>
+                    <div className="section-cards">
+                        {shortFunSections.map((section) => (
+                            <SectionCard key={section.id} section={section} />
+                        ))}
+                    </div>
+                </div>
+
+                <div className="section-group">
+                    <h2 className="section-group__title">Meaningful & Impactful</h2>
+                    <div className="section-cards">
+                        {meaningfulSections.map((section) => (
+                            <SectionCard key={section.id} section={section} />
+                        ))}
+                    </div>
+                </div>
+
+
+                <div className="section-group">
+                    <h2 className="section-group__title">Creative & Promo</h2>
+                    <div className="section-cards">
+                        {creativeSections.map((section) => (
+                            <SectionCard key={section.id} section={section} />
+                        ))}
+                    </div>
+                </div>
+
+
+                <div className="section-group">
+                    <h2 className="section-group__title">Special</h2>
+                    <div className="section-cards">
+                        {specialSections.map((section) => (
+                            <SectionCard key={section.id} section={section} />
+                        ))}
+                    </div>
+                </div>
+            </div>
+
         </main>
     );
 }
 
 export function SectionCard({ section }) {
-    const colors = ["#DFFF17", "#7B6EF1", "#FE37BA"];
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    const [hovered, setHovered] = useState(false);
-
-    const handleMouseEnter = () => {
-        setHovered(true);
-    };
-
-    const handleMouseLeave = () => {
-        setHovered(false);
-    };
-
-    const colorStyle = {
-        background: hovered ? randomColor : "#FFF",
-        transition: "background-color 0.3s",
-    };
 
     return (
-        <a
+        <a className="section-card"
             key={section.id}
             href={`submit/${section.slug}`}
-            style={colorStyle}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
         >
             <div>
-                <h2>{section.title}</h2>
-                <p>{section.text}</p>
-                <p>{section.time}</p>
+                <div className="section__info">
+                    <h2 className="section__title">{section.title}.</h2>
+                    <p className="section__prompt">{section.text}</p>
+                </div>
+                <div className="section__time">
+                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.4948 0.0830078C9.12686 0.0830078 7.77231 0.352443 6.50851 0.875929C5.2447 1.39942 4.09637 2.1667 3.1291 3.13398C1.17559 5.08748 0.078125 7.737 0.078125 10.4997C0.078125 13.2623 1.17559 15.9119 3.1291 17.8654C4.09637 18.8326 5.2447 19.5999 6.50851 20.1234C7.77231 20.6469 9.12686 20.9163 10.4948 20.9163C13.2575 20.9163 15.907 19.8189 17.8605 17.8654C19.814 15.9119 20.9115 13.2623 20.9115 10.4997C20.9115 9.13174 20.642 7.7772 20.1185 6.51339C19.5951 5.24958 18.8278 4.10126 17.8605 3.13398C16.8932 2.1667 15.7449 1.39942 14.4811 0.875929C13.2173 0.352443 11.8627 0.0830078 10.4948 0.0830078ZM14.8698 14.8747L9.45313 11.5413V5.29134H11.0156V10.708L15.7031 13.5205L14.8698 14.8747Z" fill="#030027" />
+                    </svg>
+                    <p>{section.time}</p>
+                </div>
             </div>
+            <div className="section__submit-cta">
+                <p>Submit here</p>
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.11612 12.1161C0.627961 12.6043 0.627961 13.3957 1.11612 13.8839C1.60427 14.372 2.39573 14.372 2.88388 13.8839L1.11612 12.1161ZM14.25 2C14.25 1.30964 13.6904 0.749999 13 0.749999H1.75C1.05965 0.749999 0.500001 1.30964 0.500001 2C0.500001 2.69036 1.05965 3.25 1.75 3.25H11.75V13.25C11.75 13.9404 12.3096 14.5 13 14.5C13.6904 14.5 14.25 13.9404 14.25 13.25V2ZM2.88388 13.8839L13.8839 2.88388L12.1161 1.11612L1.11612 12.1161L2.88388 13.8839Z" fill="#030027" />
+                </svg>
+            </div>
+
         </a>
     );
 }

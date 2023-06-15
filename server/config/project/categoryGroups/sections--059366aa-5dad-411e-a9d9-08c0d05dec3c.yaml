@@ -36,7 +36,7 @@ fieldLayouts:
             fieldUid: 5001e355-1c2e-4928-af3b-42af9458c17e # text
             instructions: null
             label: prompt
-            required: false
+            required: true
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: 3ae4898b-d3e5-46a9-9678-31575b973daf
@@ -48,10 +48,22 @@ fieldLayouts:
             fieldUid: 99c508e5-a234-4f38-80f1-9bade78787f0 # time
             instructions: null
             label: null
-            required: false
+            required: true
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: 613f1452-7540-4a71-9087-fb41496574f3
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 93d3d13d-83fd-4ffc-9ec8-99e36ab263aa # section group
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ddd4266b-957d-471a-ab60-742f9f86bc50
             userCondition: null
             warning: null
             width: 100
