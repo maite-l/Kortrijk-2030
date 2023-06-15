@@ -13,10 +13,14 @@ import Home, { loader as homeLoader, action as homeAction } from "./routes/home"
 import Archive from "./routes/archive";
 import MySubmissions from "./routes/my-submissions";
 import Submit, { loader as submitLoader } from "./routes/submit";
+import Article, { action as articleAction } from "./routes/submit/article";
+import Interview, { action as interviewAction } from "./routes/submit/interview";
 import Gossip, { action as gossipAction } from "./routes/submit/gossip";
+import Artwork, { action as artworkAction } from "./routes/submit/artwork";
 import Photography, { action as photographyAction } from "./routes/submit/photography";
 import Meme, { action as memeAction } from "./routes/submit/meme";
 import Reply, { loader as replyLoader, action as replyAction } from "./routes/submit/reply";
+import OpenSubmission, { action as openSubmissionAction} from "./routes/submit/openSubmission";
 
 import ErrorPage from "./routes/error-page";
 
@@ -53,9 +57,24 @@ const router = createBrowserRouter([
                 loader: submitLoader,
               },
               {
+                path: "article",
+                element: <Article />,
+                action: articleAction,
+              },
+              {
+                path: "interview",
+                element: <Interview />,
+                action: interviewAction,
+              },
+              {
                 path: "gossip",
                 element: <Gossip />,
                 action: gossipAction,
+              },
+              {
+                path: "artwork",
+                element: <Artwork />,
+                action: artworkAction,
               },
               {
                 path: "photography",
@@ -66,6 +85,11 @@ const router = createBrowserRouter([
                 path: "meme",
                 element: <Meme />,
                 action: memeAction,
+              },
+              {
+                path: "open-submission",
+                element: <OpenSubmission />,
+                action: openSubmissionAction,
               },
               {
                 path: "reply",
