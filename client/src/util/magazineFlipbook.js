@@ -1,8 +1,13 @@
 import * as pdfjsLib from 'pdfjs-dist';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register ScrollTrigger plugin with GSAP
+gsap.registerPlugin(ScrollTrigger);
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.7.107/pdf.worker.min.js';
 
-const pdfToImgDivs = (pdfDocument) => {
+const pdfToImgDivs = async (pdfDocument) => {
     return pdfjsLib.getDocument(pdfDocument).promise.then((pdf) => {
         const totalPages = pdf.numPages;
         console.log('Total Pages:', totalPages);
@@ -25,8 +30,10 @@ const pdfToImgDivs = (pdfDocument) => {
                 return page.render(renderContext).promise.then(() => {
                     const image = new Image();
                     image.src = canvas.toDataURL('image/png');
+                    image.classList.add('magazine-page');
                     const div = document.createElement('div');
                     div.appendChild(image);
+                    console.log(div);
                     return div;
                 });
             });
@@ -38,18 +45,37 @@ const pdfToImgDivs = (pdfDocument) => {
 };
 
 const attachDivs = (divs) => {
-    const flipbookContainer = document.querySelector('magazine');
+    const flipbookContainer = document.querySelector('.magazine');
+    console.log(flipbookContainer);
     divs.forEach((div) => {
         flipbookContainer.appendChild(div);
     });
 
-    // $("#flipbook_desktop").turn({
-    //     width: 564 * 2,
-    //     height: 564,
-    //     duration: 1000,
-    //     // autoCenter: true,
-    //     // elevation: 50,
-    // });
+    $(flipbookContainer).turn({
+        width: (0.85 * 595) * 2,
+        height: 0.85 * 842,
+        duration: 1000,
+    });
+
+    // ScrollTrigger configuration
+    ScrollTrigger.create({
+        trigger: flipbookContainer,
+        start: "top 15%",
+        scrub: 2,
+        onEnter: function () {
+            // flipping animation to the first page + disabling the flipbook
+            $(flipbookContainer).turn("disable", false);
+            $(flipbookContainer).turn("next");
+            $(flipbookContainer).turn("disable", true);
+        },
+            onLeaveBack: function () {
+            // flipping animation to the last page
+            $(flipbookContainer).turn("disable", false);
+            $(flipbookContainer).turn("previous");
+            $(flipbookContainer).turn("disable", true);
+        }
+    });
+    
 };
 
 const initializeMagazineFlipbook = (pdfPath) => {

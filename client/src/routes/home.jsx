@@ -277,7 +277,6 @@ export default function Home() {
             </div>
 
 
-
             {featuredSubmissions.length > 0 && (
                 <div className="featured-submissions">
                     <h2 className="style1"><span className="italic">Klinkt.</span> {issueDate} Featured submissions</h2>
@@ -411,12 +410,12 @@ export default function Home() {
             </div>
 
 
-            <div>
+            {/* <div>
                 <h2>Latest Issue</h2>
                 <object data={`${magazineURL}${currentIssuePath}`} type="application/pdf" width="100%" height="600px">
                     <p>This browser does not support PDFs. Please download the PDF to view it: <a href={`${magazineURL}${currentIssuePath}`}>Download PDF</a></p>
                 </object>
-            </div>
+            </div> */}
 
             <div className="magazine"></div>
 

@@ -708,3 +708,19 @@
     line-height: 1.1;
     color: var(--color-blue);
 }
+
+
+.magazine-page {
+    width: calc(0.85 * 595px);
+    height: calc(0.85 * 842px);
+}
+
+.magazine {
+    width: calc(0.85 * 595px * 2);
+    height: calc(0.85 * 842px);
+    margin: auto;
+}
+
+.magazine .shadow {
+    box-shadow: var(--drop-shadow);
+}
