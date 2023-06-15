@@ -1,4 +1,4 @@
-dateModified: 1686859005
+dateModified: 1686866971
 email:
   fromEmail: maite.lejeune@student.howest.be
   fromName: 'Kortrijk 2030'
@@ -44,6 +44,7 @@ meta:
     059366aa-5dad-411e-a9d9-08c0d05dec3c: sections # sections
     69053c9d-206a-42d1-83b7-3282638db454: Polls # Polls
     324575b1-4aa1-470b-a0b3-45adf161a21b: 'poll options' # poll options
+    3987927b-d36a-44c4-930a-b96c1a37bb7f: 'extra info' # extra info
     9792054f-bb1c-4d58-bb44-0b3a55bf61be: 'option 1' # option 1
     a6720840-f082-4e30-bafe-b8176bf62ccc: Common # Common
     b5d3c9ba-50b0-44b2-9a96-91c21d93f970: article # article

@@ -1,5 +1,4 @@
 import { useLoaderData } from "react-router-dom";
-import { useState } from "react";
 
 import { getAllMagazineSections } from "../submissions";
 

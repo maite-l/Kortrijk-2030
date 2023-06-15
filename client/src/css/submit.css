@@ -8,7 +8,7 @@ main {
     border-block-start: var(--border);
 }
 
-h1 {
+.submit-sections__title h1 {
     margin-inline-start: 7vw;
 }
 
@@ -42,7 +42,7 @@ h1 {
 }
 
 .section-cards:hover {
-    
+
 }
 
 .section-card {

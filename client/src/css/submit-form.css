@@ -1,0 +1,83 @@
+.submit-form__wrapper {
+    width: 55vw;
+    margin-inline: auto;
+    padding-block: 2rem 10rem;
+}
+
+.submit-form__wrapper h1 {
+    font-family: 'Metropolis Medium';
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-block-start: 0;
+    margin-inline-start: 3rem;
+    margin-block-end: 1rem;
+}
+
+.submit-form {
+    padding: 2rem 3rem;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+}
+
+.submission-tips {
+    line-height: 1.5;
+    margin-block-end: 1rem;
+}
+
+.submission-tips__title {
+    font-size: 1.8rem;
+    font-family: 'Metropolis Semibold';
+}
+
+.submit-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.submit-form form input, .submit-form form textarea, .submit-form form select {
+    width: 100%;
+    font-family: 'Metropolis Medium';
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+    padding: 0.8rem;
+    border: 1px solid #0000004b;
+    border-radius: var(--border-radius);
+}
+
+.submit-form form input[type="file"] {
+    border: none;
+    padding: 0;
+}
+
+.submit-form form input::placeholder, .submit-form form textarea::placeholder {
+    color: #0000004b;
+}
+
+.submit-form form span {
+    font-family: 'Metropolis Semibold';
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin-inline-start: 0.5rem;
+}
+
+.submit-form form button {
+    font-family: 'Metropolis Medium';
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.8rem;
+    width: fit-content;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    padding: 0.5rem 1.2rem;
+    border-radius: 3px;
+    border: none;
+    margin-inline-start: auto;
+    cursor: pointer;
+    background-color: var(--color-blue);
+    color: var(--color-white);
+}
