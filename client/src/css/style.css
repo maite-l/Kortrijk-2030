@@ -109,3 +109,14 @@ h2.style2 {
     background-color: var(--color-white);
     transition: all 0.2s ease-in-out;
 }
+
+.custom-button:hover, .poll-form button:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    transition: all 0.2s ease-in-out;
+}
+
+.custom-button:hover svg path, .poll-form button:hover svg {
+    fill: var(--color-white);
+    transition: all 0.2s ease-in-out;
+}

@@ -43,7 +43,7 @@
 
 .rolling-cards {
     justify-self: end;
-    padding-inline-end: 7vw;
+    padding-inline-end: 5vw;
     width: 45vw;
     overflow: hidden;
     padding-inline-start: 1rem;
@@ -636,14 +636,17 @@
 .tiktok-title__1 {
     text-align: end;
     margin-inline-end: 6rem;
+    overflow: hidden;
 }
 .tiktok-title__2 {
     text-align: start;
     margin-inline-start: -8rem;
+    overflow: hidden;
 }
 .tiktok-title__3 {
     text-align: end;
     margin-inline-end: -10rem;
+    overflow: hidden;
 }
 
 .tiktok-gif {
@@ -651,4 +654,57 @@
     height: auto;
     position: absolute;
     margin: auto;
+}
+
+
+.instructions {
+    width: 100vw;
+    padding-block-end: 6rem;
+    overflow-x: hidden;
+}
+
+.instructions h2 {
+    margin-inline-start: 3rem;
+    margin-block-end: 3rem;
+}
+
+.instructions__wrapper {
+    width: 100vw;
+    overflow: scroll;
+}
+
+.instructions__steps {
+    display: flex;
+    flex-direction: row;
+    width: 140vw;
+
+}
+
+.instructions__step {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: var(--border);
+    padding: 2rem;
+    width: 33.3333333333%;
+    height: 27rem;
+    font-size: 1.5rem;
+    margin-inline-start: -2px;
+}
+
+.instructions__text {
+    margin-block-start: 0.5rem;
+}
+
+.instructions h3 {
+    text-transform: uppercase;
+    font-family: 'Metropolis Semibold';
+    font-size: 3rem;
+}
+
+.instructions h3 span {
+    font-family: 'Trappist';
+    font-size: 3rem;
+    line-height: 1.1;
+    color: var(--color-blue);
 }

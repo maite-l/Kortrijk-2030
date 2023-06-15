@@ -15,7 +15,7 @@ import {
     getMagazineSectionByTitle,
     getCurrentFeaturedSubmissions,
     getApprovedSubmissions,
-    getAllSubmissions, 
+    getAllSubmissions,
     getAllMagazineSections
 } from "../submissions";
 import { getCurrentIssue } from "../magazines";
@@ -33,6 +33,8 @@ import insta7 from "../assets/img/insta/insta7.png";
 import insta8 from "../assets/img/insta/insta8.png";
 
 import tiktok from "../assets/img/tiktok.png";
+
+import intializeMagazineFlipbook from "../util/magazineFlipbook";
 
 
 let date;
@@ -95,6 +97,15 @@ export async function loader() {
     let allMagazineSections = await getAllMagazineSections();
     allMagazineSections = allMagazineSections.filter((section) => section.title !== 'poll answer' && section.title !== 'Reply to an article');
     console.log(allMagazineSections);
+
+
+    //MAGAZINE FLIPBOOK
+
+    const pdfPath = import.meta.env.VITE_API_MAGAZINES_URL || "https://kortrijk2030.ddev.site/files/magazines/";
+    const currentMagazine = currentIssue[0].magazine[0].path;
+    intializeMagazineFlipbook(`${pdfPath}${currentMagazine}`);
+
+
 
     return {
         //POLL
@@ -304,7 +315,37 @@ export default function Home() {
             </div>
 
 
-            {/* insert instruction section */}
+            <div className="instructions">
+                <h2 className="style2">How does it work?</h2>
+                <div className="instructions__wrapper">
+                    <div className="instructions__steps">
+                        <div className="instructions__step">
+                            <div>
+                                <h3><span>01.</span> Submit your work</h3>
+                                <p className="instructions__text">You can contribute to various sections: articles, interviews, local gossip, memes, photography, artworks and open submissions.</p>
+                            </div>
+                            <CustomButton className="instructions__button" text={"Submit your input"} />
+                        </div>
+                        <div className="instructions__step">
+                            <div>
+                                <h3><span>02.</span> Wait for approval</h3>
+                                <p className="instructions__text">We manually go through all the submissions and moderate them, so that they fit the curation of the magazine.</p>
+                                <p className="instructions__text">You can check the status of your submission if you create an account.</p>
+                            </div>
+                            <CustomButton className="instructions__button" text={"Make an account"} />
+                        </div>
+                        <div className="instructions__step">
+                            <div>
+                                <h3><span>03.</span> Admire your work</h3>
+                                <p className="instructions__text">After your submission has been approved, it will be added to the upcoming issue and published in the beginning of next month - both in the digital and printed version of <span className="italic">klinkt.</span></p>
+                            </div>
+                            <CustomButton className="instructions__button" text={"View recent issue"} />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
 
             <ProgressBar date={date} progressBarPercentage={progressBarPercentage} />
 
@@ -369,13 +410,15 @@ export default function Home() {
                 )}
             </div>
 
-            {/* 
+
             <div>
                 <h2>Latest Issue</h2>
                 <object data={`${magazineURL}${currentIssuePath}`} type="application/pdf" width="100%" height="600px">
                     <p>This browser does not support PDFs. Please download the PDF to view it: <a href={`${magazineURL}${currentIssuePath}`}>Download PDF</a></p>
                 </object>
-            </div> */}
+            </div>
+
+            <div className="magazine"></div>
 
 
             <div className="social-media">
