@@ -1,14 +1,23 @@
 import { useState, useContext } from "react";
 import { Form, useLoaderData } from "react-router-dom";
 
-import "../css/home.css";
 
 import { GlobalContext } from "../routes/root";
+
+
+import Header from "../components/home/Header";
+import FeaturedSubmissions from "../components/home/FeaturedSubmissions";
+import TotalSubmissions from "../components/home/TotalSubmissions";
+import Instructions from "../components/home/Instructions";
+import SocialMediaSection from "../components/home/SocialMediaSection";
+import MapSection from "../components/home/MapSection";
+import ProgressBar from "../components/home/ProgressBar";
+
 
 import {
     getCurrentPoll,
     updateVoteAmountOne,
-    updateVoteAmountTwo
+    updateVoteAmountTwo,
 } from "../polls";
 import {
     newPollSubmission,
@@ -16,67 +25,50 @@ import {
     getCurrentFeaturedSubmissions,
     getApprovedSubmissions,
     getAllSubmissions,
-    getAllMagazineSections
+    getAllMagazineSections,
 } from "../submissions";
 import { getCurrentIssue } from "../magazines";
 
-import CustomButton from "../components/CustomButton";
-import RollingCards from "../components/RollingCards";
-
-import insta1 from "../assets/img/insta/insta1.png";
-import insta2 from "../assets/img/insta/insta2.png";
-import insta3 from "../assets/img/insta/insta3.png";
-import insta4 from "../assets/img/insta/insta4.png";
-import insta5 from "../assets/img/insta/insta5.png";
-import insta6 from "../assets/img/insta/insta6.png";
-import insta7 from "../assets/img/insta/insta7.png";
-import insta8 from "../assets/img/insta/insta8.png";
-
-import tiktok from "../assets/img/tiktok.png";
 
 import intializeMagazineFlipbook from "../util/magazineFlipbook";
+
+
+import "../css/home.css";
+import Poll from "../components/home/Poll";
+
 
 
 let date;
 let number;
 
 export async function loader() {
-    //POLL
-    //get poll data
-    const poll = await getCurrentPoll();
 
-    //set global variables (to use in action function)
-    date = poll.issueDate;
-    number = poll.issueNumber;
 
-    //check voting status
-    let voted = false;
-    let submissionPosted = false;
-    let storedOptionVotedFor = localStorage.getItem(date);
+    //ROLLING CARDS HEADER
+    //get all magazine sections
+    let allMagazineSections = await getAllMagazineSections();
+    allMagazineSections = allMagazineSections.filter((section) => section.title !== 'poll answer' && section.title !== 'Reply to an article');
 
-    if (storedOptionVotedFor) {
-        voted = true;
-        if (storedOptionVotedFor.startsWith('poll answer, chose ')) {
-            submissionPosted = true;
-            storedOptionVotedFor = storedOptionVotedFor.replace('poll answer, chose ', '');
-        }
-    }
 
 
     //FEATURED SUBMISSIONS
     //get current issue
     const currentIssue = await getCurrentIssue();
 
-    //get current featured submissions in random order
-    const currentIssueNumber = currentIssue[0].issueNumber;
-    const currentFeaturedSubmissions = await getCurrentFeaturedSubmissions(currentIssueNumber);
-    const shuffledFeaturedSubmissions = Object.values(currentFeaturedSubmissions);
-    shuffledFeaturedSubmissions.sort(() => Math.random() - 0.5);
+
 
     //EVERY SUBMISSION EVER AMOUNT
     //get amount of all submissions ever
     const allSubmissions = await getAllSubmissions();
     const allSubmissionsAmount = allSubmissions.length;
+
+
+
+    //get current featured submissions in random order
+    const currentIssueNumber = currentIssue[0].issueNumber;
+    const currentFeaturedSubmissions = await getCurrentFeaturedSubmissions(currentIssueNumber);
+    const shuffledFeaturedSubmissions = Object.values(currentFeaturedSubmissions);
+    shuffledFeaturedSubmissions.sort(() => Math.random() - 0.5);
 
 
 
@@ -92,11 +84,26 @@ export async function loader() {
     const progressBarPercentage = ((approvedSubmissionsAmount / maxSubmissions) * 100).toFixed(0);
 
 
-    //ROLLING CARDS HEADER
-    //get all magazine sections
-    let allMagazineSections = await getAllMagazineSections();
-    allMagazineSections = allMagazineSections.filter((section) => section.title !== 'poll answer' && section.title !== 'Reply to an article');
-    console.log(allMagazineSections);
+
+    //POLL
+    //get poll data
+    const poll = await getCurrentPoll();
+    //set global variables (to use in action function)
+    date = poll.issueDate;
+    number = poll.issueNumber;
+    //check voting status
+    let voted = false;
+    let submissionPosted = false;
+    let storedOptionVotedFor = localStorage.getItem(date);
+
+    if (storedOptionVotedFor) {
+        voted = true;
+        if (storedOptionVotedFor.startsWith('poll answer, chose ')) {
+            submissionPosted = true;
+            storedOptionVotedFor = storedOptionVotedFor.replace('poll answer, chose ', '');
+        }
+    }
+
 
 
     //MAGAZINE FLIPBOOK
@@ -196,6 +203,7 @@ export default function Home() {
 
     const handleVote = async (e) => {
         e.preventDefault();
+        console.log('voting');
 
         //set local storage to option voted for and set state
         localStorage.setItem(issueDate, e.target.textContent);
@@ -222,7 +230,9 @@ export default function Home() {
 
     //SUBMITTING POLL ANSWER
     const [submissionPostedState, setSubmissionPostedState] = useState(submissionPosted);
-    const handleSubmit = () => {
+    console.log(submissionPostedState);
+    const handleSubmit = (e) => {
+        console.log('submitting poll answer');
         setSubmissionPostedState(true);
     }
 
@@ -241,115 +251,33 @@ export default function Home() {
     //set current issue path
     const currentIssuePath = currentIssue[0].magazine[0].path;
 
-
-    //INSTA FEED IMG PATHS
-    const instaFeedImgPaths = [
-        insta1,
-        insta2,
-        insta3,
-        insta4,
-        insta5,
-        insta6,
-        insta7,
-        insta8,
-    ];
-
-
     return (
         <main onMouseMove={handleMouseMove}>
-            <div className="header">
-                <div className="introduction">
-                    <div>
-                        <p>We are <span className="italic-semibold">klinkt.</span></p>
-                        <p>Kortrijk-based <span className="italic">digital & printed</span> youth magazine, where we value <span className="semibold">your</span> (cultural) inputs</p>
-                        <div className="ctas">
-                            <CustomButton text={"View latest issue"} />
-                            <a href="" className="printed-copy-link">Find a printed copy of <span className="italic-semibold">klinkt.</span></a>
-                        </div>
-                    </div>
-                    <a href="" className="scroll-button">
-                        <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M27 0C12.0883 0 0 12.0883 0 27C0 41.9117 12.0883 54 27 54C41.9117 54 54 41.9117 54 27C54 12.0883 41.9117 0 27 0ZM28.0607 37.8596L37.6066 28.3137C38.1924 27.7279 38.1924 26.7782 37.6066 26.1924C37.0208 25.6066 36.0711 25.6066 35.4853 26.1924L28.5 33.1777V17C28.5 16.1716 27.8284 15.5 27 15.5C26.1716 15.5 25.5 16.1716 25.5 17V33.1777L18.5147 26.1924C17.9289 25.6066 16.9792 25.6066 16.3934 26.1924C15.8076 26.7782 15.8076 27.7279 16.3934 28.3137L25.9393 37.8596C26.5251 38.4454 27.4749 38.4454 28.0607 37.8596Z" fill="#030027" />
-                        </svg>
-                    </a>
-                </div>
-                <RollingCards allMagazineSections={allMagazineSections} />
-            </div>
 
+            <Header allMagazineSections={allMagazineSections} />
 
-            {featuredSubmissions.length > 0 && (
-                <div className="featured-submissions">
-                    <h2 className="title--style1"><span className="italic">Klinkt.</span> {issueDate} Featured submissions</h2>
-                    <div className="featured-submissions__submissions">
-                        <FeaturedSubmissions featuredSubmissions={featuredSubmissions} imgURL={imgURL} />
-                    </div>
-                    <CustomButton className="featured-submissions__button" text={"View full issue"} />
-                </div>
-            )}
+            <FeaturedSubmissions featuredSubmissions={featuredSubmissions} issueDate={issueDate} imgURL={imgURL} />
 
+            <TotalSubmissions allSubmissionsAmount={allSubmissionsAmount} cursorPosition={cursorPosition} />
 
-            <div className="total-submissions">
-                <svg width="105" height="148" viewBox="0 0 105 148" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24.9688 5C27.1116 5.35714 29.1123 6.72917 30.92 7.82431C41.474 14.2183 51.4832 21.5015 61.6343 28.5023C73.1514 36.4451 84.8272 44.5876 97.5938 50.3906" stroke="#E55934" strokeWidth="10" strokeLinecap="round" />
-                    <path d="M5 78.5327H99.4125" stroke="#E55934" strokeWidth="10" strokeLinecap="round" />
-                    <path d="M22.25 142.08C35.3878 136.368 48.9397 131.262 62.1938 125.739" stroke="#E55934" strokeWidth="10" strokeLinecap="round" />
-                </svg>
-                <div>
-                    <p className="total-submissions__title">Total number of voices heard in <span className="italic">klinkt.</span></p>
-                    <p className="total-submissions__number">{allSubmissionsAmount}</p>
-                </div>
-                <svg width="93" height="165" viewBox="0 0 93 165" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 60.395C24.7981 41.4218 45.5291 22.3641 66.7518 5" stroke="#E55934" strokeWidth="10" strokeLinecap="round" />
-                    <path d="M6.8125 90.3623H87.6347" stroke="#E55934" strokeWidth="10" strokeLinecap="round" />
-                    <path d="M5.90625 130.319C16.5451 136.122 26.4183 143.37 36.8831 149.491C43.1955 153.183 50.3114 158.153 57.6688 159.379" stroke="#E55934" strokeWidth="10" strokeLinecap="round" />
-                </svg>
-            </div>
-            <div
-                className="cursor-content"
-                style={{ left: cursorPosition.x, top: cursorPosition.y }}>
-                <div className="cursor-content__text">
-                    Submit
-                </div>
-                <div className="cursor-content__bg"></div>
-            </div>
-
-
-            <div className="instructions">
-                <h2 className="title--style2">How does it work?</h2>
-                <div className="instructions">
-                    <div className="instructions__steps">
-                        <div className="instructions__step">
-                            <div>
-                                <h3><span>01.</span> Submit your work</h3>
-                                <p className="instructions__text">You can contribute to various sections: articles, interviews, local gossip, memes, photography, artworks and open submissions.</p>
-                            </div>
-                            <CustomButton className="instructions__button" text={"Submit your input"} />
-                        </div>
-                        <div className="instructions__step">
-                            <div>
-                                <h3><span>02.</span> Wait for approval</h3>
-                                <p className="instructions__text">We manually go through all the submissions and moderate them, so that they fit the curation of the magazine.</p>
-                                <p className="instructions__text">You can check the status of your submission if you create an account.</p>
-                            </div>
-                            <CustomButton className="instructions__button" text={"Make an account"} />
-                        </div>
-                        <div className="instructions__step">
-                            <div>
-                                <h3><span>03.</span> Admire your work</h3>
-                                <p className="instructions__text">After your submission has been approved, it will be added to the upcoming issue and published in the beginning of next month - both in the digital and printed version of <span className="italic">klinkt.</span></p>
-                            </div>
-                            <CustomButton className="instructions__button" text={"View recent issue"} />
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
+            <Instructions />
 
             <ProgressBar date={date} progressBarPercentage={progressBarPercentage} />
 
+            <Poll
+                votedState={votedState}
+                submissionPostedState={submissionPostedState}
+                optionVotedFor={optionVotedFor}
+                optionOne={optionOne}
+                optionTwo={optionTwo}
+                optionOneVotes={optionOneVotes}
+                optionTwoVotes={optionTwoVotes}
+                totalVotes={totalVotes}
+                handleVote={handleVote}
+                handleSubmit={handleSubmit}
+            />
 
-            <div className="would-you-rather">
+            {/* <div className="would-you-rather">
                 <div className="would-you-rather__title">
                     <svg className="would-you-rather__title--doodle" width="347" height="332" viewBox="0 0 347 332" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clipPath="url(#clip0_843_1198)">
@@ -407,188 +335,24 @@ export default function Home() {
                         </a>
                     </div>
                 )}
-            </div>
-
+            </div> */}
 
             <div className="magazine">
                 <div className="magazine-flipbook"></div>
             </div>
 
+            <SocialMediaSection />
 
-            <div className="social-media">
-                <div className="instagram">
-                    <h2>Tag us on Instagram</h2>
-                    <p className="hashtag">#klinktkortrijk</p>
-                    <div className="instagram-content">
-                        {instaFeedImgPaths.map((imgPath, index) => (
-                            <img key={index} src={imgPath} alt={`Instagram Post ${index + 1}`} />
-                        ))}
-                    </div>
-                </div>
-
-                <div className="tiktok">
-                    <div className="tiktok-title">
-                        <h2 className="title--style2 tiktok-title__1">Find us on Tiktok</h2>
-                        <h2 className="title--style2 tiktok-title__2">Find us on Tiktok</h2>
-                        <h2 className="title--style2 tiktok-title__3">Find us on Tiktok</h2>
-                    </div>
-                    <img className="tiktok-gif" src={tiktok} alt="Tiktok Post" />
-                </div>
-            </div>
-
-            <div className="map-wrapper">
-                <div className="map">
-                    <h2 className="title--style1">Find a printed copy of <span className="italic">Klinkt.</span> here</h2>
-                    <div className="map-content">
-                        <iframe
-                            src="https://www.google.com/maps/d/u/2/embed?mid=1NtMn2L0b-GGkcNJczUkwSPbhsgOInvk&ehbc=2E312F"
-                            width="640"
-                            height="480"
-                            className="my-map">
-                        </iframe>
-                        <div className="map-info">
-                            <div className="place">
-                                <p className="place__name">The Penta</p>
-                                <p className="place__specification">Howest Campus Kortrijk Weide</p>
-                            </div>
-                            <p className="address">Sint-Martens-Latemlaan 1B, 8500 Kortrijk</p>
-                            <div className="opening-hours">
-                                <div className="opening-hours__day">
-                                    <p>Monday</p>
-                                    <p>8am - 6pm</p>
-                                </div>
-                                <div className="opening-hours__day">
-                                    <p>Tuesday</p>
-                                    <p>8am - 6pm</p>
-                                </div>
-                                <div className="opening-hours__day">
-                                    <p>Wednesday</p>
-                                    <p>8am - 6pm</p>
-                                </div>
-                                <div className="opening-hours__day">
-                                    <p>Thursday</p>
-                                    <p>8am - 6pm</p>
-                                </div>
-                                <div className="opening-hours__day">
-                                    <p>Friday</p>
-                                    <p>8am - 6pm</p>
-                                </div>
-                                <div className="opening-hours__day">
-                                    <p>Saturday</p>
-                                    <p>Closed</p>
-                                </div>
-                                <div className="opening-hours__day">
-                                    <p>Sunday</p>
-                                    <p>Closed</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-
+            <MapSection />
 
         </main>
     );
 
 }
 
-export function FeaturedSubmissions({ featuredSubmissions, imgURL }) {
-    const charAmount = 60;
-
-    return (
-        <>
-            {featuredSubmissions.map((submission, index) => (
-                <div key={index} className="submission">
-                    {submission.image.length > 0 && (
-                        <img className="submission--img" src={`${imgURL}${submission.image[0].path}`} alt="image" />
-                    )}
-                    <h3 className="submission--title">{submission.title}</h3>
-                    <p className="submission--text">{submission.text.slice(0, charAmount)}{submission.text.length > charAmount ? "..." : ""}</p>
-                    <div className="submission--page">
-                        <p>Read more on page {submission.pageNumber}</p>
-                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.11612 12.1161C0.627961 12.6043 0.627961 13.3957 1.11612 13.8839C1.60427 14.372 2.39573 14.372 2.88388 13.8839L1.11612 12.1161ZM14.25 2C14.25 1.30964 13.6904 0.749999 13 0.749999H1.75C1.05965 0.749999 0.500001 1.30964 0.500001 2C0.500001 2.69036 1.05965 3.25 1.75 3.25H11.75V13.25C11.75 13.9404 12.3096 14.5 13 14.5C13.6904 14.5 14.25 13.9404 14.25 13.25V2ZM2.88388 13.8839L13.8839 2.88388L12.1161 1.11612L1.11612 12.1161L2.88388 13.8839Z" fill="#030027" />
-                        </svg>
-                    </div>
-
-                </div>
-            ))}
-        </>
-    );
-}
 
 
 
 
-export function ProgressBar({ date, progressBarPercentage }) {
 
-    let progressBar;
 
-    if (progressBarPercentage >= 0 && progressBarPercentage < 15) {
-        progressBar = (
-            <div className="progress">
-                <div className="progress-bar">
-                    <div className="progress-bar__bar--wrapper">
-                        <div className="progress-bar__bar" style={{ width: `${progressBarPercentage}%` }}></div>
-                        <div className="progress-bar__info small">
-                            <div className="progress-bar__info--wrapper">
-                                <div className="progress-bar__percentage">{progressBarPercentage}%</div>
-                                <div className="progress-bar__text">completed</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="progress-bar__cta">
-                        <div className="progress-bar__cta--wrapper">
-                            <p className="progress-bar__issue">{date.split(' ')[0]} <span className="italic-semibold">klinkt.</span> issue</p>
-                            <a className="progress-bar__contribute" href="">contribute now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    } else if (progressBarPercentage >= 15 && progressBarPercentage <= 80) {
-        progressBar = (
-            <div className="progress">
-                <div className="progress-bar">
-                    <div className="progress-bar__cta">
-                        <div className="progress-bar__cta--wrapper">
-                            <p className="progress-bar__issue">{date.split(' ')[0]} <span className="italic-semibold">klinkt.</span> issue</p>
-                            <a className="progress-bar__contribute" href="">contribute now</a>
-                        </div>
-                    </div>
-                    <div className="progress-bar__bar" style={{ width: `${progressBarPercentage}%` }}>
-                        <div className="progress-bar__info">
-                            <div className="progress-bar__info--wrapper">
-                                <div className="progress-bar__percentage">{progressBarPercentage}%</div>
-                                <div className="progress-bar__text">completed</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    } else {
-        progressBar = (
-            <div className="progress">
-                <p className="progress-bar__issue big">{date.split(' ')[0]} <span className="italic-semibold">klinkt.</span> issue</p>
-                <div className="progress-bar">
-                    <div className="progress-bar__bar" style={{ width: `${progressBarPercentage}%` }}>
-                        <div className="progress-bar__info">
-                            <div className="progress-bar__info--wrapper">
-                                <div className="progress-bar__percentage">{progressBarPercentage}%</div>
-                                <div className="progress-bar__text">completed</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a className="progress-bar__contribute big" href="">contribute now</a>
-            </div>
-        );
-    }
-
-    return progressBar;
-
-}

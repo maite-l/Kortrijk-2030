@@ -33,7 +33,7 @@ const pdfToImgDivs = async (pdfDocument) => {
                     image.classList.add('magazine-page');
                     const div = document.createElement('div');
                     div.appendChild(image);
-                    console.log(div);
+                    // console.log(div);
                     return div;
                 });
             });
@@ -46,7 +46,7 @@ const pdfToImgDivs = async (pdfDocument) => {
 
 const attachDivs = (divs) => {
     const flipbookContainer = document.querySelector('.magazine-flipbook');
-    console.log(flipbookContainer);
+    // console.log(flipbookContainer);
     divs.forEach((div) => {
         flipbookContainer.appendChild(div);
     });
