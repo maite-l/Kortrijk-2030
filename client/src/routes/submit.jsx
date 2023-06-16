@@ -22,7 +22,7 @@ export default function Submit() {
     return (
         <main>
             <div className="submit-sections__title">
-                <h1 className="style1">Submit your input</h1>
+                <h1 className="title--style1">Submit your input</h1>
             </div>
             <div className="sections">
                 <div className="section-group">

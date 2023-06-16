@@ -88,7 +88,7 @@ export async function loader() {
     const approvedSubmissionsAmount = approvedSubmissions.length;
 
     //calculate progress bar percentage
-    const maxSubmissions = 20;
+    const maxSubmissions = 13;
     const progressBarPercentage = ((approvedSubmissionsAmount / maxSubmissions) * 100).toFixed(0);
 
 

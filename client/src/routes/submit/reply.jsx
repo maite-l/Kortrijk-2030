@@ -3,6 +3,8 @@ import { Form, redirect, useLoaderData } from 'react-router-dom';
 import { getMagazineSectionByTitle, newSubmission } from "../../submissions";
 import { getCurrentIssue } from "../../magazines";
 
+import SubmitForm from '../../components/SubmitForm';
+
 export async function loader() {
     //get current issue
     const currentIssue = await getCurrentIssue();
@@ -29,11 +31,11 @@ export async function action({ request }) {
         //get form data
         const formData = await request.formData();
         console.log(Object.fromEntries(formData));
-        const { article, text } = Object.fromEntries(formData);
+        const { article, text, info } = Object.fromEntries(formData);
         const title = `Reply to: ${article}`;
 
         //create submission
-        const submission = await newSubmission(title, text, [], magazineSection);
+        const submission = await newSubmission(title, text, info, [], magazineSection);
         console.log(submission);
         return redirect("/submit");
 
@@ -58,34 +60,17 @@ export default function Reply() {
             </main>
             :
             <main>
-                <h1>Reply to an article</h1>
-                <div>
-                    <h2>Submission tips</h2>
-                    <p>tips</p>
-                </div>
-                <Form method="post">
-                    <label htmlFor="article">
-                        <span>Select an article to reply to:</span>
-                        <select name="article" id="article">
-                            {articlesToReplyTo.map((article) => (
-                                <option key={article.id} value={article.articleTitle}>
-                                    {article.articleTitle}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
-                    <label htmlFor="text">
-                        <span>Your reply</span>
-                        <textarea
-                            rows="4"
-                            cols="50"
-                            name="text"
-                            placeholder="placeholder"
-                            style={{ resize: "none" }}
-                        />
-                    </label>
-                    <button type='submit'>Submit</button>
-                </Form>
+                <SubmitForm
+                    title={'Reply to an article / interview'}
+                    submissionTips={'We would love to know your opinion about what we publish in klinkt.! Just don’t be too harsh on us...'}
+                    formTitlePlaceholder={'My new favourite restaurant (probably)'}
+                    formTextLabel={'Your answer'}
+                    formTextPlaceholder={'I totally agree with you!!! I went there last week and I definitely recommend...'}
+                    reply={true}
+                    articlesToReplyTo={articlesToReplyTo}
+                    includeText={true}
+                    includeImages={false}
+                />
             </main>
     );
 

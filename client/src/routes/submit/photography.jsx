@@ -1,4 +1,4 @@
-import { Form, redirect } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 import { useContext } from 'react';
 
 //global context
@@ -8,6 +8,9 @@ import { GlobalContext } from '../root';
 import { getMagazineSectionByTitle, newImageAsset, newSubmission } from "../../submissions";
 
 import { fileInputChange } from '../../util/util';
+
+import "../../css/submit-form.css";
+import SubmitForm from '../../components/SubmitForm';
 
 //variables
 let imgNamesResult = [];
@@ -19,7 +22,7 @@ export async function action({ request }) {
         const submitButton = document.querySelector('button[type="submit"]');
         submitButton.innerHTML = "Submitting...";
         submitButton.disabled = true;
-        const inputFields = document.querySelectorAll('input');
+        const inputFields = document.querySelectorAll('input, textarea');
         inputFields.forEach(inputField => inputField.disabled = true);
 
         let imgIds = [];
@@ -40,8 +43,9 @@ export async function action({ request }) {
 
         //get form data
         const formData = await request.formData();
-        const { title } = Object.fromEntries(formData);
-        console.log(title);
+        console.log(formData);
+        const { title, text, info } = Object.fromEntries(formData);
+        console.log(title, text, info);
 
         //get magazine section
         const category = await getMagazineSectionByTitle('Photography');
@@ -49,7 +53,7 @@ export async function action({ request }) {
         console.log(magazineSection);
 
         //create submission
-        const submission = await newSubmission(title, null, imgIds, magazineSection);
+        const submission = await newSubmission(title, text, info, imgIds, magazineSection);
         console.log(submission);
         return redirect("/submit");
     } catch (error) {
@@ -58,7 +62,7 @@ export async function action({ request }) {
     }
 }
 
-export default function Photography() {
+export default function Article() {
 
     //global context
     const { maxImgCount, maxImgSizeInMb } = useContext(GlobalContext);
@@ -74,32 +78,19 @@ export default function Photography() {
 
     return (
         <main>
-            <h1>Submit your photography</h1>
-            <div>
-                <h2>Submission tips</h2>
-                <p>***submission tips***</p>
-            </div>
-            <Form method="post">
-                <label htmlFor="title">
-                    <span>Title</span>
-                    <input
-                        type="text"
-                        name="title"
-                        placeholder="placeholder"
-                    />
-                </label>
-                <label htmlFor="image">
-                    <span>Image</span>
-                    <input
-                        type="file"
-                        name="image"
-                        accept="image/png, image/jpeg, image/jpg"
-                        multiple
-                        onChange={handleFileInputChange}
-                    />
-                </label>
-                <button type='submit'>Submit</button>
-            </Form>
+
+            <SubmitForm
+                title={'Submit your photgraphy'}
+                submissionTips={'Here you can submit your artworks: digital designs, illustrations, concept art, graphic work - you name it! Make sure it’s high quality - we’re more likely to publish it then :-) Feel free to write a little intro about yourself too!'}
+                formTitlePlaceholder={'My amazing concept art'}
+                formTextLabel={'Description'}
+                formTextPlaceholder={'This piece of art has been designed by me for a school project with a theme “armour knights”. I’ve been a freelance artist for 2 years. Btw, I’m available for hire, contact me here...'}
+                reply={false}
+                includeText={true}
+                includeImages={true}
+                handleFileInputChange={handleFileInputChange}
+            />
+
         </main>
     );
 }

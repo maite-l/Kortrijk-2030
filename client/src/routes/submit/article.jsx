@@ -86,6 +86,7 @@ export default function Article() {
                 formTextLabel={'Description'}
                 formTextPlaceholder={'This piece of art has been designed by me for a school project with a theme “armour knights”. I’ve been a freelance artist for 2 years. Btw, I’m available for hire, contact me here...'}
                 reply={false}
+                includeText={true}
                 includeImages={true}
                 handleFileInputChange={handleFileInputChange}
             />

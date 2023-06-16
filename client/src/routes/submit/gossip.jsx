@@ -2,6 +2,8 @@ import { Form, redirect } from 'react-router-dom';
 
 import { getMagazineSectionByTitle, newSubmission } from "../../submissions";
 
+import SubmitForm from '../../components/SubmitForm';
+
 export async function action({ request }) {
     try {
         // Submitting state
@@ -12,17 +14,17 @@ export async function action({ request }) {
         inputFields.forEach((inputField) => (inputField.disabled = true));
 
         // Get magazine section
-        const category = await getMagazineSectionByTitle('gossip');
+        const category = await getMagazineSectionByTitle('Gossip');
         const magazineSection = category[0].id;
         console.log(magazineSection);
 
         // Get form data
         const formData = await request.formData();
         console.log(Object.fromEntries(formData));
-        const { title, text } = Object.fromEntries(formData);
+        const { title, text, info } = Object.fromEntries(formData);
 
         // Create submission
-        const submission = await newSubmission(title, text, [], magazineSection);
+        const submission = await newSubmission(title, text, info, [], magazineSection);
         console.log(submission);
 
         return redirect("/submit");
@@ -35,34 +37,19 @@ export async function action({ request }) {
 export default function Gossip() {
     return (
         <main>
-            <h1>Submit a local gossip!</h1>
-            <div>
-                <h2>Submission tips</h2>
-                <p>Make sure what you submit is indeed a local gossip. Bonus points if it's cultural. And please don't be mean, we won't publish it anyway...</p>
-            </div>
-            <Form method="post">
-                <label htmlFor="title">
-                    <span>Title</span>
-                    <input
-                        type="text"
-                        name="title"
-                        placeholder="My new favourite restaurant (probably)"
-                        required
-                    />
-                </label>
-                <label htmlFor="text">
-                    <span>Your gossip</span>
-                    <textarea
-                        rows="4"
-                        cols="50"
-                        name="text"
-                        placeholder="Apparently they're opening a new croquette place on the Grote Markt..."
-                        required
-                        style={{ resize: "none" }}
-                    />
-                </label>
-                <button type='submit'>Submit</button>
-            </Form>
+
+            <SubmitForm
+                title={'Submit your gossip'}
+                submissionTips={'Make sure what you submit is indeed a local gossip. Bonus points if it’s cultural. And please don’t be mean, we won’t publish it anyway...'}
+                formTitlePlaceholder={'My new favourite restaurant (probably)'}
+                formTextLabel={'Content'}
+                formTextPlaceholder={'Apparently they’re opening a new croquette place on the Grote Markt...'}
+                reply={false}
+                includeText={true}
+                includeImages={false}
+                // handleFileInputChange={handleFileInputChange}
+            />
+
         </main>
     );
 }

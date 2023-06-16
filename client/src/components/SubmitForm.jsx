@@ -1,8 +1,8 @@
 import { Form } from 'react-router-dom';
 
 
-export default function SubmitForm({ title, submissionTips, formTitlePlaceholder, formTextLabel, formTextPlaceholder, includeImages, reply, articlesToReplyTo, handleFileInputChange }) {
-    
+export default function SubmitForm({ title, submissionTips, formTitlePlaceholder, formTextLabel, formTextPlaceholder, includeText, includeImages, reply, articlesToReplyTo, handleFileInputChange }) {
+
     return (
         <div className='submit-form__wrapper'>
             <h1>{title}</h1>
@@ -23,27 +23,31 @@ export default function SubmitForm({ title, submissionTips, formTitlePlaceholder
                                 ))}
                             </select>
                         </label>
+                        :
+                        <label htmlFor="title">
+                            <span>Title</span>
+                            <input
+                                type="text"
+                                name="title"
+                                placeholder={formTitlePlaceholder}
+                                required
+                            />
+                        </label>}
+
+                    {includeText ?
+                        <label htmlFor="text">
+                            <span>{formTextLabel}</span>
+                            <textarea
+                                rows="4"
+                                cols="50"
+                                name="text"
+                                placeholder={formTextPlaceholder}
+                                required
+                                style={{ resize: "none" }}
+                            />
+
+                        </label>
                         : null}
-                    <label htmlFor="title">
-                        <span>Title</span>
-                        <input
-                            type="text"
-                            name="title"
-                            placeholder={formTitlePlaceholder}
-                            required
-                        />
-                    </label>
-                    <label htmlFor="text">
-                        <span>{formTextLabel}</span>
-                        <textarea
-                            rows="4"
-                            cols="50"
-                            name="text"
-                            placeholder={formTextPlaceholder}
-                            required
-                            style={{ resize: "none" }}
-                        />
-                    </label>
                     {includeImages ?
                         <label htmlFor="image">
                             <span>Choose a file (up to 15MB)</span>
@@ -63,7 +67,6 @@ export default function SubmitForm({ title, submissionTips, formTitlePlaceholder
                             cols="50"
                             name="info"
                             placeholder="Can you include my social handles somewhere? They are this and this. Also, here are some captions for each image..."
-                            required
                             style={{ resize: "none" }}
                         />
                     </label>
