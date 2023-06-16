@@ -27,6 +27,10 @@ html {
     src: url(../assets/fonts/Metropolis-Medium.woff2);
 }
 @font-face {
+    font-family: 'Metropolis Medium Italic';
+    src: url(../assets/fonts/Metropolis-MediumItalic.woff2);
+}
+@font-face {
     font-family: 'Metropolis Semibold';
     src: url(../assets/fonts/Metropolis-SemiBold.woff2);
 }
@@ -119,4 +123,8 @@ span.italic-semibold {
 .custom-button:hover svg path, .poll-form button:hover svg {
     fill: var(--color-white);
     transition: all 0.2s ease-in-out;
+}
+
+.demoPage {
+    background-color: var(--color-yellow);
 }

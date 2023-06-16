@@ -47,7 +47,6 @@ export default function Gossip() {
                 reply={false}
                 includeText={true}
                 includeImages={false}
-                // handleFileInputChange={handleFileInputChange}
             />
 
         </main>

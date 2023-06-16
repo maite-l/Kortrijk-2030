@@ -1,0 +1,18 @@
+footer {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    align-items: center;
+    justify-items: center;
+    padding: 1.5rem 3rem;
+}
+
+.socials {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    justify-self: start;
+}
+
+.kortrijk-logo {
+    justify-self: end;
+}

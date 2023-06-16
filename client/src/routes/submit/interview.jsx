@@ -80,15 +80,17 @@ export default function Article() {
         <main>
 
             <SubmitForm
-                title={'Submit your artwork / design'}
-                submissionTips={'Here you can submit your artworks: digital designs, illustrations, concept art, graphic work - you name it! Make sure it’s high quality - we’re more likely to publish it then :-) Feel free to write a little intro about yourself too!'}
-                formTitlePlaceholder={'My amazing concept art'}
-                formTextLabel={'Description'}
-                formTextPlaceholder={'This piece of art has been designed by me for a school project with a theme “armour knights”. I’ve been a freelance artist for 2 years. Btw, I’m available for hire, contact me here...'}
+                title={'Submit your interview'}
+                submissionTips={'Have you recently done a fascinating interview that relates to Kortrijk and / or culture in some way? Do you think readers of klinkt. would like to see it too? Share it below! Feel free to attach related images as well!'}
+                formTitlePlaceholder={'Interview with a local 24-year-old restaurant owner'}
+                formTextLabel={'Content'}
+                formTextPlaceholder={'Joëlle Pauwaert (24) is bringing surprising dining experiences to Kortrijk. In her restaurant BON DIA, located in the shopping district, you can enjoy a personalized breakfast or lunch at any time of the day. "At our place, everyone can find a delicious and healthy combination."...'}
                 reply={false}
                 includeText={true}
                 includeImages={true}
                 handleFileInputChange={handleFileInputChange}
+                includeNotesForEditor={true}
+                notesForEditorPlaceholder={'These images show the interviewee and their restaurant. Can you publish them too?'}
             />
 
         </main>

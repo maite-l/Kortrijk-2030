@@ -1,7 +1,20 @@
 import { Form } from 'react-router-dom';
 
 
-export default function SubmitForm({ title, submissionTips, formTitlePlaceholder, formTextLabel, formTextPlaceholder, includeText, includeImages, reply, articlesToReplyTo, handleFileInputChange }) {
+export default function SubmitForm({
+    title,
+    submissionTips,
+    formTitlePlaceholder,
+    formTextLabel,
+    formTextPlaceholder,
+    includeText,
+    includeImages,
+    reply,
+    articlesToReplyTo,
+    includeNotesForEditor,
+    notesForEditorPlaceholder,
+    handleFileInputChange
+}) {
 
     return (
         <div className='submit-form__wrapper'>
@@ -36,7 +49,7 @@ export default function SubmitForm({ title, submissionTips, formTitlePlaceholder
 
                     {includeText ?
                         <label htmlFor="text">
-                            <span>{formTextLabel}</span>
+                            <span>{formTextLabel} (Max. 1000 characters)</span>
                             <textarea
                                 rows="4"
                                 cols="50"
@@ -48,9 +61,21 @@ export default function SubmitForm({ title, submissionTips, formTitlePlaceholder
 
                         </label>
                         : null}
+                    {includeNotesForEditor ?
+                        <label htmlFor="info">
+                            <span>Notes for the editor? (Max. 400 characters) </span>
+                            <textarea
+                                rows="4"
+                                cols="50"
+                                name="info"
+                                placeholder={notesForEditorPlaceholder}
+                                style={{ resize: "none" }}
+                            />
+                        </label>
+                        : null}
                     {includeImages ?
                         <label htmlFor="image">
-                            <span>Choose a file (up to 15MB)</span>
+                            <span>Choose files (up to 15MB, max 5 files)</span>
                             <input
                                 type="file"
                                 name="image"
@@ -60,16 +85,6 @@ export default function SubmitForm({ title, submissionTips, formTitlePlaceholder
                             />
                         </label>
                         : null}
-                    <label htmlFor="info">
-                        <span>Any notes for the editor?</span>
-                        <textarea
-                            rows="4"
-                            cols="50"
-                            name="info"
-                            placeholder="Can you include my social handles somewhere? They are this and this. Also, here are some captions for each image..."
-                            style={{ resize: "none" }}
-                        />
-                    </label>
                     <button type='submit'>Submit</button>
                 </Form>
             </div>

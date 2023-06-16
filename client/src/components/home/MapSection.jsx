@@ -5,7 +5,7 @@ export default function MapSection() {
                 <h2 className="title--style1">Find a printed copy of <span className="italic">Klinkt.</span> here</h2>
                 <div className="map-content">
                     <iframe
-                        src="https://www.google.com/maps/d/u/2/embed?mid=1NtMn2L0b-GGkcNJczUkwSPbhsgOInvk&ehbc=2E312F"
+                        src="https://www.google.com/maps/d/u/0/embed?mid=13DCRMud4rKhgcOehUnY0Xu5UNyH2l9Y&ehbc=2E312F"
                         width="640"
                         height="480"
                         className="my-map">

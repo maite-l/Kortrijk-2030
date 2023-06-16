@@ -80,15 +80,17 @@ export default function Article() {
         <main>
 
             <SubmitForm
-                title={'Submit your artwork / design'}
-                submissionTips={'Here you can submit your artworks: digital designs, illustrations, concept art, graphic work - you name it! Make sure it’s high quality - we’re more likely to publish it then :-) Feel free to write a little intro about yourself too!'}
-                formTitlePlaceholder={'My amazing concept art'}
-                formTextLabel={'Description'}
-                formTextPlaceholder={'This piece of art has been designed by me for a school project with a theme “armour knights”. I’ve been a freelance artist for 2 years. Btw, I’m available for hire, contact me here...'}
+                title={'Submit your article'}
+                submissionTips={'Did you discover an amazing place in Kortrijk? Something that fascinates you about living here? Any cultural differences? Delve deep into them and describe them in an article! Make sure to keep it clean with the language;-)'}
+                formTitlePlaceholder={'Cornershop of Daydreams: Where Imagination Takes Center Stage'}
+                formTextLabel={'Content'}
+                formTextPlaceholder={'Located at the junction of Budastraat and Kapucijnenstraat, this unassuming door opens up a world of whimsy and wonder. We see ourselves as a group of creative individuals, more like agency custodians rather than owners, offering our skills to the city and its diverse...'}
                 reply={false}
                 includeText={true}
                 includeImages={true}
                 handleFileInputChange={handleFileInputChange}
+                includeNotesForEditor={true}
+                notesForEditorPlaceholder={'I’m trying to get spotted as a newspaper copywriter. Can you put my email and portfolio together with my article?'}
             />
 
         </main>

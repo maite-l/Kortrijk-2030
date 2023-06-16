@@ -1,10 +1,6 @@
 import { Form} from 'react-router-dom';
 
 export default function Poll({ votedState, submissionPostedState, optionVotedFor, optionOne, optionTwo, optionOneVotes, optionTwoVotes, totalVotes, handleVote, handleSubmit }) {
-    // console.log(votedState, submissionPostedState, optionVotedFor, optionOne.optionName, optionTwo.optionName, optionOneVotes, optionTwoVotes, totalVotes, handleVote, handleSubmit);
-
-    console.log(submissionPostedState);
-
     return (
         <div className="would-you-rather">
             <div className="would-you-rather__title">
