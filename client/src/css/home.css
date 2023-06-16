@@ -715,8 +715,36 @@
     box-shadow: var(--drop-shadow);
 }
 
-.magazine-flipbook {
+.magazine-flipbook, .magazine-flipbook__container {
     width: calc(0.65 * 595px * 2);
     height: calc(0.65 * 842px);
     margin: auto;
+}
+
+.magazine-flipbook__container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.magazine-preview > p {
+    text-align: end;
+    margin-inline-end: 3rem;
+    font-family: 'Metropolis Medium';
+    font-size: 1.5rem;
+    margin-block-end: 2rem;
+}
+.magazine-preview > p span {
+    font-family: 'Metropolis Medium Italic';
+}
+
+.magazine-preview::before {
+    content: '';
+    width: 100vw;
+    height: 33rem;
+    margin-block-start: 2.5rem;
+    background-color: var(--color-blue);
+    z-index: -1;
+    position: absolute;
+    border-radius: var(--border-radius);
 }

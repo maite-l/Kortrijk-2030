@@ -110,9 +110,7 @@ export async function loader() {
 
     const pdfPath = import.meta.env.VITE_API_MAGAZINES_URL || "https://kortrijk2030.ddev.site/files/magazines/";
     const currentMagazine = currentIssue[0].magazine[0].path;
-    // intializeMagazineFlipbook(`${pdfPath}${currentMagazine}`);
     const pages = await pdfToImgSrc(`${pdfPath}${currentMagazine}`);
-    console.log(pages);
 
 
     return {
@@ -280,7 +278,7 @@ export default function Home() {
                 handleSubmit={handleSubmit}
             />
 
-            <MagazinePreview pages={pages} />
+            <MagazinePreview pages={pages} date={date} />
 
             <SocialMediaSection />
 

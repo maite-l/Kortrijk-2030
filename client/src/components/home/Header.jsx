@@ -1,4 +1,4 @@
-import RollingCards from "../RollingCards";
+import RollingCards from "./RollingCards";
 import CustomButton from "../CustomButton";
 
 export default function Header({ allMagazineSections }) {
