@@ -8,6 +8,7 @@ import { GlobalContext } from '../root';
 import { getMagazineSectionByTitle, newImageAsset, newSubmission } from "../../submissions";
 
 import { fileInputChange } from '../../util/util';
+import SubmitForm from '../../components/SubmitForm';
 
 //variables
 let imgNamesResult = [];
@@ -40,8 +41,8 @@ export async function action({ request }) {
 
         //get form data
         const formData = await request.formData();
-        const { title, text } = Object.fromEntries(formData);
-        console.log(title, text);
+        const { title, text, info } = Object.fromEntries(formData);
+        console.log(title, text, info);
 
         //get magazine section
         const category = await getMagazineSectionByTitle('Memes');
@@ -49,7 +50,7 @@ export async function action({ request }) {
         console.log(magazineSection);
 
         //create submission
-        const submission = await newSubmission(title, text, imgIds, magazineSection);
+        const submission = await newSubmission(title, text, info, imgIds, magazineSection);
         console.log(submission);
         return redirect("/submit");
     } catch (error) {
@@ -72,44 +73,22 @@ export default function Meme() {
         imgStringsResult = imgStrings;
     };
 
+
     return (
         <main>
-            <h1>Submit your meme/joke</h1>
-            <div>
-                <h2>Submission tips</h2>
-                <p>***submission tips***</p>
-            </div>
-            <Form method="post">
-                <label htmlFor="title">
-                    <span>Title</span>
-                    <input
-                        type="text"
-                        name="title"
-                        placeholder="placeholder"
-                    />
-                </label>
-                <label htmlFor="image">
-                    <span>Image</span>
-                    <input
-                        type="file"
-                        name="image"
-                        accept="image/png, image/jpeg, image/jpg"
-                        multiple
-                        onChange={handleFileInputChange}
-                    />
-                </label>
-                <label htmlFor="text">
-                    <span>A caption for your meme or just a joke</span>
-                    <textarea
-                        rows="4"
-                        cols="50"
-                        name="text"
-                        placeholder="placeholder"
-                        style={{ resize: "none" }}
-                    />
-                </label>
-                <button type='submit'>Submit</button>
-            </Form>
+
+            <SubmitForm
+                title={'Submit your meme'}
+                submissionTips={'Here you can submit your meme(s). Just keep it culture-related and / or local to Kortrijk / Flanders / Belgium. And don’t be too edgy...'}
+                formTitlePlaceholder={'My amazing concept art'}
+                formTextLabel={'Description'}
+                formTextPlaceholder={'This piece of art has been designed by me for a school project with a theme “armour knights”. I’ve been a freelance artist for 2 years. Btw, I’m available for hire, contact me here...'}
+                reply={false}
+                includeText={false}
+                includeImages={true}
+                handleFileInputChange={handleFileInputChange}
+            />
+
         </main>
     );
 }

@@ -37,19 +37,20 @@ import { graphQLRequest } from "./util/graphql";
 // }
 
 // edit authorId when we have a user system
-export async function newSubmission(title, text, imgIds, magazineSection) {
-    console.log(title, text, imgIds, magazineSection);
+export async function newSubmission(title, text, extraInfo, imgIds, magazineSection) {
+    console.log(title, text, extraInfo, imgIds, magazineSection);
     let ImgIdsIntArray = [];
     if (imgIds.length !== 0) {
         ImgIdsIntArray = imgIds.map(id => parseInt(id));
     }
 
     const graphqlQuery = `
-    mutation NewSubmissionAsset($title: String, $image: [Int], $text: String, $magazineSection: [Int]) {
+    mutation NewSubmissionAsset($title: String, $image: [Int], $text: String, $extraInfo: String, $magazineSection: [Int]) {
         save_submissions_default_Entry(
             title: $title
             image: $image
             text: $text
+            extraInfo: $extraInfo
             magazineSection: $magazineSection
             authorId: 1
         ) {
@@ -59,7 +60,7 @@ export async function newSubmission(title, text, imgIds, magazineSection) {
     `;
     const submission = (await graphQLRequest(
         graphqlQuery,
-        { title: title, image: ImgIdsIntArray, text: text, magazineSection: parseInt(magazineSection) }
+        { title: title, image: ImgIdsIntArray, text: text, extraInfo: extraInfo, magazineSection: parseInt(magazineSection) }
     )).data.save_submissions_default_Entry;
     console.log(submission);
     return submission;
@@ -127,6 +128,7 @@ export async function getAllMagazineSections() {
                 title
                 text
                 time
+                sectionGroup
                 slug
             }
         }
