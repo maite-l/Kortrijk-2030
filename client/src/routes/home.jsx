@@ -33,6 +33,8 @@ import pdfToImgSrc from "../util/pdfToImgSrc";
 
 
 import "../css/home.css";
+
+
 import Poll from "../components/home/Poll";
 import MagazinePreview from "../components/home/MagazinePreview";
 
