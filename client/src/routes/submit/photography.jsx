@@ -80,15 +80,17 @@ export default function Article() {
         <main>
 
             <SubmitForm
-                title={'Submit your photgraphy'}
-                submissionTips={'Here you can submit your artworks: digital designs, illustrations, concept art, graphic work - you name it! Make sure it’s high quality - we’re more likely to publish it then :-) Feel free to write a little intro about yourself too!'}
-                formTitlePlaceholder={'My amazing concept art'}
+                title={'Submit your photography'}
+                submissionTips={'Here you can submit your amazing photography: personal project, portrait photoshoot, commercial work -it’s up to you (maybe nothing NSFW though). Make sure it’s high quality - we’re more likely to publish it then :-) Feel free to write a little intro about yourself too and / or the project too!'}
+                formTitlePlaceholder={'My amazing photoshoot'}
                 formTextLabel={'Description'}
-                formTextPlaceholder={'This piece of art has been designed by me for a school project with a theme “armour knights”. I’ve been a freelance artist for 2 years. Btw, I’m available for hire, contact me here...'}
+                formTextPlaceholder={'This was a professional project I did for my portfolio when I was starting with photography...'}
                 reply={false}
                 includeText={true}
                 includeImages={true}
                 handleFileInputChange={handleFileInputChange}
+                includeNotesForEditor={true}
+                notesForEditorPlaceholder={'Hi, is it possible to have this specific layout for my pictures on the page:...'}
             />
 
         </main>

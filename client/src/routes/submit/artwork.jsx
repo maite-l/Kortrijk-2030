@@ -89,6 +89,8 @@ export default function Article() {
                 includeText={true}
                 includeImages={true}
                 handleFileInputChange={handleFileInputChange}
+                includeNotesForEditor={true}
+                notesForEditorPlaceholder={'Hi can you add “Available for hire” label on my page? Please mention my email address and also link my socials:...'}
             />
 
         </main>

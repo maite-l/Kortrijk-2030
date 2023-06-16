@@ -80,15 +80,17 @@ export default function Article() {
         <main>
 
             <SubmitForm
-                title={'Submit your artwork / design'}
-                submissionTips={'Here you can submit your artworks: digital designs, illustrations, concept art, graphic work - you name it! Make sure it’s high quality - we’re more likely to publish it then :-) Feel free to write a little intro about yourself too!'}
-                formTitlePlaceholder={'My amazing concept art'}
-                formTextLabel={'Description'}
-                formTextPlaceholder={'This piece of art has been designed by me for a school project with a theme “armour knights”. I’ve been a freelance artist for 2 years. Btw, I’m available for hire, contact me here...'}
+                title={'Submission tips'}
+                submissionTips={'Believe that you have something interesting to share but it doesn’t fit within any of the provided categories? That’s what open submissions are for! Just make sure it’s something klinkt. readers would like!'}
+                formTitlePlaceholder={'My amazing exhibition launching soon'}
+                formTextLabel={'Content'}
+                formTextPlaceholder={'Me and my friends are graduating soon and will be presenting out final project on the 3rd of July on..'}
                 reply={false}
                 includeText={true}
                 includeImages={true}
                 handleFileInputChange={handleFileInputChange}
+                includeNotesForEditor={true}
+                notesForEditorPlaceholder={'I’m trying to promote my event - can you also post my contact info and location?'}
             />
 
         </main>
