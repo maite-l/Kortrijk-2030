@@ -25,6 +25,7 @@ import {
     getApprovedSubmissions,
     getAllSubmissions,
     getAllMagazineSections,
+    getOpenIssue,
 } from "../submissions";
 import { getCurrentIssue } from "../magazines";
 
@@ -77,8 +78,10 @@ export async function loader() {
     //PROGRESS BAR
     //get amount of approved submissions for next issue
     // const nextIssueNumber = currentIssueNumber + 1;
-    const nextIssueNumber = currentIssueNumber;
-    const approvedSubmissions = await getApprovedSubmissions(nextIssueNumber);
+    const openIssue = await getOpenIssue();
+    const openIssueNumber = openIssue.issueNumber;
+    const openIssueDate = openIssue.issueDate;
+    const approvedSubmissions = await getApprovedSubmissions(openIssueNumber);
     const approvedSubmissionsAmount = approvedSubmissions.length;
 
     //calculate progress bar percentage
@@ -131,6 +134,7 @@ export async function loader() {
 
         //PROGRESS BAR
         progressBarPercentage,
+        openIssueDate,
 
         //EVERY SUBMISSION EVER AMOUNT
         allSubmissionsAmount,
@@ -183,11 +187,11 @@ export default function Home() {
         storedOptionVotedFor,
 
         //FEATURED SUBMISSIONS
-        currentIssue,
         shuffledFeaturedSubmissions: featuredSubmissions,
 
         //PROGRESS BAR
         progressBarPercentage,
+        openIssueDate,
 
         //EVERY SUBMISSION EVER AMOUNT
         allSubmissionsAmount,
@@ -265,7 +269,7 @@ export default function Home() {
             <Instructions />
 
 
-            <ProgressBar date={date} progressBarPercentage={progressBarPercentage} />
+            <ProgressBar date={openIssueDate} progressBarPercentage={progressBarPercentage} />
 
             <Poll
                 votedState={votedState}

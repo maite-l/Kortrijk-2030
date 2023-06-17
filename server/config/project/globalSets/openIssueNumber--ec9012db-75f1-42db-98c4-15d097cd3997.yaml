@@ -1,0 +1,36 @@
+fieldLayouts:
+  3d1d1c5b-7e28-4cc8-867c-93b81db0d56c:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            elementCondition: null
+            fieldUid: 43d610cc-1f89-426c-b57f-9f1def3f22f5 # issue number
+            instructions: 'this is the number of the issue that you''re currently collecting submissions for. update this every time you finalise the content for an issue and want to start collecting new submissions.'
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 25ca301c-db26-4fff-94dd-c254a76d0044
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 6609f9f3-812e-40d4-84c4-e9e5e467b33d # issue date
+            instructions: 'this is the month the issue is planned to be published.'
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 44862588-8cfd-4a71-b012-c20f9feeb829
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'open issue number'
+        uid: d339bc63-ebd2-44b9-af36-b16c2fec0210
+        userCondition: null
+handle: openIssueNumber
+name: 'open issue number'
+sortOrder: 1
