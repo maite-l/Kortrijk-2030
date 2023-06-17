@@ -85,7 +85,7 @@ export default function SubmitForm({
                             />
                         </label>
                         : null}
-                    <button type='submit'>Submit</button>
+                    <button className='submission-button' type='submit'>Submit</button>
                 </Form>
             </div>
         </div>

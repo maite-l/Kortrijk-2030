@@ -64,7 +64,7 @@
     margin-inline-start: 0.5rem;
 }
 
-.submit-form form button {
+.submission-button {
     font-family: 'Metropolis Medium';
     text-transform: uppercase;
     display: flex;
