@@ -10,6 +10,7 @@ scope:
   - 'entrytypes.0a679b1b-7494-4145-9b3e-b61d860ad689:read' # default
   - 'volumes.3be20871-ea45-45e2-a115-78a17368d0dd:read' # submissions
   - 'volumes.f1b76377-5de4-4c7e-88bc-1bd49d48eaf9:read' # magazines
+  - 'globalsets.ec9012db-75f1-42db-98c4-15d097cd3997:read' # open issue number
   - 'usergroups.everyone:read'
   - 'usergroups.2d477dbf-80bf-49d3-b495-f0073932f385:read' # Font-end users
   - 'categorygroups.059366aa-5dad-411e-a9d9-08c0d05dec3c:read' # sections

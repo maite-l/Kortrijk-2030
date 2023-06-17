@@ -1,22 +1,30 @@
 import { graphQLRequest, authenticatedGraphQLRequest } from "./util/graphql";
 
-// edit authorId when we have a user system
-export async function newSubmission(title, text, extraInfo, imgIds, magazineSection, userId, jwt) {
+export async function newSubmission(title, text, extraInfo, imgIds, magazineSection, issueNumber, userId, jwt) {
 
-    console.log(title, text, extraInfo, imgIds, magazineSection);
+    // console.log(title, text, extraInfo, imgIds, magazineSection, issueNumber, userId, jwt);
+    console.log(title)
+    console.log(text)
+    console.log(extraInfo)
+    console.log(imgIds)
+    console.log(magazineSection)
+    console.log(issueNumber)
+    console.log(userId)
+    console.log(jwt)
     let ImgIdsIntArray = [];
     if (imgIds.length !== 0) {
         ImgIdsIntArray = imgIds.map(id => parseInt(id));
     }
 
     const graphqlQuery = `
-    mutation NewSubmissionAsset($title: String, $image: [Int], $text: String, $extraInfo: String, $magazineSection: [Int], $authorId: ID) {
+    mutation NewSubmissionAsset($title: String, $image: [Int], $text: String, $extraInfo: String, $magazineSection: [Int], $issueNumber: Number, $authorId: ID) {
         save_submissions_default_Entry(
             title: $title
             image: $image
             text: $text
             extraInfo: $extraInfo
             magazineSection: $magazineSection
+            issueNumber: $issueNumber
             authorId: $authorId
         ) {
             id
@@ -27,7 +35,7 @@ export async function newSubmission(title, text, extraInfo, imgIds, magazineSect
     if (jwt === null) {
         const submission = (await graphQLRequest(
             graphqlQuery,
-            { title: title, image: ImgIdsIntArray, text: text, extraInfo: extraInfo, magazineSection: parseInt(magazineSection), authorId: userId }
+            { title: title, image: ImgIdsIntArray, text: text, extraInfo: extraInfo, issueNumber: issueNumber, magazineSection: parseInt(magazineSection), authorId: userId }
         )).data.save_submissions_default_Entry;
         console.log(submission);
         return submission;
@@ -35,7 +43,7 @@ export async function newSubmission(title, text, extraInfo, imgIds, magazineSect
     else {
         const submission = (await authenticatedGraphQLRequest(
             graphqlQuery,
-            { title: title, image: ImgIdsIntArray, text: text, extraInfo: extraInfo, magazineSection: parseInt(magazineSection), authorId: userId },
+            { title: title, image: ImgIdsIntArray, text: text, extraInfo: extraInfo, issueNumber: issueNumber, magazineSection: parseInt(magazineSection), authorId: userId },
             jwt
         )).data.save_submissions_default_Entry;
         console.log(submission);
@@ -167,6 +175,49 @@ export async function getAllSubmissions() {
     const allSubmissions = (await graphQLRequest(graphqlQuery)).data.submissionsEntries;
     console.log(allSubmissions);
     return allSubmissions;
+}
+
+export async function getSubmissonsByUserId(userId) {
+    const graphqlQuery = `
+    query getSubmissionsById($userId: [QueryArgument]) {
+        submissionsEntries(authorId: $userId) {
+            ... on submissions_default_Entry {
+            id
+            title
+            magazineSection {
+                title
+            }
+            dateCreated
+            text
+            image {
+                id
+                path
+            }
+            approvalStatus
+            issueNumber
+            }
+        }
+    }
+    `;
+    const submissions = (await graphQLRequest(graphqlQuery, { userId: userId })).data.submissionsEntries;
+    console.log(submissions);
+    return submissions;
+}
+
+export async function getOpenIssue() {
+    const graphqlQuery = `
+    query getOpenIssueNumber {
+        globalSet {
+            ... on openIssueNumber_GlobalSet {
+            issueNumber
+            issueDate
+            } 
+        }
+    }
+    `;
+    const openIssue = (await graphQLRequest(graphqlQuery)).data.globalSet;
+    console.log(openIssue);
+    return openIssue;
 }
 
 

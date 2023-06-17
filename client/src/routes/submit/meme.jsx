@@ -1,11 +1,11 @@
-import { Form, redirect } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 import { useContext } from 'react';
 
 //global context
 import { GlobalContext } from '../root';
 
 //submission queries and mutations
-import { getMagazineSectionByTitle, newImageAsset, newSubmission } from "../../submissions";
+import { getMagazineSectionByTitle, newImageAsset, newSubmission, getOpenIssue } from "../../submissions";
 
 import { fileInputChange } from '../../util/util';
 import SubmitForm from '../../components/SubmitForm';
@@ -49,8 +49,25 @@ export async function action({ request }) {
         const magazineSection = category[0].id;
         console.log(magazineSection);
 
+        // get issue number 
+        const openIssue = await getOpenIssue();
+        const issueNumber = openIssue.issueNumber;
+        console.log(issueNumber);
+
+        // Get authentication info
+        let userId;
+        let jwt;
+        if (localStorage.getItem('jwt') === null) {
+            userId = 880;
+            jwt = null;
+        } else {
+            jwt = localStorage.getItem('jwt');
+            const user = JSON.parse(localStorage.getItem('user'));
+            userId = user.id;
+        }
+
         //create submission
-        const submission = await newSubmission(title, text, info, imgIds, magazineSection);
+        const submission = await newSubmission(title, text, info, imgIds, magazineSection, issueNumber, userId, jwt);
         console.log(submission);
         return redirect("/submit");
     } catch (error) {

@@ -1,7 +1,7 @@
 import { graphQLRequest } from './util/graphql';
 
 export async function authenticate(email, password) {
-    const { data, errors } = await graphQLRequest(`
+  const { data, errors } = await graphQLRequest(`
     mutation AuthenticateMutation($email: String!, $password: String!) {
         authenticate(email: $email, password: $password) {
             jwt
@@ -12,19 +12,19 @@ export async function authenticate(email, password) {
         }
     }
     `, {
-        email,
-        password,
-    }
-    );
-    console.log(data);
-    console.log(errors);
-    return data.authenticate;
+    email,
+    password,
+  }
+  );
+  console.log(data);
+  console.log(errors);
+  return data.authenticate;
 }
 
 export async function register(email, username, password) {
-    const { data } = await graphQLRequest(`
+  const { data } = await graphQLRequest(`
     mutation Register($email: String!, $username: String!, $password: String!) {
-      register(email: $email, username: $username, password: $password) {
+      register(email: $email, fullName: $username, password: $password) {
         user {
           id
         }
@@ -32,11 +32,27 @@ export async function register(email, username, password) {
       }
     }
   `, {
-        email,
-        username,
-        password,
-    });
+    email,
+    username,
+    password,
+  });
 
-    return data.register;
+  return data.register;
+}
+
+export async function getUserInfoByUserId(id) {
+  const graphqlQuery = `
+  query getUserInfoByUserId($userId: [QueryArgument]) {
+    user(id: $userId) {
+      fullName
+    }
+  }
+  `;
+  const user = (await graphQLRequest(
+    graphqlQuery,
+    { userId: id }
+  )).data.user;
+  console.log(user);
+  return user;
 }
 

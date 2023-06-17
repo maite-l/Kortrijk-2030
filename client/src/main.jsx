@@ -11,7 +11,7 @@ import "./css/style.css";
 import Root, { loader as rootLoader } from "./routes/root";
 import Home, { loader as homeLoader, action as homeAction } from "./routes/home";
 import Archive from "./routes/archive";
-import MySubmissions from "./routes/my-submissions";
+import MySubmissions, { loader as mySubmissonsLoader } from "./routes/my-submissions";
 import Submit, { loader as submitLoader } from "./routes/submit";
 
 import Article, { action as articleAction } from "./routes/submit/article";
@@ -54,6 +54,7 @@ const router = createBrowserRouter([
           {
             path: "/my-submissions",
             element: <MySubmissions />,
+            loader: mySubmissonsLoader,
           },
           {
             path: "/submit",

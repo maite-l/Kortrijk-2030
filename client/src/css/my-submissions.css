@@ -1,0 +1,120 @@
+.my-submissions-page {
+    width: 80vw;
+    margin-inline: auto;
+    padding-block-start: 3rem;
+}
+
+.my-submissions-page h1 {
+    font-size: 2.5em;
+    margin-block: 2rem;
+}
+
+.profile__level {
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    background-color: var(--color-orange);
+    box-shadow: var(--drop-shadow);
+    color: var(--color-white);
+}
+
+.profile__name {
+    font-family: 'Metropolis Semibold';
+    font-size: 1.5rem;
+    margin-block-end: 0.5rem;
+}
+
+.my-submissions {
+    width: 100%;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-block-end: 10rem;
+    box-shadow: var(--drop-shadow);
+}
+
+.my-submission {
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    position: relative;
+}
+
+.my-submission__title-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.my-submission__title {
+    font-family: 'Metropolis Semibold';
+}
+
+.my-submisson__info {
+    display: flex;
+    flex-direction: column;
+}
+
+.my-submission__date {
+    font-size: 1rem;
+    font-family: 'Metropolis Semibold';
+    margin-block-start: 0.5rem;
+}
+
+.my-submission__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.my-submission__images {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8rem;
+    height: 8rem;
+}
+.my-submission__image {
+    height: 100%;
+    width: 8rem;
+    object-fit: cover;
+}
+
+.my-submission__status {
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    background-color: var(--color-orange);
+    box-shadow: var(--drop-shadow);
+    color: var(--color-white);
+}
+
+.tabs {
+    display: flex;
+    width: fit-content;
+    margin: auto;
+    flex-direction: row;
+    gap: 3rem;
+    margin-block: 2rem;
+    box-shadow: var(--drop-shadow);
+    border-radius: var(--border-radius);
+}
+
+.tab {
+    text-align: center;
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+}
+.tab.selected {
+    color: var(--color-orange);
+    font-family: 'Metropolis Semibold';
+}

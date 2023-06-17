@@ -1,6 +1,6 @@
-import { Form, redirect } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 
-import { getMagazineSectionByTitle, newSubmission } from "../../submissions";
+import { getMagazineSectionByTitle, getOpenIssue, newSubmission } from "../../submissions";
 
 import SubmitForm from '../../components/SubmitForm';
 
@@ -16,14 +16,18 @@ export async function action({ request }) {
         // Get magazine section
         const category = await getMagazineSectionByTitle('Gossip');
         const magazineSection = category[0].id;
-        console.log(magazineSection);
 
         // Get form data
         const formData = await request.formData();
         console.log(Object.fromEntries(formData));
         const { title, text, info } = Object.fromEntries(formData);
 
+        // get issue number 
+        const openIssue = await getOpenIssue();
+        const issueNumber = openIssue.issueNumber;
+        console.log(issueNumber);
 
+        // Get authentication info
         let userId;
         let jwt;
         if (localStorage.getItem('jwt') === null) {
@@ -36,7 +40,7 @@ export async function action({ request }) {
         }
 
         // Create submission
-        const submission = await newSubmission(title, text, info, [], magazineSection, userId, jwt);
+        const submission = await newSubmission(title, text, info, [], magazineSection, issueNumber, userId, jwt);
         console.log(submission);
 
         return redirect("/submit");
