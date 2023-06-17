@@ -1,5 +1,5 @@
-import { redirect } from 'react-router-dom';
-import { useContext } from 'react';
+import { Form, redirect } from 'react-router-dom';
+import { useContext, useState } from 'react';
 
 //global context
 import { GlobalContext } from '../root';
@@ -84,6 +84,12 @@ export default function Article() {
     //global context
     const { maxImgCount, maxImgSizeInMb } = useContext(GlobalContext);
 
+    const [sumbitState, setSubmitState] = useState('form');
+
+    const [formTitle, setFormTitle] = useState('');
+    const [formText, setFormText] = useState('');
+    const [notesForEditor, setNotesForEditor] = useState('');
+
     //update variables every time files are uploaded
     const handleFileInputChange = (event) => {
         const fileInputResult = fileInputChange(event, maxImgCount, maxImgSizeInMb);
@@ -93,23 +99,70 @@ export default function Article() {
         imgStringsResult = imgStrings;
     };
 
+    const showOverview = (event) => {
+        event.preventDefault();
+
+        const { title, text, info } = event.target.elements;
+
+        setFormTitle(title.value);
+        setFormText(text.value);
+        setNotesForEditor(info.value);
+
+        setSubmitState('overview');
+    }
+
+
+
     return (
         <main>
-
-            <SubmitForm
-                title={'Submit your article'}
-                submissionTips={'Did you discover an amazing place in Kortrijk? Something that fascinates you about living here? Any cultural differences? Delve deep into them and describe them in an article! Make sure to keep it clean with the language;-)'}
-                formTitlePlaceholder={'Cornershop of Daydreams: Where Imagination Takes Center Stage'}
-                formTextLabel={'Content'}
-                formTextPlaceholder={'Located at the junction of Budastraat and Kapucijnenstraat, this unassuming door opens up a world of whimsy and wonder. We see ourselves as a group of creative individuals, more like agency custodians rather than owners, offering our skills to the city and its diverse...'}
-                reply={false}
-                includeText={true}
-                includeImages={true}
-                handleFileInputChange={handleFileInputChange}
-                includeNotesForEditor={true}
-                notesForEditorPlaceholder={'I’m trying to get spotted as a newspaper copywriter. Can you put my email and portfolio together with my article?'}
-            />
-
+            {sumbitState === 'form' && (
+                <SubmitForm
+                    title={'Submit your article'}
+                    submissionTips={'Did you discover an amazing place in Kortrijk? Something that fascinates you about living here? Any cultural differences? Delve deep into them and describe them in an article! Make sure to keep it clean with the language;-)'}
+                    formTitlePlaceholder={'Cornershop of Daydreams: Where Imagination Takes Center Stage'}
+                    formTextLabel={'Content'}
+                    formTextPlaceholder={'Located at the junction of Budastraat and Kapucijnenstraat, this unassuming door opens up a world of whimsy and wonder. We see ourselves as a group of creative individuals, more like agency custodians rather than owners, offering our skills to the city and its diverse...'}
+                    reply={false}
+                    includeText={true}
+                    includeImages={true}
+                    handleFileInputChange={handleFileInputChange}
+                    includeNotesForEditor={true}
+                    notesForEditorPlaceholder={'I’m trying to get spotted as a newspaper copywriter. Can you put my email and portfolio together with my article?'}
+                    handleSubmit={showOverview}
+                    titleValue={formTitle}
+                    textValue={formText}
+                    notesForEditorValue={notesForEditor}
+                />
+            )}
+            {sumbitState === 'overview' && (
+                <div>
+                    <h2>Submission preview</h2>
+                    {formTitle && (
+                        <p>{formTitle}</p>
+                    )}
+                    {formText && (
+                        <p>{formText}</p>
+                    )}
+                    {notesForEditor && (
+                        <p>{notesForEditor}</p>
+                    )}
+                    {imgStringsResult && (
+                        imgStringsResult.map((imgString, index) => {
+                            return (
+                                <img key={index} src={imgString} alt={imgNamesResult[index]} />
+                            )
+                        }))
+                    }
+                    <button onClick={() => setSubmitState('form')}>Edit</button>
+                    <Form method='post'>
+                        {/* hidden fields to carry over data */}
+                        <input type="hidden" name="title" value={formTitle} />
+                        <input type="hidden" name="text" value={formText} />
+                        <input type="hidden" name="info" value={notesForEditor} />
+                        <button type="submit">Submit</button>
+                    </Form>
+                </div>
+            )}
         </main>
     );
 }

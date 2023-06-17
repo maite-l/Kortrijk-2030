@@ -13,7 +13,8 @@ export default function SubmitForm({
     articlesToReplyTo,
     includeNotesForEditor,
     notesForEditorPlaceholder,
-    handleFileInputChange
+    handleFileInputChange,
+    handleSubmit
 }) {
 
     return (
@@ -24,7 +25,7 @@ export default function SubmitForm({
                     <h2 className='submission-tips__title'>Submission tips</h2>
                     <p className='submission-tips__text'>{submissionTips}</p>
                 </div>
-                <Form method="post">
+                <Form method="post" onSubmit={handleSubmit}>
                     {reply ?
                         <label htmlFor="article">
                             <span>Choose an article / interview</span>
@@ -85,7 +86,7 @@ export default function SubmitForm({
                             />
                         </label>
                         : null}
-                    <button className='submission-button' type='submit'>Submit</button>
+                    <button className='submission-button' type='submit'>Go to overview</button>
                 </Form>
             </div>
         </div>
