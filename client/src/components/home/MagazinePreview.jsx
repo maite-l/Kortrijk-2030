@@ -16,8 +16,7 @@ export default function MagazinePreview({ pages, date }) {
 
         ScrollTrigger.create({
             trigger: flipbookWrapper,
-            start: '60% 15%',
-            markers: true,
+            start: 'top 15%',
             onEnter: function () {
                 flipbook.pageFlip().flipNext();
             },

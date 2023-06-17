@@ -17,7 +17,6 @@ export async function loader() {
 
 export default function Submit() {
     const { shortFunSections, meaningfulSections, creativeSections, specialSections } = useLoaderData();
-    console.log(shortFunSections, meaningfulSections, creativeSections, specialSections);
 
     return (
         <main>
@@ -25,43 +24,12 @@ export default function Submit() {
                 <h1 className="title--style1">Submit your input</h1>
             </div>
             <div className="sections">
-                <div className="section-group">
-                    <h2 className="section-group__title">Short & Fun</h2>
-                    <div className="section-cards">
-                        {shortFunSections.map((section) => (
-                            <SectionCard key={section.id} section={section} />
-                        ))}
-                    </div>
-                </div>
 
-                <div className="section-group">
-                    <h2 className="section-group__title">Meaningful & Impactful</h2>
-                    <div className="section-cards">
-                        {meaningfulSections.map((section) => (
-                            <SectionCard key={section.id} section={section} />
-                        ))}
-                    </div>
-                </div>
+                <SectionGroup title="Short & Fun" sections={shortFunSections} />
+                <SectionGroup title="Meaningful & Impactful" sections={meaningfulSections} />
+                <SectionGroup title="Creative & Promo" sections={creativeSections} />
+                <SectionGroup title="Special" sections={specialSections} />
 
-
-                <div className="section-group">
-                    <h2 className="section-group__title">Creative & Promo</h2>
-                    <div className="section-cards">
-                        {creativeSections.map((section) => (
-                            <SectionCard key={section.id} section={section} />
-                        ))}
-                    </div>
-                </div>
-
-
-                <div className="section-group">
-                    <h2 className="section-group__title">Special</h2>
-                    <div className="section-cards">
-                        {specialSections.map((section) => (
-                            <SectionCard key={section.id} section={section} />
-                        ))}
-                    </div>
-                </div>
             </div>
 
         </main>
@@ -95,5 +63,19 @@ export function SectionCard({ section }) {
             </div>
 
         </a>
+    );
+}
+
+
+export function SectionGroup({ title, sections }) {
+    return (
+        <div className="section-group">
+            <h2 className="section-group__title">{title}</h2>
+            <div className="section-cards">
+                {sections.map((section) => (
+                    <SectionCard key={section.id} section={section} />
+                ))}
+            </div>
+        </div>
     );
 }
