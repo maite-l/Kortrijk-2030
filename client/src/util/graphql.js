@@ -18,3 +18,23 @@ export const graphQLRequest = async (query, variables = {}) => {
     console.log(result);
     return result;
 };
+
+export const authenticatedGraphQLRequest = async (query, variables = {}, jwt = undefined) => {
+    const result = await fetch(`${BASE_URL}/api`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            ...(jwt && { Authorization: `JWT ${jwt}` }),
+        },
+        body: JSON.stringify({
+            query,
+            variables,
+        }),
+    }).then((res) => res.json());
+    if (!result.data) {
+        console.log(result);
+        throw new Error(result.errors[0].message);
+    }
+    console.log(result);
+    return result;
+};

@@ -13,6 +13,7 @@ import Home, { loader as homeLoader, action as homeAction } from "./routes/home"
 import Archive from "./routes/archive";
 import MySubmissions from "./routes/my-submissions";
 import Submit, { loader as submitLoader } from "./routes/submit";
+
 import Article, { action as articleAction } from "./routes/submit/article";
 import Interview, { action as interviewAction } from "./routes/submit/interview";
 import Gossip, { action as gossipAction } from "./routes/submit/gossip";
@@ -21,6 +22,8 @@ import Photography, { action as photographyAction } from "./routes/submit/photog
 import Meme, { action as memeAction } from "./routes/submit/meme";
 import Reply, { loader as replyLoader, action as replyAction } from "./routes/submit/reply";
 import OpenSubmission, { action as openSubmissionAction} from "./routes/submit/openSubmission";
+
+import Login, { action as LoginAction } from "./routes/login";
 
 import ErrorPage from "./routes/error-page";
 
@@ -104,6 +107,11 @@ const router = createBrowserRouter([
     ],
     errorElement: <ErrorPage />,
   },
+  {
+    path: "/login",
+    element: <Login />,
+    action: LoginAction,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

@@ -1,4 +1,4 @@
-dateModified: 1686866971
+dateModified: 1687006424
 email:
   fromEmail: maite.lejeune@student.howest.be
   fromName: 'Kortrijk 2030'
@@ -23,10 +23,12 @@ meta:
     0a679b1b-7494-4145-9b3e-b61d860ad689: default # default
     1c207f6e-8c50-4860-a960-ccdd0a6a4d5f: 'Kortrijk 2030' # Kortrijk 2030
     2a0b235e-6f75-4298-b15e-f28e3bec4452: 'option name' # option name
+    2d477dbf-80bf-49d3-b495-f0073932f385: 'Font-end users' # Font-end users
     3be20871-ea45-45e2-a115-78a17368d0dd: submissions # submissions
     4a117e71-b04d-44ea-acee-4bd7ef1868fc: 'Public Schema' # Public Schema
     6aad5e8f-7b65-4801-9462-f2016190d987: magazine # magazine
     7c04bd97-c2ed-4afb-a845-3fadfd2bc967: Default # Default
+    7c37efd5-f741-4f04-b923-3348e2d86391: 'Private Schema' # Private Schema
     8c9b42bd-a9c2-4358-ace3-cc4ad0e2cc40: 'vote amount' # vote amount
     9abc582e-b96c-4a01-9269-f393c293d53d: 'page number' # page number
     016e84f9-ad52-467d-ad64-15d59d126ea4: image # image
@@ -57,15 +59,270 @@ meta:
     f1b76377-5de4-4c7e-88bc-1bd49d48eaf9: magazines # magazines
     fa2997a3-0cb2-4f4b-beaf-5cf0e53dedbc: 'magazine section' # magazine section
     fc00d814-fa02-444e-9510-35f369b22977: 'vote amount' # vote amount
+plugins:
+  graphql-authentication:
+    edition: standard
+    enabled: true
+    licenseKey: MMXOMAHLXTYMIMJCKA08Q86E
+    schemaVersion: 1.3.0
+    settings:
+      accountCooldown: 'Too many log in attempts; please try again shortly'
+      accountDeleted: 'Successfully deleted account'
+      accountLocked: 'Sorry, your account is currently locked'
+      activationEmailSent: 'You will receive an email if it matches an account in our system'
+      allowMagicAuthentication: null
+      allowRegistration: '1'
+      allowedFacebookDomains: null
+      allowedGoogleDomains: null
+      allowedMicrosoftDomains: null
+      allowedTwitterDomains: null
+      appleClientId: null
+      appleClientSecret: null
+      appleRedirectUrl: null
+      appleServiceId: null
+      appleServiceSecret: null
+      assetMutations:
+        __assoc__:
+          -
+            - submissions
+            - ''
+          -
+            - magazines
+            - ''
+      assetNotFound: 'We couldn''t find any matching assets'
+      assetQueries:
+        __assoc__:
+          -
+            - submissions
+            - ''
+          -
+            - magazines
+            - ''
+      emailNotInScope: 'No email in scope'
+      entryMutations:
+        __assoc__:
+          -
+            - polls
+            - ''
+          -
+            - submissions
+            - ''
+      entryNotFound: 'We couldn''t find any matching entries'
+      entryQueries:
+        __assoc__:
+          -
+            - magazines
+            - ''
+          -
+            - polls
+            - ''
+          -
+            - submissions
+            - ''
+      facebookAppId: null
+      facebookAppSecret: null
+      facebookEmailMismatch: 'Email address doesn''t match allowed Facebook domains'
+      facebookRedirectUrl: null
+      fieldRestrictions:
+        __assoc__:
+          -
+            - schema-1
+            -
+              __assoc__:
+                -
+                  - approvalStatus
+                  - queryMutate
+                -
+                  - articlesToReplyTo
+                  - queryMutate
+                -
+                  - extraInfo
+                  - queryMutate
+                -
+                  - featured
+                  - queryMutate
+                -
+                  - image
+                  - queryMutate
+                -
+                  - issueDate
+                  - queryMutate
+                -
+                  - issueNumber
+                  - queryMutate
+                -
+                  - keywords
+                  - queryMutate
+                -
+                  - magazine
+                  - queryMutate
+                -
+                  - magazineSection
+                  - queryMutate
+                -
+                  - pageNumber
+                  - queryMutate
+                -
+                  - pollOptions
+                  - queryMutate
+                -
+                  - sectionGroup
+                  - queryMutate
+                -
+                  - text
+                  - queryMutate
+                -
+                  - time
+                  - queryMutate
+          -
+            - 'schema-Private Schema'
+            -
+              __assoc__:
+                -
+                  - approvalStatus
+                  - queryMutate
+                -
+                  - articlesToReplyTo
+                  - queryMutate
+                -
+                  - extraInfo
+                  - queryMutate
+                -
+                  - featured
+                  - queryMutate
+                -
+                  - image
+                  - queryMutate
+                -
+                  - issueDate
+                  - queryMutate
+                -
+                  - issueNumber
+                  - queryMutate
+                -
+                  - keywords
+                  - queryMutate
+                -
+                  - magazine
+                  - queryMutate
+                -
+                  - magazineSection
+                  - queryMutate
+                -
+                  - pageNumber
+                  - queryMutate
+                -
+                  - pollOptions
+                  - queryMutate
+                -
+                  - sectionGroup
+                  - queryMutate
+                -
+                  - text
+                  - queryMutate
+                -
+                  - time
+                  - queryMutate
+          -
+            - 'schema-Public Schema'
+            -
+              __assoc__:
+                -
+                  - approvalStatus
+                  - queryMutate
+                -
+                  - articlesToReplyTo
+                  - queryMutate
+                -
+                  - extraInfo
+                  - queryMutate
+                -
+                  - featured
+                  - queryMutate
+                -
+                  - image
+                  - queryMutate
+                -
+                  - issueDate
+                  - queryMutate
+                -
+                  - issueNumber
+                  - queryMutate
+                -
+                  - keywords
+                  - queryMutate
+                -
+                  - magazine
+                  - queryMutate
+                -
+                  - magazineSection
+                  - queryMutate
+                -
+                  - pageNumber
+                  - queryMutate
+                -
+                  - pollOptions
+                  - queryMutate
+                -
+                  - sectionGroup
+                  - queryMutate
+                -
+                  - text
+                  - queryMutate
+                -
+                  - time
+                  - queryMutate
+      forbiddenField: 'User doesn''t have permission to access requested field(s)'
+      forbiddenMutation: 'User doesn''t have permission to perform this mutation'
+      googleClientId: null
+      googleEmailMismatch: 'Email address doesn''t match allowed Google domains'
+      googleTokenIdInvalid: 'Invalid Google Token ID'
+      granularSchemas: null
+      invalidEmailAddress: 'Invalid email address'
+      invalidHeader: 'Invalid Authorization Header'
+      invalidJwtSecretKey: 'Invalid JWT Secret Key'
+      invalidLogin: 'We couldn''t log you in with the provided details'
+      invalidMagicCode: 'Invalid magic code'
+      invalidOauthToken: 'Invalid OAuth Token'
+      invalidPasswordMatch: 'Passwords do not match'
+      invalidPasswordUpdate: 'We couldn''t update the password with the provided details'
+      invalidRefreshToken: 'Invalid Refresh Token'
+      invalidRequest: 'Cannot validate request'
+      invalidSchema: 'No schema has been set for this user group'
+      invalidUserUpdate: 'We couldn''t update the user with the provided details'
+      jwtExpiration: '30 minutes'
+      jwtRefreshExpiration: '3 months'
+      jwtSecretKey: KghTP-MPc3Uj0k17SvEnC7O770d55Mzj
+      magicLinkSent: 'You will receive an email if it matches an account in our system'
+      microsoftAppId: null
+      microsoftAppSecret: null
+      microsoftEmailMismatch: 'Email address doesn''t match allowed Microsoft domains'
+      microsoftRedirectUrl: null
+      passwordResetRequired: 'Password reset required; please check your email'
+      passwordResetSent: 'You will receive an email if it matches an account in our system'
+      passwordSaved: 'Successfully saved password'
+      passwordUpdated: 'Successfully updated password'
+      permissionType: single
+      sameSitePolicy: strict
+      schemaId: null
+      schemaName: 'Private Schema'
+      siteId: null
+      skipActivatedCheck: ''
+      skipSocialActivation: null
+      tokenNotFound: 'We couldn''t find any matching tokens'
+      twitterApiKey: null
+      twitterApiKeySecret: null
+      twitterEmailMismatch: 'Email address doesn''t match allowed Twitter domains'
+      twitterRedirectUrl: null
+      userActivated: 'Successfully activated user'
+      userGroup: '1'
+      userHasPassword: 'User not password-less'
+      userNotActivated: 'Please activate your account'
+      userNotFound: 'We couldn''t find any matching users'
+      volumeNotFound: 'We couldn''t find any matching volumes'
 system:
   edition: pro
   live: true
   name: 'Kortrijk 2030'
   schemaVersion: 4.4.0.4
   timeZone: America/Los_Angeles
-users:
-  allowPublicRegistration: false
-  defaultGroup: null
-  photoSubpath: null
-  photoVolumeUid: null
-  requireEmailVerification: true

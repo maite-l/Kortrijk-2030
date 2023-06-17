@@ -23,8 +23,20 @@ export async function action({ request }) {
         console.log(Object.fromEntries(formData));
         const { title, text, info } = Object.fromEntries(formData);
 
+
+        let userId;
+        let jwt;
+        if (localStorage.getItem('jwt') === null) {
+            userId = 880;
+            jwt = null;
+        } else {
+            jwt = localStorage.getItem('jwt');
+            const user = JSON.parse(localStorage.getItem('user'));
+            userId = user.id;
+        }
+
         // Create submission
-        const submission = await newSubmission(title, text, info, [], magazineSection);
+        const submission = await newSubmission(title, text, info, [], magazineSection, userId, jwt);
         console.log(submission);
 
         return redirect("/submit");

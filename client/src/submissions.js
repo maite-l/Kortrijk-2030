@@ -1,43 +1,8 @@
-import { graphQLRequest } from "./util/graphql";
-
-// export async function getSubmissions() {
-//     const graphqlQuery = `
-//     query MyQuery {
-//     submissionsEntries {
-//         ... on submissions_mixedSubmission_Entry {
-//         id
-//         title
-//         text
-//         image {
-//             path
-//         }
-//         }
-//     }
-//     }`;
-//     const submissions = (await graphQLRequest(graphqlQuery)).data.submissionsEntries;
-//     console.log(submissions);
-//     return submissions;
-// }
-
-// export async function getMagazines() {
-//     const graphqlQuery = `
-//     query MyQuery {
-//         magazinesEntries {
-//             ... on magazines_default_Entry {
-//             id
-//             magazine {
-//                 path
-//             }
-//             }
-//         }
-//     }`;
-//     const magazines = (await graphQLRequest(graphqlQuery)).data.magazinesEntries;
-//     console.log(magazines);
-//     return magazines;
-// }
+import { graphQLRequest, authenticatedGraphQLRequest } from "./util/graphql";
 
 // edit authorId when we have a user system
-export async function newSubmission(title, text, extraInfo, imgIds, magazineSection) {
+export async function newSubmission(title, text, extraInfo, imgIds, magazineSection, userId, jwt) {
+
     console.log(title, text, extraInfo, imgIds, magazineSection);
     let ImgIdsIntArray = [];
     if (imgIds.length !== 0) {
@@ -45,25 +10,38 @@ export async function newSubmission(title, text, extraInfo, imgIds, magazineSect
     }
 
     const graphqlQuery = `
-    mutation NewSubmissionAsset($title: String, $image: [Int], $text: String, $extraInfo: String, $magazineSection: [Int]) {
+    mutation NewSubmissionAsset($title: String, $image: [Int], $text: String, $extraInfo: String, $magazineSection: [Int], $authorId: ID) {
         save_submissions_default_Entry(
             title: $title
             image: $image
             text: $text
             extraInfo: $extraInfo
             magazineSection: $magazineSection
-            authorId: 1
+            authorId: $authorId
         ) {
             id
         }
     }
     `;
-    const submission = (await graphQLRequest(
-        graphqlQuery,
-        { title: title, image: ImgIdsIntArray, text: text, extraInfo: extraInfo, magazineSection: parseInt(magazineSection) }
-    )).data.save_submissions_default_Entry;
-    console.log(submission);
-    return submission;
+
+    if (jwt === null) {
+        const submission = (await graphQLRequest(
+            graphqlQuery,
+            { title: title, image: ImgIdsIntArray, text: text, extraInfo: extraInfo, magazineSection: parseInt(magazineSection), authorId: userId }
+        )).data.save_submissions_default_Entry;
+        console.log(submission);
+        return submission;
+    }
+    else {
+        const submission = (await authenticatedGraphQLRequest(
+            graphqlQuery,
+            { title: title, image: ImgIdsIntArray, text: text, extraInfo: extraInfo, magazineSection: parseInt(magazineSection), authorId: userId },
+            jwt
+        )).data.save_submissions_default_Entry;
+        console.log(submission);
+        return submission;
+    }
+
 }
 
 export async function newPollSubmission(title, text, magazineSection, issueNumber) {
@@ -175,7 +153,6 @@ export async function getApprovedSubmissions(issueNumber) {
     console.log(approvedSubmissions);
     return approvedSubmissions;
 }
-
 
 export async function getAllSubmissions() {
     const graphqlQuery = `
