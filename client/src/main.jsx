@@ -23,7 +23,7 @@ import Meme, { action as memeAction } from "./routes/submit/meme";
 import Reply, { loader as replyLoader, action as replyAction } from "./routes/submit/reply";
 import OpenSubmission, { action as openSubmissionAction } from "./routes/submit/openSubmission";
 
-import MyAccount from "./routes/my-account";
+import MyAccount, {loader as myAccountLoader} from "./routes/my-account";
 
 import Login, { action as LoginAction } from "./routes/login";
 import Register, { action as RegisterAction } from "./routes/register";
@@ -110,6 +110,7 @@ const router = createBrowserRouter([
           {
             path: "/my-account",
             element: <MyAccount />,
+            loader: myAccountLoader,
             children: [
               {
                 path: "logout",

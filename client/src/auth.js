@@ -45,6 +45,7 @@ export async function getUserInfoByUserId(id) {
   query getUserInfoByUserId($userId: [QueryArgument]) {
     user(id: $userId) {
       fullName
+      email
     }
   }
   `;
