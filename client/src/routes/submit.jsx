@@ -19,19 +19,25 @@ export default function Submit() {
     const { shortFunSections, meaningfulSections, creativeSections, specialSections } = useLoaderData();
 
     return (
-        <main>
-            <div className="submit-sections__title">
-                <h1 className="title--style1">Submit your input</h1>
+        <main className="submit-main">
+            <div className="submit">
+                <div className="submit-sections__header">
+                    <h1 className="title--style1">Submit your input</h1>
+                    <p>
+                        At <span className="italic">klinkt.</span> we really value your input - choose a category below and submit it now!
+                        <br />
+                        Want to submit but need inspiration? <a href="">View out latest issue</a> or <a href="">visit the magazine archive</a> for great examples of work that has already been published and appreciated by our readers!
+                    </p>
+                </div>
+                <div className="sections">
+
+                    <SectionGroup title="Short & Fun" sections={shortFunSections} />
+                    <SectionGroup title="Meaningful & Impactful" sections={meaningfulSections} />
+                    <SectionGroup title="Creative & Promo" sections={creativeSections} />
+                    <SectionGroup title="Special" sections={specialSections} />
+
+                </div>
             </div>
-            <div className="sections">
-
-                <SectionGroup title="Short & Fun" sections={shortFunSections} />
-                <SectionGroup title="Meaningful & Impactful" sections={meaningfulSections} />
-                <SectionGroup title="Creative & Promo" sections={creativeSections} />
-                <SectionGroup title="Special" sections={specialSections} />
-
-            </div>
-
         </main>
     );
 }

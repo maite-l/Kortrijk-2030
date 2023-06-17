@@ -1,22 +1,22 @@
-main {
-
-}
-
-.submit-sections__title {
+.submit-main {
     padding-block-start: 2rem;
     margin-block-start: 8rem;
     border-block-start: var(--border);
 }
 
-.submit-sections__title h1 {
-    margin-inline-start: 7vw;
+.submit-sections__header a {
+    text-decoration: underline 2px;
+}
+
+.submit {
+    width: 85vw;
+    margin-inline: auto;
 }
 
 .sections {
-    width: 78vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    margin-inline: auto;
     margin-block-end: 10rem;
 }
 
@@ -24,7 +24,6 @@ main {
     display: flex;
     flex-direction: column;
     align-items: start;
-
 }
 
 .section-group__title {
@@ -47,10 +46,10 @@ main {
 
 .section-card {
     display: block;
-    width: 35vw;
+    width: 40vw;
     border: var(--border);
     border-radius: var(--border-radius);
-    height: 20rem;
+    height: 22rem;
     border-radius: 3px;
     padding: 1rem;
     display: flex;
