@@ -34,7 +34,7 @@ export default function FeaturedSubmissions({ featuredSubmissions, issueDate, im
                         </div>
                     ))}
                 </div>
-                <CustomButton className="featured-submissions__button" text={"View full issue"} />
+                <CustomButton className="featured-submissions__button" text={"View full issue"} icon={"arrow"} />
             </div >
         )
             : null
