@@ -23,8 +23,11 @@ import Meme, { action as memeAction } from "./routes/submit/meme";
 import Reply, { loader as replyLoader, action as replyAction } from "./routes/submit/reply";
 import OpenSubmission, { action as openSubmissionAction } from "./routes/submit/openSubmission";
 
+import MyAccount from "./routes/my-account";
+
 import Login, { action as LoginAction } from "./routes/login";
 import Register, { action as RegisterAction } from "./routes/register";
+import { action as logOutAction } from './routes/logout';
 
 import ErrorPage from "./routes/error-page";
 
@@ -45,15 +48,15 @@ const router = createBrowserRouter([
             action: homeAction,
           },
           {
-            path: "archive",
+            path: "/archive",
             element: <Archive />,
           },
           {
-            path: "my-submissions",
+            path: "/my-submissions",
             element: <MySubmissions />,
           },
           {
-            path: "submit",
+            path: "/submit",
             children: [
               {
                 index: true,
@@ -102,6 +105,16 @@ const router = createBrowserRouter([
                 action: replyAction,
               }
             ],
+          },
+          {
+            path: "/my-account",
+            element: <MyAccount />,
+            children: [
+              {
+                path: "logout",
+                action: logOutAction,
+              }
+            ]
           },
           {
             path: "/login",

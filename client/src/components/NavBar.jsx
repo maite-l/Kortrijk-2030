@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "../css/navbar.css";
+import CustomButton from "./CustomButton";
 
 export default function NavBar({ loggedIn }) {
     return (
@@ -18,10 +19,12 @@ export default function NavBar({ loggedIn }) {
                         </li>
                     ) : (null)}
                     <li>
-                        <NavLink to="/submit">Submit Your Input</NavLink>
+                        <NavLink to="/submit">Submit your input</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/login" className="login-link">
+                        <NavLink
+                            to={loggedIn ? "/my-account" : "/login"}
+                            className="login-link">
                             {loggedIn ? (
                                 'My Account'
                             ) : 'Log in'}
