@@ -13,24 +13,23 @@ export async function action({ request }) {
 export default function Login() {
 
     return (
-        <Form method="post">
-            <div>
-                <label>
-                    Email:
-                    <input type="text" name="email" defaultValue="maite.lejeune@outlook.com" />
+        <main>
+            <h2>Log in</h2>
+            <p>Log in to your account below - we promise not to send you any spam emails (unless you want us to). It’s just so you can keep track of all your submissions and can easily post your contact info for them (if you want).</p>
+            <Form method="post">
+                <label htmlFor="email">
+                    <span>Email</span>
+                    <input type='text' name='email' placeholder='name@example.com'/>
                 </label>
-            </div>
-            <div>
-                <label>
-                    Password:
-                    <input type="password" name="password" defaultValue="123456" />
+                <label htmlFor="password">
+                    <span>Password</span>
+                    <input type='password' name='password'/>
                 </label>
-            </div>
-            <div>
-                <button type='submit'>Login</button>
-            </div>
+                <button type='submit'>Log in</button>
+            </Form>
 
-        </Form>
-    )
+            <p>I don't have an account <a href="/register">Sign up</a></p>
+        </main>
+    );
 
 }

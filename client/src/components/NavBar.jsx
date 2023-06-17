@@ -1,26 +1,30 @@
 import { NavLink } from "react-router-dom";
 import "../css/navbar.css";
 
-export default function NavBar() {
+export default function NavBar({ loggedIn }) {
     return (
         <nav>
             <ul>
                 <li className="logo-link">
-                    <NavLink to="/">Klinkt.</NavLink>
+                    <NavLink to="/">klinkt.</NavLink>
                 </li>
                 <div>
                     <li>
                         <NavLink to="/archive">Archive</NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/my-submissions">My Submissions</NavLink>
-                    </li>
+                    {loggedIn ? (
+                        <li>
+                            <NavLink to="/my-submissions">My Submissions</NavLink>
+                        </li>
+                    ) : (null)}
                     <li>
                         <NavLink to="/submit">Submit Your Input</NavLink>
                     </li>
                     <li>
                         <NavLink to="/login" className="login-link">
-                            Log In
+                            {loggedIn ? (
+                                'My Account'
+                            ) : 'Log in'}
                             <svg
                                 width="32"
                                 height="32"
