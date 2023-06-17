@@ -13,6 +13,7 @@ import Home, { loader as homeLoader, action as homeAction } from "./routes/home"
 import Archive from "./routes/archive";
 import MySubmissions from "./routes/my-submissions";
 import Submit, { loader as submitLoader } from "./routes/submit";
+
 import Article, { action as articleAction } from "./routes/submit/article";
 import Interview, { action as interviewAction } from "./routes/submit/interview";
 import Gossip, { action as gossipAction } from "./routes/submit/gossip";
@@ -20,7 +21,13 @@ import Artwork, { action as artworkAction } from "./routes/submit/artwork";
 import Photography, { action as photographyAction } from "./routes/submit/photography";
 import Meme, { action as memeAction } from "./routes/submit/meme";
 import Reply, { loader as replyLoader, action as replyAction } from "./routes/submit/reply";
-import OpenSubmission, { action as openSubmissionAction} from "./routes/submit/openSubmission";
+import OpenSubmission, { action as openSubmissionAction } from "./routes/submit/openSubmission";
+
+import MyAccount from "./routes/my-account";
+
+import Login, { action as LoginAction } from "./routes/login";
+import Register, { action as RegisterAction } from "./routes/register";
+import { action as logOutAction } from './routes/logout';
 
 import ErrorPage from "./routes/error-page";
 
@@ -41,15 +48,15 @@ const router = createBrowserRouter([
             action: homeAction,
           },
           {
-            path: "archive",
+            path: "/archive",
             element: <Archive />,
           },
           {
-            path: "my-submissions",
+            path: "/my-submissions",
             element: <MySubmissions />,
           },
           {
-            path: "submit",
+            path: "/submit",
             children: [
               {
                 index: true,
@@ -99,11 +106,31 @@ const router = createBrowserRouter([
               }
             ],
           },
+          {
+            path: "/my-account",
+            element: <MyAccount />,
+            children: [
+              {
+                path: "logout",
+                action: logOutAction,
+              }
+            ]
+          },
+          {
+            path: "/login",
+            element: <Login />,
+            action: LoginAction,
+          },
+          {
+            path: "/register",
+            element: <Register />,
+            action: RegisterAction,
+          }
         ],
       },
     ],
     errorElement: <ErrorPage />,
-  },
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

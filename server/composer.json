@@ -1,6 +1,7 @@
 {
   "require": {
     "craftcms/cms": "^4.4.0",
+    "jamesedmonston/graphql-authentication": "2.4.0",
     "vlucas/phpdotenv": "^5.4.0"
   },
   "require-dev": {

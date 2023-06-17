@@ -9,7 +9,7 @@ export default function Header({ allMagazineSections }) {
                     <p>We are <span className="italic-semibold">klinkt.</span></p>
                     <p>Kortrijk-based <span className="italic">digital & printed</span> youth magazine, where we value <span className="semibold">your</span> (cultural) inputs</p>
                     <div className="ctas">
-                        <CustomButton text={"View latest issue"} />
+                        <CustomButton text={"View latest issue"} icon={"arrow"}/>
                         <a href="" className="printed-copy-link">Find a printed copy of <span className="italic-semibold">klinkt.</span></a>
                     </div>
                 </div>

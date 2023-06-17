@@ -1,7 +1,6 @@
-// 
 import {
     Outlet,
-    // useLoaderData
+    useLoaderData
 } from "react-router-dom";
 import { createContext } from 'react';
 
@@ -17,7 +16,7 @@ import Footer from "../components/Footer";
 const IMG_URL = import.meta.env.VITE_API_IMAGES_URL || "https://kortrijk2030.ddev.site/files/images/";
 const MAGAZINES_URL = import.meta.env.VITE_API_MAGAZINES_URL || "https://kortrijk2030.ddev.site/files/magazines/";
 
-const maxImgCount = 5; 
+const maxImgCount = 5;
 const maxImgSizeInMb = 16; //https://craftcms.stackexchange.com/questions/492/when-uploading-assets-what-determines-the-maximum-file-size
 
 export const GlobalContext = createContext();
@@ -25,26 +24,22 @@ export const GlobalContext = createContext();
 export async function loader() {
     console.log("Loading root");
 
-    // const submissions = await getSubmissions();
-    // const image = submissions[0].image[0].path;
+    let loggedIn = false;
+    if (localStorage.getItem("jwt")) {
+        loggedIn = true;
+    }
 
-
-    // const magazines = await getMagazines();
-    // const magazine = magazines[1].magazine[0].path;
-
-    // console.log(image, magazine);
-    // return { image, magazine };
-    return {};
+    return {loggedIn};
 
 }
 
 export default function Root() {
 
-
+    const { loggedIn } = useLoaderData();
 
     return (
-        <GlobalContext.Provider value={{ imgURL: IMG_URL, magazineURL: MAGAZINES_URL, maxImgCount, maxImgSizeInMb}}>
-            <NavBar />
+        <GlobalContext.Provider value={{ imgURL: IMG_URL, magazineURL: MAGAZINES_URL, maxImgCount, maxImgSizeInMb }}>
+            <NavBar loggedIn={loggedIn}/>
             <Outlet />
 
             {/* example of how to display image and pdf */}

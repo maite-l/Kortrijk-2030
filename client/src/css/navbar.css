@@ -56,5 +56,6 @@ nav ul div a:hover {
     justify-content: space-around;
     align-items: center;
     gap: 0.8rem;
+    text-transform: capitalize;
 }
 

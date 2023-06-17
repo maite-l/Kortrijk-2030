@@ -16,8 +16,7 @@ export default function MagazinePreview({ pages, date }) {
 
         ScrollTrigger.create({
             trigger: flipbookWrapper,
-            start: '60% 15%',
-            markers: true,
+            start: 'top 15%',
             onEnter: function () {
                 flipbook.pageFlip().flipNext();
             },
@@ -37,7 +36,7 @@ export default function MagazinePreview({ pages, date }) {
                 Pssst... {date.split(' ')[0]}'s <span className="italic">klinkt.</span> issue is out!{' '}
             </p>
             <div ref={flipbookWrapperRef} className="magazine-flipbook__container">
-                <CustomButton href={''} text={'download as pdf'} />
+                <CustomButton href={''} text={'download as pdf'} icon={"download"} />
                 <HTMLFlipBook
                     className="magazine-flipbook"
                     ref={flipbookRef}
