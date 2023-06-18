@@ -263,15 +263,18 @@ export default function Home() {
 
 
     //MODAL
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedMagazine, setSelectedMagazine] = useState(null);
 
     const openModal = () => {
-        setIsModalOpen(true);
+        setSelectedMagazine(currentMagazinePath);
+        console.log(selectedMagazine);
+        setIsOpen(true);
+    };
+    const closeModal = () => {
+        setIsOpen(false);
     };
 
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
 
 
 
@@ -302,9 +305,11 @@ export default function Home() {
                 handleSubmit={handleSubmit}
             />
 
-            <MagazinePreview pages={pages} date={date} openModal={openModal}/>
-            <MagazinePopUp isOpen={isModalOpen} closeModal={closeModal} pdfPath={currentMagazinePath}/>
-
+            <MagazinePreview pages={pages} date={date} openModal={openModal} />
+            {isOpen && (
+                <MagazinePopUp isOpen={isOpen} closeModal={closeModal} pdfPath={selectedMagazine} />
+            )}
+            
             <SocialMediaSection />
 
             <MapSection />

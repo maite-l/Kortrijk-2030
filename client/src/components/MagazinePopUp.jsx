@@ -16,6 +16,8 @@ export default function MagazinePopUp({ isOpen, closeModal, pdfPath }) {
     useEffect(() => {
         setIsLoading(true);
 
+        console.log(isOpen, closeModal, pdfPath);
+
         const loadPages = async () => {
             const loadedPages = await pdfToImgSrc(pdfPath, true, null, 1);
             setPages(loadedPages);
