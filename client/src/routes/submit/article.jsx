@@ -84,7 +84,7 @@ export default function Article() {
     //global context
     const { maxImgCount, maxImgSizeInMb } = useContext(GlobalContext);
 
-    const [sumbitState, setSubmitState] = useState('form');
+    const [submitState, setSubmitState] = useState('form');
 
     const [formTitle, setFormTitle] = useState('');
     const [formText, setFormText] = useState('');
@@ -97,6 +97,21 @@ export default function Article() {
         const imgStrings = fileInputResult ? fileInputResult.imgStrings : [];
         imgNamesResult = imgNames;
         imgStringsResult = imgStrings;
+    };
+
+    const handleTitleChange = (event) => {
+        const newTitle = event.target.value;
+        setFormTitle(newTitle);
+    };
+
+    const handleTextChange = (event) => {
+        const newText = event.target.value;
+        setFormText(newText);
+    };
+
+    const handleNotesForEditorChange = (event) => {
+        const newNotes = event.target.value;
+        setNotesForEditor(newNotes);
     };
 
     const showOverview = (event) => {
@@ -114,55 +129,84 @@ export default function Article() {
 
 
     return (
-        <main>
-            {sumbitState === 'form' && (
-                <SubmitForm
-                    title={'Submit your article'}
-                    submissionTips={'Did you discover an amazing place in Kortrijk? Something that fascinates you about living here? Any cultural differences? Delve deep into them and describe them in an article! Make sure to keep it clean with the language;-)'}
-                    formTitlePlaceholder={'Cornershop of Daydreams: Where Imagination Takes Center Stage'}
-                    formTextLabel={'Content'}
-                    formTextPlaceholder={'Located at the junction of Budastraat and Kapucijnenstraat, this unassuming door opens up a world of whimsy and wonder. We see ourselves as a group of creative individuals, more like agency custodians rather than owners, offering our skills to the city and its diverse...'}
-                    reply={false}
-                    includeText={true}
-                    includeImages={true}
-                    handleFileInputChange={handleFileInputChange}
-                    includeNotesForEditor={true}
-                    notesForEditorPlaceholder={'I’m trying to get spotted as a newspaper copywriter. Can you put my email and portfolio together with my article?'}
-                    handleSubmit={showOverview}
-                    titleValue={formTitle}
-                    textValue={formText}
-                    notesForEditorValue={notesForEditor}
-                />
-            )}
-            {sumbitState === 'overview' && (
-                <div>
-                    <h2>Submission preview</h2>
-                    {formTitle && (
-                        <p>{formTitle}</p>
-                    )}
-                    {formText && (
-                        <p>{formText}</p>
-                    )}
-                    {notesForEditor && (
-                        <p>{notesForEditor}</p>
-                    )}
-                    {imgStringsResult && (
-                        imgStringsResult.map((imgString, index) => {
-                            return (
-                                <img key={index} src={imgString} alt={imgNamesResult[index]} />
-                            )
-                        }))
-                    }
-                    <button onClick={() => setSubmitState('form')}>Edit</button>
-                    <Form method='post'>
-                        {/* hidden fields to carry over data */}
-                        <input type="hidden" name="title" value={formTitle} />
-                        <input type="hidden" name="text" value={formText} />
-                        <input type="hidden" name="info" value={notesForEditor} />
-                        <button type="submit">Submit</button>
-                    </Form>
+        <main className='submitting-page'>
+            <div className='progress-tracker'>
+                <div className="progress-tracker__item progress-tracker__item--completed">
+                    <div className='progress-tracker__item__number'>1</div>
+                    <div className='progress-tracker__item__text'>Your submission</div>
                 </div>
-            )}
+                <div className={`progress-tracker__item${submitState === 'overview' ? ' progress-tracker__item--completed' : ''}`}>
+                    <div className='progress-tracker__item__number'>2</div>
+                    <div className='progress-tracker__item__text'>Confirm</div>
+                </div>
+            </div>
+            <div className='content'>
+                {submitState === 'form' && (
+                    <SubmitForm
+                        title={'Submit your article'}
+                        submissionTips={'Did you discover an amazing place in Kortrijk? Something that fascinates you about living here? Any cultural differences? Delve deep into them and describe them in an article! Make sure to keep it clean with the language;-)'}
+                        formTitlePlaceholder={'Cornershop of Daydreams: Where Imagination Takes Center Stage'}
+                        formTextLabel={'Content'}
+                        formTextPlaceholder={'Located at the junction of Budastraat and Kapucijnenstraat, this unassuming door opens up a world of whimsy and wonder. We see ourselves as a group of creative individuals, more like agency custodians rather than owners, offering our skills to the city and its diverse...'}
+                        reply={false}
+                        includeText={true}
+                        includeImages={true}
+                        handleFileInputChange={handleFileInputChange}
+                        includeNotesForEditor={true}
+                        notesForEditorPlaceholder={'I’m trying to get spotted as a newspaper copywriter. Can you put my email and portfolio together with my article?'}
+                        handleSubmit={showOverview}
+                        titleValue={formTitle}
+                        textValue={formText}
+                        notesForEditorValue={notesForEditor}
+                        handleTitleChange={handleTitleChange}
+                        handleTextChange={handleTextChange}
+                        handleNotesForEditorChange={handleNotesForEditorChange}
+                    />
+                )}
+                {submitState === 'overview' && (
+                    <div className='submit-overview'>
+                        <h1>Submission preview</h1>
+                        <div className='submission__overview'>
+                            {imgStringsResult.length > 0 && (
+                                <div className='submission__overview--images'>
+                                    {imgStringsResult.map((imgString, index) => (
+                                        <img key={index} src={imgString} alt={imgNamesResult[index]} className='submission__overview--image' />
+                                    ))}
+                                </div>
+                            )}
+                            <div className='submission__overview--info'>
+                                {formTitle && (
+                                    <p className='submission__overview--title'>{formTitle}</p>
+                                )}
+                                {formText && (
+                                    <p className='submission__overiew--text'>{formText.slice(0, 200)}{formText.length > 200 ? "..." : ""}</p>
+                                )}
+                            </div>
+
+                            {notesForEditor && (
+                                <div className='notes-for-editor'>
+                                    <p className='notes-for-editor__title'>Notes for the editor</p>
+                                    <p>{notesForEditor}</p>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className='overview-buttons'>
+                            <button onClick={() => setSubmitState('form')}>Edit</button>
+                            <Form method='post'>
+                                {/* hidden fields to carry over data */}
+                                <input type="hidden" name="title" value={formTitle} />
+                                <input type="hidden" name="text" value={formText} />
+                                <input type="hidden" name="info" value={notesForEditor} />
+                                <button type="submit">Submit</button>
+                            </Form>
+                        </div>
+
+
+                    </div>
+                )}
+            </div>
+
         </main>
     );
 }

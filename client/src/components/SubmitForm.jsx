@@ -14,9 +14,14 @@ export default function SubmitForm({
     includeNotesForEditor,
     notesForEditorPlaceholder,
     handleFileInputChange,
-    handleSubmit
+    handleSubmit,
+    titleValue,
+    textValue,
+    notesForEditorValue,
+    handleTitleChange,
+    handleTextChange,
+    handleNotesForEditorChange
 }) {
-
     return (
         <div className='submit-form__wrapper'>
             <h1>{title}</h1>
@@ -26,7 +31,7 @@ export default function SubmitForm({
                     <p className='submission-tips__text'>{submissionTips}</p>
                 </div>
                 <Form method="post" onSubmit={handleSubmit}>
-                    {reply ?
+                    {reply ? (
                         <label htmlFor="article">
                             <span>Choose an article / interview</span>
                             <select name="article" id="article">
@@ -37,7 +42,7 @@ export default function SubmitForm({
                                 ))}
                             </select>
                         </label>
-                        :
+                    ) : (
                         <label htmlFor="title">
                             <span>Title</span>
                             <input
@@ -45,10 +50,13 @@ export default function SubmitForm({
                                 name="title"
                                 placeholder={formTitlePlaceholder}
                                 required
+                                value={titleValue}
+                                onChange={handleTitleChange}
                             />
-                        </label>}
+                        </label>
+                    )}
 
-                    {includeText ?
+                    {includeText ? (
                         <label htmlFor="text">
                             <span>{formTextLabel} (Max. 1000 characters)</span>
                             <textarea
@@ -58,11 +66,12 @@ export default function SubmitForm({
                                 placeholder={formTextPlaceholder}
                                 required
                                 style={{ resize: "none" }}
+                                value={textValue}
+                                onChange={handleTextChange}
                             />
-
                         </label>
-                        : null}
-                    {includeNotesForEditor ?
+                    ) : null}
+                    {includeNotesForEditor ? (
                         <label htmlFor="info">
                             <span>Notes for the editor? (Max. 400 characters) </span>
                             <textarea
@@ -71,10 +80,12 @@ export default function SubmitForm({
                                 name="info"
                                 placeholder={notesForEditorPlaceholder}
                                 style={{ resize: "none" }}
+                                value={notesForEditorValue}
+                                onChange={handleNotesForEditorChange}
                             />
                         </label>
-                        : null}
-                    {includeImages ?
+                    ) : null}
+                    {includeImages ? (
                         <label htmlFor="image">
                             <span>Choose files (up to 15MB, max 5 files)</span>
                             <input
@@ -85,10 +96,10 @@ export default function SubmitForm({
                                 onChange={(event) => handleFileInputChange(event)}
                             />
                         </label>
-                        : null}
+                    ) : null}
                     <button className='submission-button' type='submit'>Go to overview</button>
                 </Form>
             </div>
         </div>
-    )
+    );
 }
