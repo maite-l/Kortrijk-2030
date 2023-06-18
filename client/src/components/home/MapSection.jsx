@@ -1,6 +1,6 @@
 export default function MapSection() {
     return (
-        <div className="map-wrapper">
+        <div className="map-wrapper" id="map">
             <div className="map">
                 <h2 className="title--style1">Find a printed copy of <span className="italic">Klinkt.</span> here</h2>
                 <div className="map-content">

@@ -32,13 +32,26 @@
     font-size: 1.1rem;
     text-decoration: solid underline 2px;
     font-family: 'Metropolis Semibold';
+    transition: all 0.2s ease-in-out;
+}
+.introduction .printed-copy-link:hover {
+    text-decoration: solid underline 2px var(--color-orange);
+    color: var(--color-orange);
 }
 
 .introduction .scroll-button {
     margin-block-end: 2rem;
     margin-block-start: 18vh;
 }
+.introduction .scroll-button:hover {
+    transform: translateY(0.5rem);
+    transition: all 0.2s ease-in-out;
+}
 
+
+.rolling-cards__wrapper {
+    overflow: hidden;
+}
 
 .rolling-cards {
     justify-self: end;
@@ -190,6 +203,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 }
 
 
@@ -657,7 +671,7 @@
 
 .instructions {
     width: 100vw;
-    overflow: scroll;
+    /* overflow: scroll; */
 }
 
 .instructions h2 {
@@ -667,6 +681,7 @@
 
 .instructions__wrapper {
     width: 100vw;
+    overflow: scroll;
 }
 
 .instructions__steps {
