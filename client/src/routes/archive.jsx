@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { useLoaderData } from "react-router-dom";
 
 import pdfToImgSrc from "../util/pdfToImgSrc";
 
 import { getAllMagazinePaths } from "../magazines";
+
+import MagazinePopUp from "../components/MagazinePopUp";
 
 import "../css/archive.css";
 
@@ -15,19 +18,27 @@ export async function loader() {
         return `${pdfPath}${path}`;
     });
 
+    const magazineIssue = magazines.map((magazine) => {
+        const issueNumber = magazine.issueNumber;
+        return issueNumber;
+    });
+
     const getRandomSize = (minPercentage, maxPercentage) => {
         const percentage = Math.random() * (maxPercentage - minPercentage) + minPercentage;
         return percentage / 100;
     };
 
+    const maxIssueNumber = Math.max(...magazineIssue);
 
     const magazineData = await Promise.all(
-        magazinePaths.map(async (magazinePath) => {
+        magazinePaths.map(async (magazinePath, index) => {
             const spreads = await pdfToImgSrc(magazinePath, false, 2, 4);
+            const isMostRecent = magazineIssue[index] === maxIssueNumber;
             return {
                 path: magazinePath,
                 spreads: spreads,
-                size: getRandomSize(20, 30)
+                size: getRandomSize(20, 30),
+                isMostRecent: isMostRecent
             };
         })
     );
@@ -35,20 +46,30 @@ export async function loader() {
     console.log(magazineData);
 
     return { magazineData };
-
 }
+
+
+
 export default function Archive() {
     const { magazineData } = useLoaderData();
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedMagazine, setSelectedMagazine] = useState(null);
+
+    function handleClick(e, magazine) {
+        e.preventDefault();
+        setSelectedMagazine(magazine);
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
 
     function getRandomAlignment() {
-        const alignments = ["start", "end", "center"];
+        const alignments = ['start', 'end', 'center'];
         const randomIndex = Math.floor(Math.random() * alignments.length);
         return alignments[randomIndex];
     }
-
-    // function handleClick(e) {
-    //     e.preventDefault();
-    // }
 
     return (
         <main className="archive">
@@ -57,33 +78,41 @@ export default function Archive() {
                 {magazineData.map((magazine, magazineIndex) => (
                     <div
                         key={magazineIndex}
-                        className="archive__magazine--preview"
+                        className={`archive__magazine--preview`}
                         style={{
                             justifyContent: getRandomAlignment(),
-                            alignItems: getRandomAlignment()
-                        }}>
-                        <a
-                            href={magazine.path}
-                            // onClick={handleClick}
-                        >
-                            {magazine.spreads.map((spread, spreadIndex) => (
-                                <img
-                                    key={spreadIndex}
-                                    src={spread}
-                                    alt={`Spread ${spreadIndex + 1}`}
-                                    className="magazine-spread"
-                                    width={magazine.size * 595}
-                                    height={magazine.size * 842}
-                                />
-                            ))}
-                        </a>
+                            alignItems: getRandomAlignment(),
+                        }}
+                    >
+                        <div>
+                            {magazine.isMostRecent &&
+                                <div className="most-recent-indicator">Latest Issue!</div>
+                            }
+                            <a href={magazine.path} onClick={(e) => handleClick(e, magazine)}>
+                                {magazine.spreads.map((spread, spreadIndex) => (
+                                    <img
+                                        key={spreadIndex}
+                                        src={spread}
+                                        alt={`Spread ${spreadIndex + 1}`}
+                                        className="magazine-spread"
+                                        width={magazine.size * 595}
+                                        height={magazine.size * 842}
+                                    />
+                                ))}
+                            </a>
+                        </div>
+
                     </div>
                 ))}
             </div>
+            {isOpen && (
+                <MagazinePopUp
+                    isOpen={isOpen}
+                    closeModal={closeModal}
+                    pdfPath={selectedMagazine.path}
+                />
+            )}
         </main>
     );
-
-
-
 
 }
