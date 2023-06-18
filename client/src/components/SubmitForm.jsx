@@ -34,7 +34,7 @@ export default function SubmitForm({
                     {reply ? (
                         <label htmlFor="article">
                             <span>Choose an article / interview</span>
-                            <select name="article" id="article">
+                            <select name="title" id="title" value={titleValue} onChange={handleTitleChange}>
                                 {articlesToReplyTo.map((article) => (
                                     <option key={article.id} value={article.articleTitle}>
                                         {article.articleTitle}
