@@ -1,0 +1,35 @@
+
+.close-button, .left-button, .right-button {
+    margin: 0;
+    font-family: 'Metropolis Medium';
+    text-transform: uppercase;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    padding: 0.5rem 1.2rem;
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+.left-button {
+    left: 0;
+}
+.right-button {
+    right: 0;
+}
+.close-button {
+    top: 0;
+    right: 0;
+}
+
+.magazine-popup__loading {
+    color: var(--color-white);
+}

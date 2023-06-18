@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import HTMLFlipBook from 'react-pageflip';
 import CustomButton from '../CustomButton';
 
-export default function MagazinePreview({ pages, date }) {
+export default function MagazinePreview({ pages, date, openModal }) {
     const flipbookWrapperRef = useRef(null);
     const flipbookRef = useRef(null);
 
@@ -31,7 +31,7 @@ export default function MagazinePreview({ pages, date }) {
     }, [flipbookRef]);
 
     return (
-        <div className="magazine-preview">
+        <div className="magazine-preview" onClick={openModal}>
             <p>
                 Pssst... {date.split(' ')[0]}'s <span className="italic">klinkt.</span> issue is out!{' '}
             </p>

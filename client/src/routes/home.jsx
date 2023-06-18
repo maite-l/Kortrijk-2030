@@ -38,6 +38,7 @@ import "../css/home.css";
 
 import Poll from "../components/home/Poll";
 import MagazinePreview from "../components/home/MagazinePreview";
+import MagazinePopUp from "../components/MagazinePopUp";
 
 
 
@@ -115,7 +116,8 @@ export async function loader() {
 
     const pdfPath = import.meta.env.VITE_API_MAGAZINES_URL || "https://kortrijk2030.ddev.site/files/magazines/";
     const currentMagazine = currentIssue[0].magazine[0].path;
-    const pages = await pdfToImgSrc(`${pdfPath}${currentMagazine}`);
+    const currentMagazinePath = `${pdfPath}${currentMagazine}`;
+    const pages = await pdfToImgSrc(currentMagazinePath);
 
 
     return {
@@ -143,7 +145,8 @@ export async function loader() {
         allMagazineSections,
 
         //MAGAZINE FLIPBOOK
-        pages
+        pages,
+        currentMagazinePath
     };
 }
 
@@ -200,7 +203,8 @@ export default function Home() {
         allMagazineSections,
 
         //MAGAZINE FLIPBOOK
-        pages
+        pages,
+        currentMagazinePath
 
     } = useLoaderData();
 
@@ -257,6 +261,21 @@ export default function Home() {
     //get global context variable for image path
     const { imgURL } = useContext(GlobalContext);
 
+
+
+    //MODAL
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+
+
     return (
         <main onMouseMove={handleMouseMove}>
 
@@ -284,7 +303,8 @@ export default function Home() {
                 handleSubmit={handleSubmit}
             />
 
-            <MagazinePreview pages={pages} date={date} />
+            <MagazinePreview pages={pages} date={date} openModal={openModal}/>
+            <MagazinePopUp isOpen={isModalOpen} closeModal={closeModal} pdfPath={currentMagazinePath}/>
 
             <SocialMediaSection />
 
@@ -294,10 +314,4 @@ export default function Home() {
     );
 
 }
-
-
-
-
-
-
 
