@@ -184,7 +184,7 @@
 .overview-buttons form {
     margin: 0;
 }
-.overview-buttons button {
+.overview-buttons button, .new-input__button {
     margin: 0;
     font-family: 'Metropolis Medium';
     text-transform: uppercase;
@@ -200,6 +200,60 @@
     color: var(--color-white);
 }
 
+.new-input__button {
+    margin-inline-start: auto;
+}
+
 .notes-for-editor__title {
     font-family: 'Metropolis Semibold';
+}
+
+
+
+.confirmation {
+    width: 45vw;
+    padding-block: 2rem 6rem;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirmation__info {
+    padding: 3rem;
+    box-shadow: var(--drop-shadow);
+    border-radius: var(--border-radius);
+    border: var(--border);
+}
+
+.confirmation__info p {
+    font-family: 'Metropolis Medium';
+    font-size: 1.4rem;
+    line-height: 1.2;
+    margin-inline-start: -1rem;
+    margin-block-end: 1rem;
+}
+
+.submitting-page.confirmation {
+    display: flex;
+    flex-direction: column;
+    width: 88vw;
+    justify-content: center;
+}
+
+ol {
+    list-style: decimal;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.confirmation h1 {
+    font-family: 'Metropolis Semibold';
+    font-size: 1.7rem;
+    line-height: 1.2;
+    margin-block-start: 0;
+    margin-block-end: 1rem;
 }

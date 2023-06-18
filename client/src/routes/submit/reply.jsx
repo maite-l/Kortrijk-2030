@@ -1,10 +1,13 @@
-import { Form, redirect, useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
 
 import { getMagazineSectionByTitle, newSubmission, getOpenIssue } from "../../submissions";
 import { getCurrentIssue } from "../../magazines";
 
-import SubmitForm from '../../components/SubmitForm';
+import SubmitForm from '../../components/submission/SubmitForm';
+import ProgressTracker from '../../components/submission/ProgressTracker';
+import SubmitOverview from '../../components/submission/SubmitOverview';
+import Confirmation from '../../components/submission/Confirmation';
 import "../../css/submit-form.css";
 
 
@@ -14,7 +17,13 @@ export async function loader() {
     const articlesToReplyTo = currentIssue[0].articlesToReplyTo;
     console.log(articlesToReplyTo);
 
-    return { articlesToReplyTo };
+    //get open issue date
+    const openIssue = await getOpenIssue();
+    const openIssueDate = openIssue.issueDate;
+
+    console.log(openIssue);
+
+    return { articlesToReplyTo, openIssueDate };
 }
 
 export async function action({ request }) {
@@ -35,7 +44,7 @@ export async function action({ request }) {
         const formData = await request.formData();
         console.log(Object.fromEntries(formData));
         const { title, text, info } = Object.fromEntries(formData);
-        const completeTitle = `Reply to: ${title}`;
+        // const completeTitle = `Reply to: ${title}`;
 
         // get issue number 
         const openIssue = await getOpenIssue();
@@ -55,9 +64,9 @@ export async function action({ request }) {
         }
 
         //create submission
-        const submission = await newSubmission(completeTitle, text, info, [], magazineSection, issueNumber, userId, jwt);
+        const submission = await newSubmission(title, text, info, [], magazineSection, issueNumber, userId, jwt);
         console.log(submission);
-        return redirect("/submit");
+        return submission;
 
     } catch (error) {
         console.error(error);
@@ -66,6 +75,9 @@ export async function action({ request }) {
 }
 
 export default function Reply() {
+
+    //loader variables
+    const { openIssueDate } = useLoaderData();
 
     //get data from loader
     const { articlesToReplyTo } = useLoaderData();
@@ -90,7 +102,7 @@ export default function Reply() {
 
         const { title, text } = event.target.elements;
 
-        setFormTitle(title.value);
+        setFormTitle(`Reply to ${title.value}`);
         setFormText(text.value);
 
         setSubmitState('overview');
@@ -104,17 +116,10 @@ export default function Reply() {
                 <p>There are currently no articles to reply to.</p>
             </main>
             :
-            <main className='submitting-page'>
-                <div className='progress-tracker'>
-                    <div className="progress-tracker__item progress-tracker__item--completed">
-                        <div className='progress-tracker__item__number'>1</div>
-                        <div className='progress-tracker__item__text'>Your submission</div>
-                    </div>
-                    <div className={`progress-tracker__item${submitState === 'overview' ? ' progress-tracker__item--completed' : ''}`}>
-                        <div className='progress-tracker__item__number'>2</div>
-                        <div className='progress-tracker__item__text'>Confirm</div>
-                    </div>
-                </div>
+            <main className={`submitting-page ${submitState === 'confirmation' ? 'confirmation' : ''}`}>
+
+                <ProgressTracker submitState={submitState} />
+
                 <div className='content'>
                     {submitState === 'form' && (
                         <SubmitForm
@@ -135,35 +140,18 @@ export default function Reply() {
                         />
                     )}
                     {submitState === 'overview' && (
-                        <div className='submit-overview'>
-                            <h1>Submission preview</h1>
-                            <div className='submission__overview'>
-                                <div className='submission__overview--info'>
-                                    {formTitle && (
-                                        <p className='submission__overview--title'>Reply to: {formTitle}</p>
-                                    )}
-                                    {formText && (
-                                        <p className='submission__overiew--text'>{formText.slice(0, 200)}{formText.length > 200 ? "..." : ""}</p>
-                                    )}
-                                </div>
-                            </div>
-
-                            <div className='overview-buttons'>
-                                <button onClick={() => setSubmitState('form')}>Edit</button>
-                                <Form method='post'>
-                                    {/* hidden fields to carry over data */}
-                                    <input type="hidden" name="title" value={formTitle} />
-                                    <input type="hidden" name="text" value={formText} />
-                                    <button type="submit">Submit</button>
-                                </Form>
-                            </div>
-
-
-                        </div>
+                        <SubmitOverview
+                            formTitle={formTitle}
+                            formText={formText}
+                            setSubmitState={setSubmitState}
+                        />
+                    )}
+                    {submitState === 'confirmation' && (
+                        <Confirmation typeOfSubmission={'reply'} openIssueDate={openIssueDate} />
                     )}
                 </div>
 
-            </main>
+            </main >
     );
 
 }

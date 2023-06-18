@@ -1,4 +1,4 @@
-import { Form, redirect } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { useContext, useState } from 'react';
 
 //global context
@@ -8,11 +8,28 @@ import { GlobalContext } from '../root';
 import { getMagazineSectionByTitle, newImageAsset, newSubmission, getOpenIssue } from "../../submissions";
 
 import { fileInputChange } from '../../util/util';
-import SubmitForm from '../../components/SubmitForm';
+import SubmitForm from '../../components/submission//SubmitForm';
+import ProgressTracker from '../../components/submission/ProgressTracker';
+import SubmitOverview from '../../components/submission/SubmitOverview';
+import Confirmation from '../../components/submission/Confirmation';
 
 //variables
 let imgNamesResult = [];
 let imgStringsResult = [];
+
+export async function loader() {
+
+    //get open issue date
+    const openIssue = await getOpenIssue();
+    const openIssueDate = openIssue.issueDate;
+
+    console.log(openIssue);
+
+    return {
+        openIssueDate
+    };
+
+}
 
 export async function action({ request }) {
     try {
@@ -69,7 +86,7 @@ export async function action({ request }) {
         //create submission
         const submission = await newSubmission(title, text, info, imgIds, magazineSection, issueNumber, userId, jwt);
         console.log(submission);
-        return redirect("/submit");
+        return submission;
     } catch (error) {
         console.error(error);
         // Handle the error or display an error message to the user
@@ -77,6 +94,9 @@ export async function action({ request }) {
 }
 
 export default function Meme() {
+
+    //loader variables
+    const { openIssueDate } = useLoaderData();
 
     //global context
     const { maxImgCount, maxImgSizeInMb } = useContext(GlobalContext);
@@ -110,25 +130,16 @@ export default function Meme() {
     }
 
     return (
-        <main className='submitting-page'>
-            <div className='progress-tracker'>
-                <div className="progress-tracker__item progress-tracker__item--completed">
-                    <div className='progress-tracker__item__number'>1</div>
-                    <div className='progress-tracker__item__text'>Your submission</div>
-                </div>
-                <div className={`progress-tracker__item${submitState === 'overview' ? ' progress-tracker__item--completed' : ''}`}>
-                    <div className='progress-tracker__item__number'>2</div>
-                    <div className='progress-tracker__item__text'>Confirm</div>
-                </div>
-            </div>
+        <main className={`submitting-page ${submitState === 'confirmation' ? 'confirmation' : ''}`}>
+
+            <ProgressTracker submitState={submitState} />
+
             <div className='content'>
                 {submitState === 'form' && (
                     <SubmitForm
                         title={'Submit your meme'}
                         submissionTips={'Here you can submit your meme(s). Just keep it culture-related and / or local to Kortrijk / Flanders / Belgium. And don’t be too edgy...'}
-                        formTitlePlaceholder={'My amazing concept art'}
-                        formTextLabel={'Description'}
-                        formTextPlaceholder={'This piece of art has been designed by me for a school project with a theme “armour knights”. I’ve been a freelance artist for 2 years. Btw, I’m available for hire, contact me here...'}
+                        formTitlePlaceholder={'Flemish humour be like...'}
                         reply={false}
                         includeText={false}
                         includeImages={true}
@@ -139,34 +150,15 @@ export default function Meme() {
                     />
                 )}
                 {submitState === 'overview' && (
-                    <div className='submit-overview'>
-                        <h1>Submission preview</h1>
-                        <div className='submission__overview'>
-                            {imgStringsResult.length > 0 && (
-                                <div className='submission__overview--images'>
-                                    {imgStringsResult.map((imgString, index) => (
-                                        <img key={index} src={imgString} alt={imgNamesResult[index]} className='submission__overview--image' />
-                                    ))}
-                                </div>
-                            )}
-                            <div className='submission__overview--info'>
-                                {formTitle && (
-                                    <p className='submission__overview--title'>{formTitle}</p>
-                                )}
-                            </div>
-                        </div>
-
-                        <div className='overview-buttons'>
-                            <button onClick={() => setSubmitState('form')}>Edit</button>
-                            <Form method='post'>
-                                {/* hidden fields to carry over data */}
-                                <input type="hidden" name="title" value={formTitle} />
-                                <button type="submit">Submit</button>
-                            </Form>
-                        </div>
-
-
-                    </div>
+                    <SubmitOverview
+                        imgStringsResult={imgStringsResult}
+                        imgNamesResult={imgNamesResult}
+                        formTitle={formTitle}
+                        setSubmitState={setSubmitState}
+                    />
+                )}
+                {submitState === 'confirmation' && (
+                    <Confirmation typeOfSubmission={'meme'} openIssueDate={openIssueDate} />
                 )}
             </div>
 

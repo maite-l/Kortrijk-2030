@@ -14,14 +14,14 @@ import Archive from "./routes/archive";
 import MySubmissions, { loader as mySubmissonsLoader } from "./routes/my-submissions";
 import Submit, { loader as submitLoader } from "./routes/submit";
 
-import Article, { action as articleAction } from "./routes/submit/article";
-import Interview, { action as interviewAction } from "./routes/submit/interview";
-import Gossip, { action as gossipAction } from "./routes/submit/gossip";
-import Artwork, { action as artworkAction } from "./routes/submit/artwork";
-import Photography, { action as photographyAction } from "./routes/submit/photography";
-import Meme, { action as memeAction } from "./routes/submit/meme";
+import Article, { action as articleAction, loader as articleLoader } from "./routes/submit/article";
+import Interview, { action as interviewAction, loader as interviewLoader } from "./routes/submit/interview";
+import Gossip, { action as gossipAction, loader as gossipLoader } from "./routes/submit/gossip";
+import Artwork, { action as artworkAction, loader as artworkLoader } from "./routes/submit/artwork";
+import Photography, { action as photographyAction, loader as photographyLoader } from "./routes/submit/photography";
+import Meme, { action as memeAction, loader as memeLoader } from "./routes/submit/meme";
 import Reply, { loader as replyLoader, action as replyAction } from "./routes/submit/reply";
-import OpenSubmission, { action as openSubmissionAction } from "./routes/submit/openSubmission";
+import OpenSubmission, { action as openSubmissionAction, loader as openSubmissionLoader } from "./routes/submit/openSubmission";
 
 import MyAccount, {loader as myAccountLoader} from "./routes/my-account";
 
@@ -68,36 +68,43 @@ const router = createBrowserRouter([
                 path: "article",
                 element: <Article />,
                 action: articleAction,
+                loader: articleLoader,
               },
               {
                 path: "interview",
                 element: <Interview />,
                 action: interviewAction,
+                loader: interviewLoader,
               },
               {
                 path: "gossip",
                 element: <Gossip />,
                 action: gossipAction,
+                loader: gossipLoader,
               },
               {
                 path: "artwork",
                 element: <Artwork />,
                 action: artworkAction,
+                loader: artworkLoader,
               },
               {
                 path: "photography",
                 element: <Photography />,
                 action: photographyAction,
+                loader: photographyLoader,
               },
               {
                 path: "meme",
                 element: <Meme />,
                 action: memeAction,
+                loader: memeLoader,
               },
               {
                 path: "open-submission",
                 element: <OpenSubmission />,
                 action: openSubmissionAction,
+                loader: openSubmissionLoader,
               },
               {
                 path: "reply",
