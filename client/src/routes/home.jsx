@@ -281,13 +281,13 @@ export default function Home() {
     return (
         <main onMouseMove={handleMouseMove}>
 
-            <Header allMagazineSections={allMagazineSections} />
+            <Header allMagazineSections={allMagazineSections} openModal={openModal} />
 
-            <FeaturedSubmissions featuredSubmissions={featuredSubmissions} issueDate={issueDate} imgURL={imgURL} />
+            <FeaturedSubmissions featuredSubmissions={featuredSubmissions} issueDate={issueDate} imgURL={imgURL} openModal={openModal}/>
 
             <TotalSubmissions allSubmissionsAmount={allSubmissionsAmount} cursorPosition={cursorPosition} />
 
-            <Instructions />
+            <Instructions openModal={openModal} />
 
 
             <ProgressBar date={openIssueDate} progressBarPercentage={progressBarPercentage} />

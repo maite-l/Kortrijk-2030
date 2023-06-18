@@ -54,10 +54,10 @@ export default function MySubmissions() {
 
     return (
         <main className="my-submissions-page">
-            <div className="profile">
+            <a className="profile" href="/my-account">
                 <p className="profile__name">{userInfo.fullName}</p>
                 <p className="profile__level">{userLevel}</p>
-            </div>
+            </a>
             <h1>My submissions</h1>
             <div className="tabs">
                 <p

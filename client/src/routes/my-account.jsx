@@ -47,7 +47,7 @@ export default function MyAccount() {
                         <p>Submissions</p>
                         <p>{amountOfSubmissions}</p>
                     </div>
-                    <a href="">View my submissions</a>
+                    <a href="/my-submissions">View my submissions</a>
                 </div>
 
                 <div className="my-account__actions">

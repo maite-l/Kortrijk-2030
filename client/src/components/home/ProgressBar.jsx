@@ -18,7 +18,7 @@ export default function ProgressBar({ date, progressBarPercentage }) {
                     <div className="progress-bar__cta">
                         <div className="progress-bar__cta--wrapper">
                             <p className="progress-bar__issue">{date.split(' ')[0]} <span className="italic-semibold">klinkt.</span> issue</p>
-                            <a className="progress-bar__contribute" href="">contribute now</a>
+                            <a className="progress-bar__contribute" href="/submit">contribute now</a>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@ export default function ProgressBar({ date, progressBarPercentage }) {
                     <div className="progress-bar__cta">
                         <div className="progress-bar__cta--wrapper">
                             <p className="progress-bar__issue">{date.split(' ')[0]} <span className="italic-semibold">klinkt.</span> issue</p>
-                            <a className="progress-bar__contribute" href="">contribute now</a>
+                            <a className="progress-bar__contribute" href="/submit">contribute now</a>
                         </div>
                     </div>
                     <div className="progress-bar__bar" style={{ width: `${progressBarPercentage}%` }}>
@@ -59,7 +59,7 @@ export default function ProgressBar({ date, progressBarPercentage }) {
                         </div>
                     </div>
                 </div>
-                <a className="progress-bar__contribute big" href="">contribute now</a>
+                <a className="progress-bar__contribute big" href="/submit">contribute now</a>
             </div>
         );
     }
