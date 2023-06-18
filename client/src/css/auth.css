@@ -9,6 +9,13 @@
     flex-direction: column;
     gap: 1.8rem;
     align-items: center;
+    position: relative;
+    background-color: var(--color-white);
+}
+
+.auth-wrapper .scribble {
+    position: absolute;
+    z-index: -10;
 }
 
 .auth-wrapper h2 {
@@ -33,7 +40,7 @@
     margin:auto;
     margin-block-start: 1.2rem;
     cursor: pointer;
-    background-color: var(--color-blue);
+    background-color: var(--color-orange);
     color: var(--color-white);
 }
 
@@ -45,4 +52,22 @@
 .auth-wrapper p:last-of-type a {
     text-decoration: underline 2px var(--color-black);
     margin-inline-start: 0.4rem;
+}
+
+.register .scribble1 {
+    top: 25em;
+    left: -3vw;
+}
+.register .scribble2 {
+    top: 10em;
+    right: -10vw;
+}
+
+.login .scribble2 {
+    top: 7rem;
+    left: -8vw;
+}
+.login .scribble1 {
+    top: 8rem;
+    right: -2vw;
 }

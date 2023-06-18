@@ -4,6 +4,7 @@
     padding-block-start: 3rem;
 }
 
+
 .my-submissions-page h1 {
     font-size: 2.5em;
     margin-block: 2rem;
@@ -34,6 +35,22 @@
     gap: 3rem;
     margin-block-end: 10rem;
     box-shadow: var(--drop-shadow);
+    background-color: var(--color-white);
+    position: relative;
+}
+
+.my-submissions .scribble {
+    position: absolute;
+    z-index: -10;
+}
+
+.my-submissions .scribble1 {
+    top: 0;
+    left: -4vw;
+}
+.my-submissions .scribble2 {
+    top: -3rem;
+    right: -4vw;
 }
 
 .my-submission {
