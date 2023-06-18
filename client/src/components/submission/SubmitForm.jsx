@@ -8,7 +8,9 @@ export default function SubmitForm({
     formTextLabel,
     formTextPlaceholder,
     includeText,
+    requireText,
     includeImages,
+    requireImages,
     reply,
     articlesToReplyTo,
     includeNotesForEditor,
@@ -64,7 +66,7 @@ export default function SubmitForm({
                                 cols="50"
                                 name="text"
                                 placeholder={formTextPlaceholder}
-                                required
+                                required={requireText}
                                 style={{ resize: "none" }}
                                 value={textValue}
                                 onChange={handleTextChange}
@@ -91,6 +93,7 @@ export default function SubmitForm({
                             <input
                                 type="file"
                                 name="image"
+                                required={requireImages}
                                 accept="image/png, image/jpeg, image/jpg"
                                 multiple
                                 onChange={(event) => handleFileInputChange(event)}

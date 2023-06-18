@@ -161,7 +161,9 @@ export default function Interview() {
                         formTextPlaceholder={'Joëlle Pauwaert (24) is bringing surprising dining experiences to Kortrijk. In her restaurant BON DIA, located in the shopping district, you can enjoy a personalized breakfast or lunch at any time of the day. "At our place, everyone can find a delicious and healthy combination."...'}
                         reply={false}
                         includeText={true}
+                        requireText={true}
                         includeImages={true}
+                        requireImages={false}
                         handleFileInputChange={handleFileInputChange}
                         includeNotesForEditor={true}
                         notesForEditorPlaceholder={'These images show the interviewee and their restaurant. Can you publish them too?'}

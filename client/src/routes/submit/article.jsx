@@ -161,7 +161,9 @@ export default function Article() {
                         formTextPlaceholder={'Located at the junction of Budastraat and Kapucijnenstraat, this unassuming door opens up a world of whimsy and wonder. We see ourselves as a group of creative individuals, more like agency custodians rather than owners, offering our skills to the city and its diverse...'}
                         reply={false}
                         includeText={true}
+                        requireText={true}
                         includeImages={true}
+                        requireImages={false}
                         handleFileInputChange={handleFileInputChange}
                         includeNotesForEditor={true}
                         notesForEditorPlaceholder={'I’m trying to get spotted as a newspaper copywriter. Can you put my email and portfolio together with my article?'}

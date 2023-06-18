@@ -160,7 +160,9 @@ export default function Artwork() {
                         formTextPlaceholder={'This piece of art has been designed by me for a school project with a theme “armour knights”. I’ve been a freelance artist for 2 years. Btw, I’m available for hire, contact me here...'}
                         reply={false}
                         includeText={true}
+                        requireText={false}
                         includeImages={true}
+                        requireImages={true}
                         handleFileInputChange={handleFileInputChange}
                         includeNotesForEditor={true}
                         notesForEditorPlaceholder={'Hi can you add “Available for hire” label on my page? Please mention my email address and also link my socials:...'}

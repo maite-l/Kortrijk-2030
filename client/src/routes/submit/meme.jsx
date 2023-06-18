@@ -143,6 +143,7 @@ export default function Meme() {
                         reply={false}
                         includeText={false}
                         includeImages={true}
+                        requireImages={true}
                         handleFileInputChange={handleFileInputChange}
                         handleSubmit={showOverview}
                         titleValue={formTitle}

@@ -161,7 +161,9 @@ export default function Article() {
                         formTextPlaceholder={'This was a professional project I did for my portfolio when I was starting with photography...'}
                         reply={false}
                         includeText={true}
+                        requireText={false}
                         includeImages={true}
+                        requireImages={true}
                         handleFileInputChange={handleFileInputChange}
                         includeNotesForEditor={true}
                         notesForEditorPlaceholder={'Hi, is it possible to have this specific layout for my pictures on the page:...'}

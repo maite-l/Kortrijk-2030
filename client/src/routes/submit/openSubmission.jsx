@@ -160,7 +160,9 @@ export default function OpenSubmission() {
                         formTextPlaceholder={'Me and my friends are graduating soon and will be presenting out final project on the 3rd of July on..'}
                         reply={false}
                         includeText={true}
+                        requireText={false}
                         includeImages={true}
+                        requireImages={false}
                         handleFileInputChange={handleFileInputChange}
                         includeNotesForEditor={true}
                         notesForEditorPlaceholder={'I’m trying to promote my event - can you also post my contact info and location?'}

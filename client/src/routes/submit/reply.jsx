@@ -131,6 +131,7 @@ export default function Reply() {
                             reply={true}
                             articlesToReplyTo={articlesToReplyTo}
                             includeText={true}
+                            requireText={true}
                             includeImages={false}
                             handleSubmit={showOverview}
                             titleValue={formTitle}

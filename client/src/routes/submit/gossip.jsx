@@ -116,6 +116,7 @@ export default function Gossip() {
                         formTextPlaceholder={'Apparently they’re opening a new croquette place on the Grote Markt...'}
                         reply={false}
                         includeText={true}
+                        requireText={true}
                         includeImages={false}
                         handleSubmit={showOverview}
                         titleValue={formTitle}
