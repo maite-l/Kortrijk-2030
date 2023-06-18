@@ -10,7 +10,7 @@ import "./css/style.css";
 
 import Root, { loader as rootLoader } from "./routes/root";
 import Home, { loader as homeLoader, action as homeAction } from "./routes/home";
-import Archive from "./routes/archive";
+import Archive, { loader as archiveLoader } from "./routes/archive";
 import MySubmissions, { loader as mySubmissonsLoader } from "./routes/my-submissions";
 import Submit, { loader as submitLoader } from "./routes/submit";
 
@@ -23,7 +23,7 @@ import Meme, { action as memeAction, loader as memeLoader } from "./routes/submi
 import Reply, { loader as replyLoader, action as replyAction } from "./routes/submit/reply";
 import OpenSubmission, { action as openSubmissionAction, loader as openSubmissionLoader } from "./routes/submit/openSubmission";
 
-import MyAccount, {loader as myAccountLoader} from "./routes/my-account";
+import MyAccount, { loader as myAccountLoader } from "./routes/my-account";
 
 import Login, { action as LoginAction } from "./routes/login";
 import Register, { action as RegisterAction } from "./routes/register";
@@ -50,6 +50,7 @@ const router = createBrowserRouter([
           {
             path: "/archive",
             element: <Archive />,
+            loader: archiveLoader,
           },
           {
             path: "/my-submissions",

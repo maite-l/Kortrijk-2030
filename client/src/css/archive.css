@@ -1,0 +1,39 @@
+.archive {
+    width: 88vw;
+    margin-inline: auto;
+}
+
+.archive__overview {
+    position: relative;
+    height: 60vh;
+    display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    gap: 1.2rem;
+}
+.archive__magazine--preview {
+    display: flex;
+}
+
+.archive__magazine--preview img {
+    box-shadow: var(--drop-shadow);
+}
+
+.archive__cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.most-recent-indicator {
+    position: absolute;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    background-color: var(--color-orange);
+    box-shadow: var(--drop-shadow);
+    color: var(--color-white);
+    font-size: 1rem;
+    margin-block-start: -0.5rem;
+    margin-inline-start: -0.5rem;
+}

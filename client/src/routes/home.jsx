@@ -78,7 +78,6 @@ export async function loader() {
 
     //PROGRESS BAR
     //get amount of approved submissions for next issue
-    // const nextIssueNumber = currentIssueNumber + 1;
     const openIssue = await getOpenIssue();
     const openIssueNumber = openIssue.issueNumber;
     const openIssueDate = openIssue.issueDate;
@@ -117,7 +116,7 @@ export async function loader() {
     const pdfPath = import.meta.env.VITE_API_MAGAZINES_URL || "https://kortrijk2030.ddev.site/files/magazines/";
     const currentMagazine = currentIssue[0].magazine[0].path;
     const currentMagazinePath = `${pdfPath}${currentMagazine}`;
-    const pages = await pdfToImgSrc(currentMagazinePath);
+    const pages = await pdfToImgSrc(currentMagazinePath, false, 3, 1);
 
 
     return {

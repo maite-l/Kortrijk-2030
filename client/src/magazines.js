@@ -24,3 +24,21 @@ export async function getCurrentIssue() {
     console.log(magazines);
     return magazines;
 }
+
+export async function getAllMagazinePaths() {
+    const graphqlQuery = `
+    query getAllMagazinePaths {
+        magazinesEntries {
+            ... on magazines_default_Entry {
+                magazine {
+                    path
+                }
+                issueNumber
+            }
+        }
+    }
+    `;
+    const magazines = (await graphQLRequest(graphqlQuery)).data.magazinesEntries;
+    console.log(magazines);
+    return magazines;
+}

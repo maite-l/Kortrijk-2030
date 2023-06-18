@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Modal from 'react-modal';
 import HTMLFlipBook from 'react-pageflip';
 
@@ -11,18 +11,27 @@ import pdfToImgSrc from '../util/pdfToImgSrc';
 export default function MagazinePopUp({ isOpen, closeModal, pdfPath }) {
     const [isLoading, setIsLoading] = useState(true);
     const [pages, setPages] = useState([]);
+    // const flipbookRef = useRef(null);
 
     useEffect(() => {
         setIsLoading(true);
 
         const loadPages = async () => {
-            const loadedPages = await pdfToImgSrc(pdfPath);
+            const loadedPages = await pdfToImgSrc(pdfPath, true, null, 1);
             setPages(loadedPages);
             setIsLoading(false);
         };
 
         loadPages();
     }, [pdfPath]);
+
+    // const handlePrevPage = () => {
+    //     flipbookRef.current.getPageFlip().flipPrev();
+    // };
+
+    // const handleNextPage = () => {
+    //     flipbookRef.current.getPageFlip().flipNext();
+    // };
 
     return (
         <div className='magazine-popup'>
@@ -62,7 +71,9 @@ export default function MagazinePopUp({ isOpen, closeModal, pdfPath }) {
                 {isLoading ? (
                     <p className='magazine-popup__loading'>loading...</p>
                 ) : (
-                    <HTMLFlipBook className='magazine-popup__flipbook'
+                    <HTMLFlipBook
+                        className='magazine-popup__flipbook'
+                        // ref={flipbookRef}
                         width={0.83 * 595}
                         height={0.83 * 842}
                         showCover={true}
@@ -75,8 +86,18 @@ export default function MagazinePopUp({ isOpen, closeModal, pdfPath }) {
                     </HTMLFlipBook>
                 )}
                 <button onClick={closeModal} className='close-button'>X</button>
-                <button className='left-button'>&lt;</button>
-                <button className='right-button'>&gt;</button>
+                <button
+                    className='left-button'
+                    // onClick={handlePrevPage}
+                >
+                    &lt;
+                </button>
+                <button
+                    className='right-button'
+                    // onClick={handleNextPage}
+                >
+                    &gt;
+                </button>
             </Modal>
         </div>
     );

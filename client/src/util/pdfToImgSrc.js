@@ -2,14 +2,19 @@ import * as pdfjsLib from 'pdfjs-dist';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.7.107/pdf.worker.min.js';
 
-export default async function pdfToImgSrc(pdfDocument) {
+export default async function pdfToImgSrc(pdfDocument, allPages, amountOfPages, startPage) {
     return pdfjsLib.getDocument(pdfDocument).promise.then((pdf) => {
-        const totalPages = pdf.numPages;
+        let totalPages = pdf.numPages;
+
+        if (!allPages) {
+            totalPages = startPage + amountOfPages - 1;
+        }
+
         console.log('Total Pages:', totalPages);
 
         const promises = [];
 
-        for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
+        for (let pageNumber = startPage; pageNumber <= totalPages; pageNumber++) {
             const promise = pdf.getPage(pageNumber).then((page) => {
                 const scale = 1.5;
                 const viewport = page.getViewport({ scale });
