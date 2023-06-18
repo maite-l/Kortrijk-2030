@@ -1,5 +1,5 @@
-import { redirect } from 'react-router-dom';
-import { useContext } from 'react';
+import { Form, redirect } from 'react-router-dom';
+import { useContext, useState } from 'react';
 
 //global context
 import { GlobalContext } from '../root';
@@ -81,6 +81,10 @@ export default function Meme() {
     //global context
     const { maxImgCount, maxImgSizeInMb } = useContext(GlobalContext);
 
+    const [submitState, setSubmitState] = useState('form');
+
+    const [formTitle, setFormTitle] = useState('');
+
     //update variables every time files are uploaded
     const handleFileInputChange = (event) => {
         const fileInputResult = fileInputChange(event, maxImgCount, maxImgSizeInMb);
@@ -90,21 +94,81 @@ export default function Meme() {
         imgStringsResult = imgStrings;
     };
 
+    const handleTitleChange = (event) => {
+        const newTitle = event.target.value;
+        setFormTitle(newTitle);
+    };
+
+    const showOverview = (event) => {
+        event.preventDefault();
+
+        const { title } = event.target.elements;
+
+        setFormTitle(title.value);
+
+        setSubmitState('overview');
+    }
 
     return (
-        <main>
+        <main className='submitting-page'>
+            <div className='progress-tracker'>
+                <div className="progress-tracker__item progress-tracker__item--completed">
+                    <div className='progress-tracker__item__number'>1</div>
+                    <div className='progress-tracker__item__text'>Your submission</div>
+                </div>
+                <div className={`progress-tracker__item${submitState === 'overview' ? ' progress-tracker__item--completed' : ''}`}>
+                    <div className='progress-tracker__item__number'>2</div>
+                    <div className='progress-tracker__item__text'>Confirm</div>
+                </div>
+            </div>
+            <div className='content'>
+                {submitState === 'form' && (
+                    <SubmitForm
+                        title={'Submit your meme'}
+                        submissionTips={'Here you can submit your meme(s). Just keep it culture-related and / or local to Kortrijk / Flanders / Belgium. And don’t be too edgy...'}
+                        formTitlePlaceholder={'My amazing concept art'}
+                        formTextLabel={'Description'}
+                        formTextPlaceholder={'This piece of art has been designed by me for a school project with a theme “armour knights”. I’ve been a freelance artist for 2 years. Btw, I’m available for hire, contact me here...'}
+                        reply={false}
+                        includeText={false}
+                        includeImages={true}
+                        handleFileInputChange={handleFileInputChange}
+                        handleSubmit={showOverview}
+                        titleValue={formTitle}
+                        handleTitleChange={handleTitleChange}
+                    />
+                )}
+                {submitState === 'overview' && (
+                    <div className='submit-overview'>
+                        <h1>Submission preview</h1>
+                        <div className='submission__overview'>
+                            {imgStringsResult.length > 0 && (
+                                <div className='submission__overview--images'>
+                                    {imgStringsResult.map((imgString, index) => (
+                                        <img key={index} src={imgString} alt={imgNamesResult[index]} className='submission__overview--image' />
+                                    ))}
+                                </div>
+                            )}
+                            <div className='submission__overview--info'>
+                                {formTitle && (
+                                    <p className='submission__overview--title'>{formTitle}</p>
+                                )}
+                            </div>
+                        </div>
 
-            <SubmitForm
-                title={'Submit your meme'}
-                submissionTips={'Here you can submit your meme(s). Just keep it culture-related and / or local to Kortrijk / Flanders / Belgium. And don’t be too edgy...'}
-                formTitlePlaceholder={'My amazing concept art'}
-                formTextLabel={'Description'}
-                formTextPlaceholder={'This piece of art has been designed by me for a school project with a theme “armour knights”. I’ve been a freelance artist for 2 years. Btw, I’m available for hire, contact me here...'}
-                reply={false}
-                includeText={false}
-                includeImages={true}
-                handleFileInputChange={handleFileInputChange}
-            />
+                        <div className='overview-buttons'>
+                            <button onClick={() => setSubmitState('form')}>Edit</button>
+                            <Form method='post'>
+                                {/* hidden fields to carry over data */}
+                                <input type="hidden" name="title" value={formTitle} />
+                                <button type="submit">Submit</button>
+                            </Form>
+                        </div>
+
+
+                    </div>
+                )}
+            </div>
 
         </main>
     );

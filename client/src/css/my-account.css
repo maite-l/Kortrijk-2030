@@ -1,0 +1,57 @@
+.my-account {
+    display: grid;
+    grid-template-areas: 'account-info empty' 'my-submissions actions';
+    column-gap: 5rem;
+    width: 72vw;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    margin-inline: auto;
+    padding: 3rem;
+    margin-block-start: 7rem;
+    margin-block-end: 10rem;
+}
+
+.my-account__profile {
+    grid-area: account-info;
+}
+
+.my-account__submissions {
+    grid-area: my-submissions;
+}
+
+.my-account__number-of-submissions {
+    margin-block-start: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 1rem;
+    background-color: #ae9e9e4b;
+    border-radius: var(--border-radius);
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--drop-shadow);
+}
+
+.my-account__submissions a  {
+    display: block;
+    color: var(--color-orange);
+    text-decoration: underline 2px var(--color-orange);
+    padding: 1rem;
+    background-color: transparent;
+    border: none;
+}
+
+.my-account__actions {
+    grid-area: actions;
+}
+
+.log-out {
+    display: block;
+    color: var(--color-orange);
+    text-decoration: underline 2px var(--color-orange);
+    background-color: transparent;
+    border: none;
+    text-align: end;
+    font-family: 'Metropolis Regular';
+    font-size: 1.2rem;
+}

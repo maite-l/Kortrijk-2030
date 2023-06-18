@@ -125,6 +125,40 @@ span.italic-semibold {
     transition: all 0.2s ease-in-out;
 }
 
-.demoPage {
-    background-color: var(--color-yellow);
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-block-start: 1.2rem;
+}
+
+form input,
+form textarea,
+form select {
+    width: 100%;
+    font-family: 'Metropolis Medium';
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+    padding: 0.8rem;
+    border: 1px solid #0000004b;
+    border-radius: var(--border-radius);
+}
+
+form input[type="file"] {
+    border: none;
+    padding: 0;
+}
+
+form input::placeholder,
+form textarea::placeholder {
+    color: #0000004b;
+}
+
+form span {
+    font-family: 'Metropolis Semibold';
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin-inline-start: 0.5rem;
 }

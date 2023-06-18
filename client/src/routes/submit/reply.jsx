@@ -1,9 +1,12 @@
-import { redirect, useLoaderData } from 'react-router-dom';
+import { Form, redirect, useLoaderData } from 'react-router-dom';
+import { useState } from 'react';
 
 import { getMagazineSectionByTitle, newSubmission, getOpenIssue } from "../../submissions";
 import { getCurrentIssue } from "../../magazines";
 
 import SubmitForm from '../../components/SubmitForm';
+import "../../css/submit-form.css";
+
 
 export async function loader() {
     //get current issue
@@ -31,8 +34,8 @@ export async function action({ request }) {
         //get form data
         const formData = await request.formData();
         console.log(Object.fromEntries(formData));
-        const { article, text, info } = Object.fromEntries(formData);
-        const title = `Reply to: ${article}`;
+        const { title, text, info } = Object.fromEntries(formData);
+        const completeTitle = `Reply to: ${title}`;
 
         // get issue number 
         const openIssue = await getOpenIssue();
@@ -52,7 +55,7 @@ export async function action({ request }) {
         }
 
         //create submission
-        const submission = await newSubmission(title, text, info, [], magazineSection, issueNumber, userId, jwt);
+        const submission = await newSubmission(completeTitle, text, info, [], magazineSection, issueNumber, userId, jwt);
         console.log(submission);
         return redirect("/submit");
 
@@ -67,6 +70,31 @@ export default function Reply() {
     //get data from loader
     const { articlesToReplyTo } = useLoaderData();
 
+    const [submitState, setSubmitState] = useState('form');
+
+    const [formTitle, setFormTitle] = useState('');
+    const [formText, setFormText] = useState('');
+
+    const handleTitleChange = (event) => {
+        const newTitle = event.target.value;
+        setFormTitle(newTitle);
+    };
+
+    const handleTextChange = (event) => {
+        const newText = event.target.value;
+        setFormText(newText);
+    };
+
+    const showOverview = (event) => {
+        event.preventDefault();
+
+        const { title, text } = event.target.elements;
+
+        setFormTitle(title.value);
+        setFormText(text.value);
+
+        setSubmitState('overview');
+    }
 
     return (
         //if there are no articles to reply to, display a message
@@ -76,18 +104,65 @@ export default function Reply() {
                 <p>There are currently no articles to reply to.</p>
             </main>
             :
-            <main>
-                <SubmitForm
-                    title={'Reply to an article / interview'}
-                    submissionTips={'We would love to know your opinion about what we publish in klinkt.! Just don’t be too harsh on us...'}
-                    formTitlePlaceholder={'My new favourite restaurant (probably)'}
-                    formTextLabel={'Your answer'}
-                    formTextPlaceholder={'I totally agree with you!!! I went there last week and I definitely recommend...'}
-                    reply={true}
-                    articlesToReplyTo={articlesToReplyTo}
-                    includeText={true}
-                    includeImages={false}
-                />
+            <main className='submitting-page'>
+                <div className='progress-tracker'>
+                    <div className="progress-tracker__item progress-tracker__item--completed">
+                        <div className='progress-tracker__item__number'>1</div>
+                        <div className='progress-tracker__item__text'>Your submission</div>
+                    </div>
+                    <div className={`progress-tracker__item${submitState === 'overview' ? ' progress-tracker__item--completed' : ''}`}>
+                        <div className='progress-tracker__item__number'>2</div>
+                        <div className='progress-tracker__item__text'>Confirm</div>
+                    </div>
+                </div>
+                <div className='content'>
+                    {submitState === 'form' && (
+                        <SubmitForm
+                            title={'Reply to an article / interview'}
+                            submissionTips={'We would love to know your opinion about what we publish in klinkt.! Just don’t be too harsh on us...'}
+                            formTitlePlaceholder={'My new favourite restaurant (probably)'}
+                            formTextLabel={'Your answer'}
+                            formTextPlaceholder={'I totally agree with you!!! I went there last week and I definitely recommend...'}
+                            reply={true}
+                            articlesToReplyTo={articlesToReplyTo}
+                            includeText={true}
+                            includeImages={false}
+                            handleSubmit={showOverview}
+                            titleValue={formTitle}
+                            textValue={formText}
+                            handleTitleChange={handleTitleChange}
+                            handleTextChange={handleTextChange}
+                        />
+                    )}
+                    {submitState === 'overview' && (
+                        <div className='submit-overview'>
+                            <h1>Submission preview</h1>
+                            <div className='submission__overview'>
+                                <div className='submission__overview--info'>
+                                    {formTitle && (
+                                        <p className='submission__overview--title'>Reply to: {formTitle}</p>
+                                    )}
+                                    {formText && (
+                                        <p className='submission__overiew--text'>{formText.slice(0, 200)}{formText.length > 200 ? "..." : ""}</p>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className='overview-buttons'>
+                                <button onClick={() => setSubmitState('form')}>Edit</button>
+                                <Form method='post'>
+                                    {/* hidden fields to carry over data */}
+                                    <input type="hidden" name="title" value={formTitle} />
+                                    <input type="hidden" name="text" value={formText} />
+                                    <button type="submit">Submit</button>
+                                </Form>
+                            </div>
+
+
+                        </div>
+                    )}
+                </div>
+
             </main>
     );
 
