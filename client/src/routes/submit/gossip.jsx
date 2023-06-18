@@ -1,4 +1,4 @@
-import { redirect } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
 
 import { getMagazineSectionByTitle, getOpenIssue, newSubmission } from "../../submissions";
@@ -6,8 +6,23 @@ import { getMagazineSectionByTitle, getOpenIssue, newSubmission } from "../../su
 import SubmitForm from '../../components/submission/SubmitForm';
 import ProgressTracker from '../../components/submission/ProgressTracker';
 import SubmitOverview from '../../components/submission/SubmitOverview';
+import Confirmation from '../../components/submission/Confirmation';
 
 import "../../css/submit-form.css";
+
+export async function loader() {
+
+    //get open issue date
+    const openIssue = await getOpenIssue();
+    const openIssueDate = openIssue.issueDate;
+
+    console.log(openIssue);
+
+    return {
+        openIssueDate
+    };
+
+}
 
 export async function action({ request }) {
     try {
@@ -48,7 +63,7 @@ export async function action({ request }) {
         const submission = await newSubmission(title, text, info, [], magazineSection, issueNumber, userId, jwt);
         console.log(submission);
 
-        return redirect("/submit");
+        return submission;
     } catch (error) {
         console.error(error);
         // Handle the error or display an error message to the user
@@ -56,6 +71,9 @@ export async function action({ request }) {
 }
 
 export default function Gossip() {
+
+    //loader variables
+    const { openIssueDate } = useLoaderData();
 
     const [submitState, setSubmitState] = useState('form');
 
@@ -84,7 +102,7 @@ export default function Gossip() {
     }
 
     return (
-        <main className='submitting-page'>
+        <main className={`submitting-page ${submitState === 'confirmation' ? 'confirmation' : ''}`}>
 
             <ProgressTracker submitState={submitState} />
 
@@ -112,6 +130,9 @@ export default function Gossip() {
                         formText={formText}
                         setSubmitState={setSubmitState}
                     />
+                )}
+                {submitState === 'confirmation' && (
+                    <Confirmation typeOfSubmission={'gossip'} openIssueDate={openIssueDate} />
                 )}
             </div>
 

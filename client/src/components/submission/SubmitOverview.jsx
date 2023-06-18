@@ -31,7 +31,7 @@ export default function SumbitOverview({ imgStringsResult, imgNamesResult, formT
 
             <div className='overview-buttons'>
                 <button onClick={() => setSubmitState('form')}>Edit</button>
-                <Form method='post'>
+                <Form method='post' onSubmit={() => setSubmitState('confirmation')}>
                     {/* hidden fields to carry over data */}
                     {formTitle && (
                         <input type="hidden" name="title" value={formTitle} />

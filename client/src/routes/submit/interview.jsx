@@ -1,4 +1,4 @@
-import { redirect } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { useContext, useState } from 'react';
 
 //global context
@@ -13,10 +13,25 @@ import "../../css/submit-form.css";
 import SubmitForm from '../../components/submission/SubmitForm';
 import ProgressTracker from '../../components/submission/ProgressTracker';
 import SubmitOverview from '../../components/submission/SubmitOverview';
+import Confirmation from '../../components/submission/Confirmation';
 
 //variables
 let imgNamesResult = [];
 let imgStringsResult = [];
+
+export async function loader() {
+
+    //get open issue date
+    const openIssue = await getOpenIssue();
+    const openIssueDate = openIssue.issueDate;
+
+    console.log(openIssue);
+
+    return {
+        openIssueDate
+    };
+
+}
 
 export async function action({ request }) {
     try {
@@ -74,14 +89,17 @@ export async function action({ request }) {
         //create submission
         const submission = await newSubmission(title, text, info, imgIds, magazineSection, issueNumber, userId, jwt);
         console.log(submission);
-        return redirect("/submit");
+        return submission;
     } catch (error) {
         console.error(error);
         // Handle the error or display an error message to the user
     }
 }
 
-export default function Article() {
+export default function Interview() {
+
+    //loader variables
+    const { openIssueDate } = useLoaderData();
 
     //global context
     const { maxImgCount, maxImgSizeInMb } = useContext(GlobalContext);
@@ -129,7 +147,7 @@ export default function Article() {
     }
 
     return (
-        <main className='submitting-page'>
+        <main className={`submitting-page ${submitState === 'confirmation' ? 'confirmation' : ''}`}>
 
             <ProgressTracker submitState={submitState} />
 
@@ -165,6 +183,9 @@ export default function Article() {
                         notesForEditor={notesForEditor}
                         setSubmitState={setSubmitState}
                     />
+                )}
+                {submitState === 'confirmation' && (
+                    <Confirmation typeOfSubmission={'interview'} openIssueDate={openIssueDate} />
                 )}
             </div>
 

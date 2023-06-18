@@ -1,4 +1,4 @@
-import { Form, redirect, useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
 
 import { getMagazineSectionByTitle, newSubmission, getOpenIssue } from "../../submissions";
@@ -7,6 +7,7 @@ import { getCurrentIssue } from "../../magazines";
 import SubmitForm from '../../components/submission/SubmitForm';
 import ProgressTracker from '../../components/submission/ProgressTracker';
 import SubmitOverview from '../../components/submission/SubmitOverview';
+import Confirmation from '../../components/submission/Confirmation';
 import "../../css/submit-form.css";
 
 
@@ -16,7 +17,13 @@ export async function loader() {
     const articlesToReplyTo = currentIssue[0].articlesToReplyTo;
     console.log(articlesToReplyTo);
 
-    return { articlesToReplyTo };
+    //get open issue date
+    const openIssue = await getOpenIssue();
+    const openIssueDate = openIssue.issueDate;
+
+    console.log(openIssue);
+
+    return { articlesToReplyTo, openIssueDate };
 }
 
 export async function action({ request }) {
@@ -59,7 +66,7 @@ export async function action({ request }) {
         //create submission
         const submission = await newSubmission(title, text, info, [], magazineSection, issueNumber, userId, jwt);
         console.log(submission);
-        return redirect("/submit");
+        return submission;
 
     } catch (error) {
         console.error(error);
@@ -68,6 +75,9 @@ export async function action({ request }) {
 }
 
 export default function Reply() {
+
+    //loader variables
+    const { openIssueDate } = useLoaderData();
 
     //get data from loader
     const { articlesToReplyTo } = useLoaderData();
@@ -106,7 +116,7 @@ export default function Reply() {
                 <p>There are currently no articles to reply to.</p>
             </main>
             :
-            <main className='submitting-page'>
+            <main className={`submitting-page ${submitState === 'confirmation' ? 'confirmation' : ''}`}>
 
                 <ProgressTracker submitState={submitState} />
 
@@ -135,6 +145,9 @@ export default function Reply() {
                             formText={formText}
                             setSubmitState={setSubmitState}
                         />
+                    )}
+                    {submitState === 'confirmation' && (
+                        <Confirmation typeOfSubmission={'reply'} openIssueDate={openIssueDate} />
                     )}
                 </div>
 
