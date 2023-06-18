@@ -48,6 +48,23 @@
     transition: all 0.2s ease-in-out;
 }
 
+.introduction .scribbles {
+    position: absolute;
+    z-index: -100;
+}
+.introduction .scribble1 {
+    top: 2vw;
+    left: 1vw;
+}
+.introduction .scribble2 {
+    top: 32vh;
+    left: 45vw;
+}
+.introduction .scribble3 {
+    top: 67vh;
+    left: 43vw;
+}
+
 
 .rolling-cards__wrapper {
     overflow: hidden;
@@ -643,6 +660,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .tiktok-title__1 {
@@ -668,6 +686,23 @@
     margin: auto;
 }
 
+.tiktok .scribble {
+    position: absolute;
+    z-index: -100;
+}
+
+.tiktok .scribble1 {
+    right: 22vw;
+    top: 0;
+}
+.tiktok .scribble2 {
+    left: 18vw;
+    top: 18rem;
+}
+.tiktok .scribble3 {
+    right: 36vw;
+    bottom: 4rem;
+}
 
 .instructions {
     width: 100vw;
@@ -706,6 +741,10 @@
     margin-block-start: 0.5rem;
 }
 
+.instructions .scribble {
+    margin-block-end: -4rem;
+}
+
 .instructions h3 {
     text-transform: uppercase;
     font-family: 'Metropolis Semibold';
@@ -738,6 +777,10 @@
     gap: 1.5rem;
 }
 
+.magazine-preview {
+    position: relative;
+}
+
 .magazine-preview > p {
     text-align: end;
     margin-inline-end: 3rem;
@@ -747,6 +790,12 @@
 }
 .magazine-preview > p span {
     font-family: 'Metropolis Medium Italic';
+}
+.magazine-preview .scribble {
+    position: absolute;
+    right: 4rem;
+    top: 2rem;
+    margin-block-end: -4rem;
 }
 
 .magazine-preview::before {

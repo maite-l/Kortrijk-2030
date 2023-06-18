@@ -1,6 +1,21 @@
 .archive {
     width: 88vw;
     margin-inline: auto;
+    position: relative;
+}
+
+.archive .scribble {
+    position: absolute;
+    z-index: -10;
+}
+
+.archive .scribble1 {
+    top: 0;
+    left: -2rem;
+}
+.archive .scribble2 {
+    top: 0;
+    left: 45vw;
 }
 
 .archive__overview {
