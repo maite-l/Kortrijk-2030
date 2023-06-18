@@ -8,7 +8,9 @@ import { GlobalContext } from '../root';
 import { getMagazineSectionByTitle, newImageAsset, newSubmission, getOpenIssue } from "../../submissions";
 
 import { fileInputChange } from '../../util/util';
-import SubmitForm from '../../components/SubmitForm';
+import SubmitForm from '../../components/submission//SubmitForm';
+import ProgressTracker from '../../components/submission/ProgressTracker';
+import SubmitOverview from '../../components/submission/SubmitOverview';
 
 //variables
 let imgNamesResult = [];
@@ -111,16 +113,9 @@ export default function Meme() {
 
     return (
         <main className='submitting-page'>
-            <div className='progress-tracker'>
-                <div className="progress-tracker__item progress-tracker__item--completed">
-                    <div className='progress-tracker__item__number'>1</div>
-                    <div className='progress-tracker__item__text'>Your submission</div>
-                </div>
-                <div className={`progress-tracker__item${submitState === 'overview' ? ' progress-tracker__item--completed' : ''}`}>
-                    <div className='progress-tracker__item__number'>2</div>
-                    <div className='progress-tracker__item__text'>Confirm</div>
-                </div>
-            </div>
+
+            <ProgressTracker submitState={submitState} />
+
             <div className='content'>
                 {submitState === 'form' && (
                     <SubmitForm
@@ -139,34 +134,12 @@ export default function Meme() {
                     />
                 )}
                 {submitState === 'overview' && (
-                    <div className='submit-overview'>
-                        <h1>Submission preview</h1>
-                        <div className='submission__overview'>
-                            {imgStringsResult.length > 0 && (
-                                <div className='submission__overview--images'>
-                                    {imgStringsResult.map((imgString, index) => (
-                                        <img key={index} src={imgString} alt={imgNamesResult[index]} className='submission__overview--image' />
-                                    ))}
-                                </div>
-                            )}
-                            <div className='submission__overview--info'>
-                                {formTitle && (
-                                    <p className='submission__overview--title'>{formTitle}</p>
-                                )}
-                            </div>
-                        </div>
-
-                        <div className='overview-buttons'>
-                            <button onClick={() => setSubmitState('form')}>Edit</button>
-                            <Form method='post'>
-                                {/* hidden fields to carry over data */}
-                                <input type="hidden" name="title" value={formTitle} />
-                                <button type="submit">Submit</button>
-                            </Form>
-                        </div>
-
-
-                    </div>
+                    <SubmitOverview
+                        imgStringsResult={imgStringsResult}
+                        imgNamesResult={imgNamesResult}
+                        formTitle={formTitle}
+                        setSubmitState={setSubmitState}
+                    />
                 )}
             </div>
 

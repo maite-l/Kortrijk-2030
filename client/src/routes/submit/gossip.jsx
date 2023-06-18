@@ -1,9 +1,11 @@
-import { Form, redirect } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 import { useState } from 'react';
 
 import { getMagazineSectionByTitle, getOpenIssue, newSubmission } from "../../submissions";
 
-import SubmitForm from '../../components/SubmitForm';
+import SubmitForm from '../../components/submission/SubmitForm';
+import ProgressTracker from '../../components/submission/ProgressTracker';
+import SubmitOverview from '../../components/submission/SubmitOverview';
 
 import "../../css/submit-form.css";
 
@@ -83,16 +85,9 @@ export default function Gossip() {
 
     return (
         <main className='submitting-page'>
-            <div className='progress-tracker'>
-                <div className="progress-tracker__item progress-tracker__item--completed">
-                    <div className='progress-tracker__item__number'>1</div>
-                    <div className='progress-tracker__item__text'>Your submission</div>
-                </div>
-                <div className={`progress-tracker__item${submitState === 'overview' ? ' progress-tracker__item--completed' : ''}`}>
-                    <div className='progress-tracker__item__number'>2</div>
-                    <div className='progress-tracker__item__text'>Confirm</div>
-                </div>
-            </div>
+
+            <ProgressTracker submitState={submitState} />
+
             <div className='content'>
                 {submitState === 'form' && (
                     <SubmitForm
@@ -112,31 +107,11 @@ export default function Gossip() {
                     />
                 )}
                 {submitState === 'overview' && (
-                    <div className='submit-overview'>
-                        <h1>Submission preview</h1>
-                        <div className='submission__overview'>
-                            <div className='submission__overview--info'>
-                                {formTitle && (
-                                    <p className='submission__overview--title'>{formTitle}</p>
-                                )}
-                                {formText && (
-                                    <p className='submission__overiew--text'>{formText.slice(0, 200)}{formText.length > 200 ? "..." : ""}</p>
-                                )}
-                            </div>
-                        </div>
-
-                        <div className='overview-buttons'>
-                            <button onClick={() => setSubmitState('form')}>Edit</button>
-                            <Form method='post'>
-                                {/* hidden fields to carry over data */}
-                                <input type="hidden" name="title" value={formTitle} />
-                                <input type="hidden" name="text" value={formText} />
-                                <button type="submit">Submit</button>
-                            </Form>
-                        </div>
-
-
-                    </div>
+                    <SubmitOverview
+                        formTitle={formTitle}
+                        formText={formText}
+                        setSubmitState={setSubmitState}
+                    />
                 )}
             </div>
 
