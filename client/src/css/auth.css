@@ -32,7 +32,7 @@
     align-items: center;
     gap: 1.8rem;
     width: fit-content;
-    font-size: 1.2rem;
+    font-size: var(--font-size-1);
     line-height: 1.2;
     padding: 0.5rem 1.2rem;
     border-radius: 3px;
@@ -46,7 +46,7 @@
 
 .auth-wrapper p:last-of-type {
     font-family: 'Metropolis Semibold';
-    font-size: 1rem;
+    font-size: var(--font-size-0);
     line-height: 1.2;
 }
 .auth-wrapper p:last-of-type a {

@@ -28,7 +28,7 @@ nav ul div {
 
 nav ul div a {
     text-transform: uppercase;
-    font-size: 1.1rem;
+    font-size: var(--font-size-1);
 }
 
 nav ul div a:hover {
@@ -43,7 +43,7 @@ nav ul div a:hover {
 .logo-link {
     font-family: 'Trappist';
     text-transform: uppercase;
-    font-size: 2.9rem;
+    font-size: var(--font-size-6);
 }
 .logo-link .active {
     font-family: inherit;

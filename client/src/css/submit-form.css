@@ -5,7 +5,7 @@
 
 .submit-form__wrapper h1, .submit-overview h1 {
     font-family: 'Metropolis Medium';
-    font-size: 2.5rem;
+    font-size: var(--font-size-5);
     line-height: 1.2;
     margin-block-start: 0;
     margin-inline-start: 3rem;
@@ -41,7 +41,7 @@
 .submit-form form input, .submit-form form textarea, .submit-form form select {
     width: 100%;
     font-family: 'Metropolis Medium';
-    font-size: 1.1rem;
+    font-size: var(--font-size-1);
     line-height: 1.5rem;
     padding: 0.8rem;
     border: 1px solid #0000004b;
@@ -59,7 +59,7 @@
 
 .submit-form form span {
     font-family: 'Metropolis Semibold';
-    font-size: 1rem;
+    font-size: var(--font-size-0);
     line-height: 1.5rem;
     margin-inline-start: 0.5rem;
 }
@@ -72,7 +72,7 @@
     align-items: center;
     gap: 1.8rem;
     width: fit-content;
-    font-size: 1.2rem;
+    font-size: var(--font-size-1);
     line-height: 1.2;
     padding: 0.5rem 1.2rem;
     border-radius: 3px;
@@ -180,7 +180,7 @@
 
 .submission__overview--title {
     font-family: 'Metropolis Semibold';
-    font-size: 1.7rem;
+    font-size: var(--font-size-3);
     line-height: 1.2;
     margin-block-start: 0;
     margin-block-end: 1rem;
@@ -214,7 +214,7 @@
     text-transform: uppercase;
     width: fit-content;
     height: fit-content;
-    font-size: 1.2rem;
+    font-size: var(--font-size-1);
     line-height: 1.2;
     padding: 0.5rem 1.2rem;
     border-radius: 3px;
@@ -285,7 +285,7 @@ ol {
 
 .confirmation h1 {
     font-family: 'Metropolis Semibold';
-    font-size: 1.7rem;
+    font-size: var(--font-size-3);
     line-height: 1.2;
     margin-block-start: 0;
     margin-block-end: 1rem;

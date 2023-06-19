@@ -6,14 +6,50 @@
     border-bottom: var(--border);
 }
 
+@media (max-width: 880px) {
+    .header {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10vh;
+    }
+    .introduction {
+        width: 88vw;
+        height: fit-content;
+        margin-inline-start: 1rem;
+        margin-block-start: 3rem;
+    }
+    .introduction .printed-copy-link {
+        display: none;
+    }
+
+    .scroll-button--mobile {
+        place-self: center;
+        margin-block: 0.5rem;
+    }
+}
+
+@media (min-width: 881px) {
+    .introduction {
+        width: 42vw;
+        height: 100vh;    
+        margin-inline-start: 7vw;
+    }
+    .introduction .printed-copy-link {
+        display: block;
+    }
+
+    .introduction .scroll-button {
+        margin-block-end: 2rem;
+        margin-block-start: 18vh;
+    }
+}
 
 
 .introduction {
-    height: 100vh;
-    font-size: 2.3rem;
-    max-width: 42vw;
+    font-size: var(--font-size-4);
     line-height: 1.4;
-    margin-inline-start: 7vw;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,8 +64,7 @@
 }
 
 .introduction .printed-copy-link {
-    display: block;
-    font-size: 1.1rem;
+    font-size: var(--font-size-1);
     text-decoration: solid underline 2px;
     font-family: 'Metropolis Semibold';
     transition: all 0.2s ease-in-out;
@@ -40,8 +75,8 @@
 }
 
 .introduction .scroll-button {
-    margin-block-end: 2rem;
-    margin-block-start: 18vh;
+    /* margin-block-end: 2rem;
+    margin-block-start: 18vh; */
 }
 .introduction .scroll-button:hover {
     transform: translateY(0.5rem);
@@ -73,7 +108,6 @@
 .rolling-cards {
     justify-self: end;
     padding-inline-end: 5vw;
-    width: 45vw;
     overflow: hidden;
     padding-inline-start: 1rem;
     padding-block-start: 6rem;
@@ -83,14 +117,12 @@
 
 .rolling-cards__container {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 1rem;
 }
 
 .rolling-card {
     display: block;
-    width: 100%;
-    height: 20rem;
     border: var(--border);
     border-radius: 3px;
     padding: 1rem;
@@ -117,17 +149,17 @@
     height: 15rem;
 }
 .rolling-card__title {
-    font-size: 3.8rem;
+    font-size: var(--font-size-7);
     line-height: 1;
     font-family: 'Metropolis Semibold';
     text-transform: uppercase;
 }
 .rolling-card__prompt {
-    font-size: 1.5rem;
+    font-size: var(--font-size-2);
 }
 
 .rolling-card__submit {
-    font-size: 1.5rem;
+    font-size: var(--font-size-2);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -139,6 +171,55 @@
 .rolling-card svg {
     width: 1.2rem;
     height: 1.2rem;
+}
+
+
+@media (max-width: 880px) {
+    .rolling-cards {
+        width: 100%;
+        overflow: scroll;
+        padding-inline-start: 1rem;
+        padding-block-start: 6rem;
+        padding-block-end: 1rem;
+        z-index: -100;
+        padding: 0;
+    }
+
+    .rolling-cards__container {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        width: 126rem;
+        height: 35vh;
+        padding-inline: 1rem;
+    }
+
+    .rolling-card {
+        width: 18rem;
+    }
+}
+
+@media (min-width: 881px) {
+    .rolling-cards {
+        width: 45vw;
+    }
+
+    .rolling-cards__container {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .rolling-card {
+            width: 100%;
+            height: 20rem;
+            border: var(--border);
+            border-radius: 3px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: var(--drop-shadow);
+        }
 }
 
 
@@ -194,7 +275,7 @@
 }
 
 .featured-submissions__submissions .submission {
-    font-size: 1.5rem;
+    font-size: var(--font-size-2);
 }
 
 .featured-submissions__submissions .submission--img {
@@ -204,7 +285,7 @@
 }
 
 .featured-submissions__submissions .submission--title {
-    font-size: 1.5rem;
+    font-size: var(--font-size-2);
     font-family: 'Metropolis Semibold';
     margin-block: 1rem 0.7rem;
 }
@@ -256,7 +337,8 @@
 
 .total-submissions__title {
     font-family: 'Metropolis Light';
-    font-size: 2.1rem;
+    font-size: var(--font-size-4);
+    text-align: center;
     margin-block-start: 5rem;
     margin-block-end: -3rem;
 }
@@ -294,7 +376,7 @@
 }
 
 .cursor-content__text {
-    font-size: 1.1rem;
+    font-size: var(--font-size-1);
     font-family: 'Metropolis Semibold';
     grid-column: 1;
     grid-row: 1;
@@ -353,7 +435,7 @@
     justify-content: center;
     transition: all 0.2s ease-in-out;
     font-family: 'Metropolis Semibold';
-    font-size: 2.2rem;
+    font-size: var(--font-size-4);
     line-height: 1.5;
     padding: 6%;
     text-align: center;
@@ -365,7 +447,7 @@
 
 .poll-option__title {
     font-family: 'Metropolis Medium';
-    font-size: 1.5rem;
+    font-size: var(--font-size-2);
     margin-block-end: 5.5%;
 }
 .poll-option__votes {
@@ -400,7 +482,7 @@
     border: var(--border);
     border-radius: var(--border-radius);
     margin-bottom: 1rem;
-    font-size: 1.1rem;
+    font-size: var(--font-size-1);
 }
 .poll-form textarea::placeholder {
     color: #0000004b;
@@ -411,7 +493,7 @@
     margin: auto;
     text-align: center;
     font-family: 'Metropolis Semibold';
-    font-size: 1.5rem;
+    font-size: var(--font-size-2);
     margin-block-start: 3rem;
 }
 
@@ -459,13 +541,13 @@
 
 .progress-bar__percentage {
     font-family: 'Trappist';
-    font-size: 3.8rem;
+    font-size: var(--font-size-7);
     line-height: 1;
 }
 
 .progress-bar__text {
     font-family: 'Metropolis Medium';
-    font-size: 1.7rem;
+    font-size: var(--font-size-3);
 }
 
 
@@ -489,7 +571,7 @@
 .progress-bar__issue {
     text-transform: uppercase;
     font-family: 'Metropolis Semibold';
-    font-size: 1.5rem;
+    font-size: var(--font-size-2);
     margin-block-end: .5rem;
 }
 .progress-bar__issue.big {
@@ -503,7 +585,7 @@
 }
 
 .progress-bar__contribute {
-    font-size: 1.1rem;
+    font-size: var(--font-size-1);
     text-transform: uppercase;
     text-decoration: underline 2px var(--color-black);
 }
@@ -560,7 +642,7 @@
 
 .place__name {
     font-family: 'Metropolis Semibold';
-    font-size: 2.5rem;
+    font-size: var(--font-size-5);
 }
 .place__specification {
     font-family: 'Metropolis Medium';
@@ -608,13 +690,13 @@
 
 .instagram h2 {
     font-family: 'Metropolis Light';
-    font-size: 2.2rem;
+    font-size: var(--font-size-4);
     margin-block-end: 1rem;
 }
 .instagram .hashtag {
     font-family: 'Metropolis Italic'; 
     text-transform: uppercase;
-    font-size: 5.5rem;
+    font-size: var(--font-size-8);
     line-height: 1.1;
     margin-block-end: 3rem;
 }
@@ -733,7 +815,7 @@
     padding: 2rem;
     width: 33.3333333333%;
     height: 27rem;
-    font-size: 1.5rem;
+    font-size: var(--font-size-2);
     margin-inline-start: -2px;
 }
 
@@ -748,12 +830,12 @@
 .instructions h3 {
     text-transform: uppercase;
     font-family: 'Metropolis Semibold';
-    font-size: 3rem;
+    font-size: var(--font-size-6);
 }
 
 .instructions h3 span {
     font-family: 'Trappist';
-    font-size: 3rem;
+    font-size: var(--font-size-6);
     line-height: 1.1;
     color: var(--color-blue);
 }
@@ -785,7 +867,7 @@
     text-align: end;
     margin-inline-end: 3rem;
     font-family: 'Metropolis Medium';
-    font-size: 1.5rem;
+    font-size: var(--font-size-2);
     margin-block-end: 2rem;
 }
 .magazine-preview > p span {

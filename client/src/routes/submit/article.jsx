@@ -90,10 +90,9 @@ export async function action({ request }) {
         const submission = await newSubmission(title, text, info, imgIds, magazineSection, issueNumber, userId, jwt);
         console.log(submission);
         return submission;
-        // return redirect("/submit");
     } catch (error) {
         console.error(error);
-        // Handle the error or display an error message to the user
+        alert('Error submitting article. Please try again.');
     }
 }
 

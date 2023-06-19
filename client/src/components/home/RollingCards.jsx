@@ -1,12 +1,29 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 
 export default function RollingCards({ allMagazineSections }) {
     const elementRef = useRef(null)
 
+    const [isMobile, setIsMobile] = useState(false);
+
     useEffect(() => {
-        gsap.fromTo(elementRef.current, 30, { y: 0 }, { y: -1660, ease: "power0.inOut", yoyo: true, repeat: -1 });
-    }, [])
+        const handleResize = () => {
+            setIsMobile(window.innerWidth >= 880); // Adjust the breakpoint as needed
+        };
+
+        // if (!isMobile) {
+        //     gsap.fromTo(elementRef.current, 30, { y: 0 }, { y: -1660, ease: "power0.inOut", yoyo: true, repeat: -1 });
+        // }
+
+        // Listen for window resize events
+        window.addEventListener('resize', handleResize);
+
+        // Initial check on component mount
+        handleResize();
+
+        // Clean up the event listener on component unmount
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     return (
         <a href="/submit" className='rolling-cards__wrapper'>

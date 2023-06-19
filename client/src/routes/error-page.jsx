@@ -10,11 +10,11 @@ export default function ErrorPage() {
     };
 
     return (
-        <main id="error-page">
+        <main className="error-page">
             <h1>Oops!</h1>
             <div>
                 <p>Sorry, an unexpected error has occurred.</p>
-                <p>
+                <p className="error__message">
                     <i>{error.statusText || error.message}</i>
                 </p>
             </div>
