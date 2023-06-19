@@ -26,15 +26,6 @@ export default function MagazinePopUp({ isOpen, closeModal, pdfPath }) {
 
         loadPages();
     }, [pdfPath]);
-
-    // const handlePrevPage = () => {
-    //     flipbookRef.current.getPageFlip().flipPrev();
-    // };
-
-    // const handleNextPage = () => {
-    //     flipbookRef.current.getPageFlip().flipNext();
-    // };
-
     return (
         <div className='magazine-popup'>
             <Modal
@@ -73,33 +64,25 @@ export default function MagazinePopUp({ isOpen, closeModal, pdfPath }) {
                 {isLoading ? (
                     <p className='magazine-popup__loading'>loading...</p>
                 ) : (
-                    <HTMLFlipBook
-                        className='magazine-popup__flipbook'
-                        // ref={flipbookRef}
-                        width={0.83 * 595}
-                        height={0.83 * 842}
-                        showCover={true}
-                        maxShadowOpacity={0.4}
-                        flippingTime={450}
-                    >
-                        {pages.map((page, index) => (
-                            <img className="magazine-page" key={index} src={page} alt="" />
-                        ))}
-                    </HTMLFlipBook>
+                    <>
+                        <HTMLFlipBook
+                            className='magazine-popup__flipbook'
+                            // ref={flipbookRef}
+                            width={0.83 * 595}
+                            height={0.83 * 842}
+                            showCover={true}
+                            maxShadowOpacity={0.4}
+                            flippingTime={450}
+                        >
+                            {pages.map((page, index) => (
+                                <img className="magazine-page" key={index} src={page} alt="" />
+                            ))}
+                        </HTMLFlipBook>
+                        <p className='magazine-popup__instruction'>Click on the pages to flip through the magazine</p>
+                    </>
                 )}
+
                 <button onClick={closeModal} className='close-button'>X</button>
-                <button
-                    className='left-button'
-                    // onClick={handlePrevPage}
-                >
-                    &lt;
-                </button>
-                <button
-                    className='right-button'
-                    // onClick={handleNextPage}
-                >
-                    &gt;
-                </button>
             </Modal>
         </div>
     );

@@ -305,7 +305,7 @@ export default function Home() {
                 handleSubmit={handleSubmit}
             />
 
-            <MagazinePreview pages={pages} date={date} openModal={openModal} />
+            <MagazinePreview pages={pages} date={date} openModal={openModal} pdfPath={currentMagazinePath}/>
             {isOpen && (
                 <MagazinePopUp isOpen={isOpen} closeModal={closeModal} pdfPath={selectedMagazine} />
             )}

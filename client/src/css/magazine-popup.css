@@ -33,3 +33,12 @@
 .magazine-popup__loading {
     color: var(--color-white);
 }
+
+.magazine-popup__instruction {
+    color: var(--color-yellow);
+    font-family: 'Metropolis Medium';
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    position: absolute;
+    top: -1.3rem;
+}
