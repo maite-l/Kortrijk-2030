@@ -101,7 +101,7 @@ span.italic-semibold {
     font-size: 7.6rem;
 }
 
-.custom-button, .poll-form button {
+.custom-button, .poll-form button, .error-page button {
     font-family: 'Metropolis Medium';
     text-transform: uppercase;
     display: flex;
@@ -165,4 +165,25 @@ form span {
     font-size: 1rem;
     line-height: 1.5rem;
     margin-inline-start: 0.5rem;
+}
+
+.error-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    margin-top: 5rem;
+}
+
+.error-page h1 {
+    font-family: 'Trappist';
+    text-transform: uppercase;
+    font-size: 3rem;
+    line-height: 1.2;
+}
+
+.error__message {
+    font-family: 'Metropolis Italic';
+    margin-block: 1rem;
+    
 }

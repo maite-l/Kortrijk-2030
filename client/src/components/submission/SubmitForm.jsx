@@ -70,6 +70,7 @@ export default function SubmitForm({
                                 style={{ resize: "none" }}
                                 value={textValue}
                                 onChange={handleTextChange}
+                                maxLength={1000}
                             />
                         </label>
                     ) : null}
@@ -84,6 +85,7 @@ export default function SubmitForm({
                                 style={{ resize: "none" }}
                                 value={notesForEditorValue}
                                 onChange={handleNotesForEditorChange}
+                                maxLength={400}
                             />
                         </label>
                     ) : null}

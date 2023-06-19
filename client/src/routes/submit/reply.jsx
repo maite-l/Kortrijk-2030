@@ -70,7 +70,7 @@ export async function action({ request }) {
 
     } catch (error) {
         console.error(error);
-        // Handle the error or display an error message to the user
+        alert('Error submitting article. Please try again.');
     }
 }
 
