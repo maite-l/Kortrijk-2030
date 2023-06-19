@@ -6,7 +6,7 @@
 
 
 .my-submissions-page h1 {
-    font-size: 2.5em;
+    font-size: var(--font-size-5);
     margin-block: 2rem;
 }
 
@@ -21,7 +21,7 @@
 
 .profile__name {
     font-family: 'Metropolis Semibold';
-    font-size: 1.5rem;
+    font-size: var(--font-size-2);
     margin-block-end: 0.5rem;
 }
 
@@ -68,7 +68,7 @@
     flex-direction: row;
     align-items: center;
     gap: 1.5rem;
-    font-size: 1.5rem;
+    font-size: var(--font-size-2);
 }
 
 .my-submission__title {
@@ -81,7 +81,7 @@
 }
 
 .my-submission__date {
-    font-size: 1rem;
+    font-size: var(--font-size-0);
     font-family: 'Metropolis Semibold';
     margin-block-start: 0.5rem;
 }
