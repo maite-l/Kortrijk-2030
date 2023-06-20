@@ -6,25 +6,19 @@ import CustomButton from "./CustomButton";
 
 export default function NavBar({ loggedIn }) {
 
-    const [isMobile, setIsMobile] = useState(false);
-
+    const [width, setWidth] = useState(window.innerWidth);
+    const breakpoint = 860;
     useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth >= 860); // Adjust the breakpoint as needed
+        const handleResizeWindow = () => setWidth(window.innerWidth);
+        // subscribe to window resize event "onComponentDidMount"
+        window.addEventListener("resize", handleResizeWindow);
+        return () => {
+            // unsubscribe "onComponentDestroy"
+            window.removeEventListener("resize", handleResizeWindow);
         };
-
-        // Listen for window resize events
-        window.addEventListener('resize', handleResize);
-
-        // Initial check on component mount
-        handleResize();
-
-        // Clean up the event listener on component unmount
-        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedMagazine, setSelectedMagazine] = useState(null);
 
     const openModal = () => {
         setIsOpen(true);
@@ -36,7 +30,7 @@ export default function NavBar({ loggedIn }) {
 
     return (
         <>
-            {isMobile ? (
+            {width > breakpoint ? (
                 <nav className="desktop-nav">
                     <ul>
                         <li className="logo-link">
@@ -92,6 +86,37 @@ export default function NavBar({ loggedIn }) {
                         isOpen={isOpen}
                         onRequestClose={closeModal}
                         contentLabel="Modal"
+                        // style={{
+                        //     overlay: {
+                        //         top: 0,
+                        //         left: 0,
+                        //         right: 0,
+                        //         bottom: 0,
+                        //         width: '100vw',
+                        //         height: '100vh',
+                        //         backgroundColor: '#030027',
+                        //     },
+                        //     content: {
+                        //         position: 'sticky',
+                        //         top: 0,
+                        //         left: 0,
+                        //         right: 0,
+                        //         bottom: 0,
+                        //         background: 'transparent',
+                        //         overflow: 'visible',
+                        //         WebkitOverflowScrolling: 'touch',
+                        //         outline: 'white 2px solid',
+                        //         border: 'none',
+                        //         borderRadius: '0',
+                        //         width: '100vw',
+                        //         height: '100vh',
+                        //         margin: 'auto',
+                        //         padding: '0',
+                        //         display: 'grid',
+                        //         placeItems: 'center',
+                        //         color: 'white',
+                        //     }
+                        // }}
                         style={{
                             overlay: {
                                 position: 'fixed',
@@ -99,28 +124,30 @@ export default function NavBar({ loggedIn }) {
                                 left: 0,
                                 right: 0,
                                 bottom: 0,
+                                width: '100vw',
+                                height: '100vh',
                                 backgroundColor: '#030027',
                                 zIndex: 1000,
                             },
                             content: {
-                                position: 'fixed',
+                                position: 'sticky',
                                 top: 0,
                                 left: 0,
                                 right: 0,
                                 bottom: 0,
                                 background: 'transparent',
-                                overflow: 'visible',
+                                color: 'white',
                                 WebkitOverflowScrolling: 'touch',
-                                outline: 'white 2px solid',
+                                outline: 'none',
                                 border: 'none',
                                 borderRadius: '0',
                                 width: '100vw',
                                 height: '100vh',
                                 margin: 'auto',
                                 padding: '0',
-                                display: 'grid',
-                                placeItems: 'center',
-                                color: 'white',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
                             }
                         }}
                     >
