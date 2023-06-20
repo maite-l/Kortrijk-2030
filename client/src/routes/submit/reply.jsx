@@ -118,9 +118,8 @@ export default function Reply() {
             :
             <main className={`submitting-page ${submitState === 'confirmation' ? 'confirmation' : ''}`}>
 
-                <ProgressTracker submitState={submitState} />
+                {/* <ProgressTracker submitState={submitState} /> */}
 
-                <div className='content'>
                     {submitState === 'form' && (
                         <SubmitForm
                             title={'Reply to an article / interview'}
@@ -138,6 +137,7 @@ export default function Reply() {
                             textValue={formText}
                             handleTitleChange={handleTitleChange}
                             handleTextChange={handleTextChange}
+                            submitState={submitState}
                         />
                     )}
                     {submitState === 'overview' && (
@@ -145,12 +145,12 @@ export default function Reply() {
                             formTitle={formTitle}
                             formText={formText}
                             setSubmitState={setSubmitState}
+                            submitState={submitState}
                         />
                     )}
                     {submitState === 'confirmation' && (
                         <Confirmation typeOfSubmission={'reply'} openIssueDate={openIssueDate} />
                     )}
-                </div>
 
             </main >
     );
