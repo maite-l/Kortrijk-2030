@@ -349,7 +349,7 @@
     content: '';
     width: 100vw;
     height: clamp(15rem, calc(15rem + 15vw), 33rem);
-    margin-block-start: clamp(-10rem, calc(-10rem + 3.5vw), -15rem);
+    margin-block-start: clamp(-11.2rem, calc(-11.2rem + 3.5vw), -15.5rem);
     background-color: var(--color-blue);
     z-index: -1;
     position: absolute;
@@ -442,9 +442,22 @@
     justify-content: end;
 }
 
-.would-you-rather__title--text {
-    margin-inline-start: -10rem;
-    margin-block-start: 4.5rem;
+
+@media (max-width: 880px) {
+    .would-you-rather__title--text {
+        margin-inline-start: -10rem;
+        margin-block-start: 9rem;
+    }
+    .would-you-rather {
+        margin-block-start: -5rem;
+    }
+}
+
+@media (min-width: 881px) {
+    .would-you-rather__title--text {
+        margin-inline-start: -10rem;
+        margin-block-start: 4.5rem;
+    }
 }
 
 .poll-options{
@@ -460,8 +473,8 @@
 .poll-option, .poll-option--voted {
     border: var(--border);
     border-radius: var(--border-radius);
-    width: 30vw;
-    height: 25vw;
+    width: 33vw;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -485,7 +498,7 @@
 }
 .poll-option__votes {
     font-family: 'Trappist';
-    font-size: 10rem;
+    font-size: clamp(2.8rem, calc(2.8rem + 5vw), 10rem);
     line-height: 1.2;
 }
 
@@ -530,16 +543,6 @@
     margin-block-start: 3rem;
 }
 
-
-
-
-@media (max-width: 880px) {
-
-}
-
-@media (min-width: 881px) {
-
-}
 
 
 .progress {
@@ -662,10 +665,7 @@
     margin-inline: auto;
 }
 
-.map h2 {
-    margin-block-start: 4rem;
-    margin-block-end: 6rem;
-}
+
 
 .map-content {
     display: flex;
@@ -673,11 +673,31 @@
     justify-content: space-between;
 }
 
+@media (max-width: 880px) {
+    .my-map {
+            width: 100%;
+            height: 70vh;
+    }
+    .map h2 {
+        margin-block-start: 1rem;
+        margin-block-end: 3rem;
+    }
+}
+
+@media (min-width: 881px) {
+    .my-map {
+            width: 60vw;
+            height: 45vw;
+    }
+    .map h2 {
+        margin-block-start: 4rem;
+        margin-block-end: 6rem;
+    }
+}
+
 .my-map {
     border: var(--border);
     border-radius: var(--border-radius);
-    width: 60vw;
-    height: 45vw;
 }
 
 .map-info {
@@ -728,7 +748,7 @@
 
 
 .instagram {
-    width: 100vw;
+    width: 100vw-2px;
     margin-block-start: 10rem;
     margin-block-end: 3rem;
     display: flex;
@@ -739,12 +759,12 @@
 .instagram h2 {
     font-family: 'Metropolis Light';
     font-size: var(--font-size-4);
-    margin-block-end: 1rem;
+    margin-block-end: 0.5rem;
 }
 .instagram .hashtag {
     font-family: 'Metropolis Italic'; 
     text-transform: uppercase;
-    font-size: var(--font-size-8);
+    font-size: var(--font-size-7);
     line-height: 1.1;
     margin-block-end: 3rem;
 }
@@ -755,7 +775,7 @@
     border: var(--border);
     border-radius: var(--border-radius);
     width: 100%;
-    padding: 3rem;
+    padding: clamp(1rem, calc(1rem + 0.6vw), 1.5rem);
     display: flex;
     flex-direction: row;
     gap: 1.8rem;
@@ -764,11 +784,23 @@
 }
 
 .instagram-content img {
-    width: 23%;
-    height: 23%;
     object-fit: cover;
     border-radius: 1px;
     box-shadow: var(--drop-shadow);
+}
+
+@media (max-width: 880px) {
+.instagram-content img {
+        width: 45%;
+        height: 45%;
+    }
+}
+
+@media (min-width: 881px) {
+.instagram-content img {
+        width: 23%;
+        height: 23%;
+    }
 }
 
 
@@ -810,10 +842,22 @@
 }
 
 .tiktok-gif {
-    width: 20rem;
-    height: auto;
     position: absolute;
     margin: auto;
+}
+
+@media (max-width: 880px) {
+.tiktok-gif {
+        width: 15rem;
+        height: auto;
+    }
+}
+
+@media (min-width: 881px) {
+.tiktok-gif {
+        width: 20rem;
+        height: auto;
+    }
 }
 
 .tiktok .scribble {
@@ -925,6 +969,11 @@
     box-shadow: var(--drop-shadow);
 }
 
+.magazine-page--mobile {
+    max-width: 90vw;
+    height: auto;
+}
+
 .magazine-flipbook, .magazine-flipbook__container {
     width: calc(0.65 * 595px * 2);
     height: calc(0.65 * 842px);
@@ -935,6 +984,11 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+}
+
+.magazine-flipbook__container--mobile {
+   display: grid;
+   place-items: center;
 }
 
 .magazine-preview {

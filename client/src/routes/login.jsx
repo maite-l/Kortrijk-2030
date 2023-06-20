@@ -26,7 +26,7 @@ export default function Login() {
                     </label>
                     <label htmlFor="password">
                         <span>Password</span>
-                        <input type='password' name='password' placeholder='at least 8 characters' />
+                        <input type='password' name='password' />
                     </label>
                     <button className='auth-button' type='submit'>Log in</button>
                 </Form>
