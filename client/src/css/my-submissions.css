@@ -1,13 +1,84 @@
-.my-submissions-page {
-    width: 80vw;
-    margin-inline: auto;
-    padding-block-start: 3rem;
+@media (max-width: 880px) {
+    .my-submissions-page {
+        width: 94vw;
+        margin-inline: auto;
+        margin-block: 10rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .my-submissions-page h1 {
+        margin-block-end: -1rem;
+        margin-block-start: 2rem;
+        text-align: center;
+    }
+    .my-submissions-page svg {
+        display: none;
+    }
+    .my-submissions {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        width: 95%;
+        margin-inline: auto;
+    }
+    .tabs {
+        gap: 1rem;
+    }
+    .profile__name {
+        margin-block-end: 0.2rem;
+    }
+    .my-submission {
+        padding: 1rem;
+        padding-block-start: 1.5rem;
+    }
+    .my-submission__status {
+        top: -1.2rem;
+    }
 }
+
+@media (min-width: 881px) {
+    .my-submissions-page {
+        width: 80vw;
+        margin-inline: auto;
+        padding-block-start: 3rem;
+    }
+    .my-submissions-page h1 {
+        margin-block: 2rem;
+    }
+    .my-submissions {
+        width: 100%;
+        border: var(--border);
+        border-radius: var(--border-radius);
+        padding: 3rem;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        margin-block-end: 10rem;
+        box-shadow: var(--drop-shadow);
+        background-color: var(--color-white);
+        position: relative;
+    }
+    .tabs {
+        gap: 3rem;
+    }
+    .profile__name {
+        margin-block-end: 0.5rem;
+    }
+    .my-submission {
+        padding: 2rem;
+    }
+    .my-submission__status {
+        top: -1rem;
+    }
+}
+
+
+
 
 
 .my-submissions-page h1 {
     font-size: var(--font-size-5);
-    margin-block: 2rem;
 }
 
 .profile__level {
@@ -22,22 +93,8 @@
 .profile__name {
     font-family: 'Metropolis Semibold';
     font-size: var(--font-size-2);
-    margin-block-end: 0.5rem;
 }
 
-.my-submissions {
-    width: 100%;
-    border: var(--border);
-    border-radius: var(--border-radius);
-    padding: 3rem;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    margin-block-end: 10rem;
-    box-shadow: var(--drop-shadow);
-    background-color: var(--color-white);
-    position: relative;
-}
 
 .my-submissions .scribble {
     position: absolute;
@@ -56,7 +113,6 @@
 .my-submission {
     border: var(--border);
     border-radius: var(--border-radius);
-    padding: 2rem;
     display: flex;
     flex-direction: column;
     gap: 3rem;
@@ -97,6 +153,7 @@
     flex-direction: row;
     gap: 0.8rem;
     height: 8rem;
+    overflow-x: scroll;
 }
 .my-submission__image {
     height: 100%;
@@ -106,7 +163,6 @@
 
 .my-submission__status {
     position: absolute;
-    top: -1rem;
     right: -1rem;
     padding: 0.5rem 1rem;
     border-radius: var(--border-radius);
@@ -120,7 +176,6 @@
     width: fit-content;
     margin: auto;
     flex-direction: row;
-    gap: 3rem;
     margin-block: 2rem;
     box-shadow: var(--drop-shadow);
     border-radius: var(--border-radius);

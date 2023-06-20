@@ -64,7 +64,7 @@ export default function MySubmissions() {
                     className={`tab ${currentTab === "current" ? "selected" : ""}`}
                     onClick={() => handleTabClick("current")}
                 >
-                    Current issue ({openIssueDate})
+                    {openIssueDate} issue
                 </p>
                 <p
                     className={`tab ${currentTab === "past" ? "selected" : ""}`}

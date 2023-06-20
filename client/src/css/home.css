@@ -429,11 +429,6 @@
 
 
 
-.would-you-rather {
-    width: 88vw;
-    margin-inline: auto;
-    margin-block-end: 8rem;
-}
 
 .would-you-rather__title {
     display: flex;
@@ -450,6 +445,19 @@
     }
     .would-you-rather {
         margin-block-start: -5rem;
+        margin-block-end: 8rem;
+        margin-inline: auto;
+        width: 94vw;
+    }
+    .poll-options {
+        width: 100%;
+    }
+    .poll-option, .poll-option--voted {
+        width: 45vw;
+    }
+    .poll-form {
+        width: 100%;
+        gap: 0rem;
     }
 }
 
@@ -458,22 +466,35 @@
         margin-inline-start: -10rem;
         margin-block-start: 4.5rem;
     }
+    .would-you-rather {
+        width: 88vw;
+        margin-inline: auto;
+        margin-block-end: 8rem;
+    }
+    .poll-options {
+        width: 70vw;
+    }
+    .poll-option, .poll-option--voted {
+        width: 33vw;
+    }
+    .poll-form {
+        width: 70vw;
+        gap: 1rem;
+    }
 }
 
 .poll-options{
-    width: 70vw;
     margin-inline: auto;
     margin-block-start: 2rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    /* gap: 5%; */
 }
 .poll-option, .poll-option--voted {
     border: var(--border);
     border-radius: var(--border-radius);
-    width: 33vw;
+
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -503,7 +524,6 @@
 }
 
 .poll-form {
-    width: 70vw;
     margin-block-start: 2rem;
     display: flex;
     flex-direction: column;
