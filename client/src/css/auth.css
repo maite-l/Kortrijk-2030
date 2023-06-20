@@ -1,16 +1,49 @@
 .auth-wrapper {
-    width: 55vw;
     margin-inline: auto;
-    margin-block: 7rem 10rem;
-    border: var(--border);
     border-radius: var(--border-radius);
-    padding: 3rem;
     display: flex;
     flex-direction: column;
-    gap: 1.8rem;
-    align-items: center;
     position: relative;
     background-color: var(--color-white);
+}
+
+@media (max-width: 880px) {
+    .auth-wrapper {
+        width: 100vw;
+        margin-block: 5rem 10rem;
+        padding: 1.5rem;
+        gap: 1rem;
+        align-items: start;
+    }
+
+    .auth-wrapper form {
+        width: 100%;
+    }
+
+    .auth-wrapper p:last-of-type {
+        font-family: 'Metropolis Regular';
+        font-size: var(--font-size-0);
+        line-height: 1;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+@media (min-width: 881px) {
+    .auth-wrapper {
+        border: var(--border);
+        width: 55vw;
+        margin-block: 7rem 10rem;
+        padding: 3rem;
+        gap: 1.8rem;
+        align-items: center;
+    }
+
+    .auth-wrapper p:last-of-type {
+        font-family: 'Metropolis Semibold';
+        font-size: var(--font-size-0);
+        line-height: 1.2;
+    }
 }
 
 .auth-wrapper .scribble {
@@ -44,11 +77,6 @@
     color: var(--color-white);
 }
 
-.auth-wrapper p:last-of-type {
-    font-family: 'Metropolis Semibold';
-    font-size: var(--font-size-0);
-    line-height: 1.2;
-}
 .auth-wrapper p:last-of-type a {
     text-decoration: underline 2px var(--color-black);
     -webkit-text-decoration-line: underline;

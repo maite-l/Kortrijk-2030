@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLoaderData } from "react-router-dom";
+import { saveAs } from 'file-saver';
 
 import pdfToImgSrc from "../util/pdfToImgSrc";
 
@@ -55,10 +56,35 @@ export default function Archive() {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedMagazine, setSelectedMagazine] = useState(null);
 
-    function handleClick(e, magazine) {
+    const [width, setWidth] = useState(window.innerWidth);
+    const breakpoint = 860;
+    useEffect(() => {
+        const handleResizeWindow = () => setWidth(window.innerWidth);
+        // subscribe to window resize event "onComponentDidMount"
+        window.addEventListener("resize", handleResizeWindow);
+        return () => {
+            // unsubscribe "onComponentDestroy"
+            window.removeEventListener("resize", handleResizeWindow);
+        };
+    }, []);
+
+    async function handleClick(e, magazine) {
         e.preventDefault();
-        setSelectedMagazine(magazine);
-        setIsOpen(true);
+
+        if (width > breakpoint) {
+            setSelectedMagazine(magazine);
+            setIsOpen(true);
+        }
+        else {
+            console.log(magazine);
+            try {
+                const response = await fetch(magazine.path);
+                const blob = await response.blob();
+                saveAs(blob, 'klinkt.pdf');
+            } catch (error) {
+                console.log('Error downloading PDF:', error);
+            }
+        }
     }
 
     function closeModal() {
@@ -70,6 +96,17 @@ export default function Archive() {
         const randomIndex = Math.floor(Math.random() * alignments.length);
         return alignments[randomIndex];
     }
+
+    // const handleDownloadClick = async (event) => {
+    //     event.preventDefault();
+    //     try {
+    //         const response = await fetch(pdfPath);
+    //         const blob = await response.blob();
+    //         saveAs(blob, 'klinkt.pdf');
+    //     } catch (error) {
+    //         console.log('Error downloading PDF:', error);
+    //     }
+    // }
 
     return (
         <main className="archive">
@@ -85,7 +122,7 @@ export default function Archive() {
                 {magazineData.map((magazine, magazineIndex) => (
                     <div
                         key={magazineIndex}
-                        className={`archive__magazine--preview`}
+                        className="archive__magazine--preview"
                         style={{
                             justifyContent: getRandomAlignment(),
                             alignItems: getRandomAlignment(),

@@ -148,9 +148,9 @@ export default function Artwork() {
 
     return (
         <main className={`submitting-page ${submitState === 'confirmation' ? 'confirmation' : ''}`}>
-            <ProgressTracker submitState={submitState} />
+            {/* <ProgressTracker submitState={submitState} /> */}
 
-            <div className='content'>
+
                 {submitState === 'form' && (
                     <SubmitForm
                         title={'Submit your artwork / design'}
@@ -173,6 +173,7 @@ export default function Artwork() {
                         handleTitleChange={handleTitleChange}
                         handleTextChange={handleTextChange}
                         handleNotesForEditorChange={handleNotesForEditorChange}
+                        submitState={submitState}
                     />
                 )}
                 {submitState === 'overview' && (
@@ -183,12 +184,13 @@ export default function Artwork() {
                         formText={formText}
                         notesForEditor={notesForEditor}
                         setSubmitState={setSubmitState}
+                        submitState={submitState}
                     />
                 )}
                 {submitState === 'confirmation' && (
                     <Confirmation typeOfSubmission={'artwork'} openIssueDate={openIssueDate} />
                 )}
-            </div>
+
 
         </main>
     );

@@ -148,9 +148,8 @@ export default function Article() {
 
     return (
         <main className={`submitting-page ${submitState === 'confirmation' ? 'confirmation' : ''}`}>
-            <ProgressTracker submitState={submitState} />
+            {/* <ProgressTracker submitState={submitState} /> */}
 
-            <div className='content'>
                 {submitState === 'form' && (
                     <SubmitForm
                         title={'Submit your article'}
@@ -173,6 +172,7 @@ export default function Article() {
                         handleTitleChange={handleTitleChange}
                         handleTextChange={handleTextChange}
                         handleNotesForEditorChange={handleNotesForEditorChange}
+                        submitState={submitState}
                     />
                 )}
                 {submitState === 'overview' && (
@@ -183,12 +183,13 @@ export default function Article() {
                         formText={formText}
                         notesForEditor={notesForEditor}
                         setSubmitState={setSubmitState}
+                        submitState={submitState}
                     />
                 )}
                 {submitState === 'confirmation' && (
                     <Confirmation typeOfSubmission={'article'} openIssueDate={openIssueDate} />
                 )}
-            </div>
+
 
         </main>
     );

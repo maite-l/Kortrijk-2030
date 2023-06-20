@@ -104,9 +104,8 @@ export default function Gossip() {
     return (
         <main className={`submitting-page ${submitState === 'confirmation' ? 'confirmation' : ''}`}>
 
-            <ProgressTracker submitState={submitState} />
+            {/* <ProgressTracker submitState={submitState} /> */}
 
-            <div className='content'>
                 {submitState === 'form' && (
                     <SubmitForm
                         title={'Submit your gossip'}
@@ -123,6 +122,7 @@ export default function Gossip() {
                         textValue={formText}
                         handleTitleChange={handleTitleChange}
                         handleTextChange={handleTextChange}
+                        submitState={submitState}
                     />
                 )}
                 {submitState === 'overview' && (
@@ -130,12 +130,13 @@ export default function Gossip() {
                         formTitle={formTitle}
                         formText={formText}
                         setSubmitState={setSubmitState}
+                        submitState={submitState}
                     />
                 )}
                 {submitState === 'confirmation' && (
                     <Confirmation typeOfSubmission={'gossip'} openIssueDate={openIssueDate} />
                 )}
-            </div>
+
 
         </main>
     );

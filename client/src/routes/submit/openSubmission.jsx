@@ -148,9 +148,9 @@ export default function OpenSubmission() {
     return (
         <main className={`submitting-page ${submitState === 'confirmation' ? 'confirmation' : ''}`}>
 
-            <ProgressTracker submitState={submitState} />
+            {/* <ProgressTracker submitState={submitState} /> */}
 
-            <div className='content'>
+
                 {submitState === 'form' && (
                     <SubmitForm
                         title={'Submission tips'}
@@ -173,6 +173,7 @@ export default function OpenSubmission() {
                         handleTitleChange={handleTitleChange}
                         handleTextChange={handleTextChange}
                         handleNotesForEditorChange={handleNotesForEditorChange}
+                        submitState={submitState}
                     />
                 )}
                 {submitState === 'overview' && (
@@ -183,12 +184,13 @@ export default function OpenSubmission() {
                         formText={formText}
                         notesForEditor={notesForEditor}
                         setSubmitState={setSubmitState}
+                        submitState={submitState}
                     />
                 )}
                 {submitState === 'confirmation' && (
                     <Confirmation typeOfSubmission={'open submission'} openIssueDate={openIssueDate} />
                 )}
-            </div>
+
 
         </main>
     );

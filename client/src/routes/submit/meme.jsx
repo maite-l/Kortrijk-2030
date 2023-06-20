@@ -132,9 +132,8 @@ export default function Meme() {
     return (
         <main className={`submitting-page ${submitState === 'confirmation' ? 'confirmation' : ''}`}>
 
-            <ProgressTracker submitState={submitState} />
+            {/* <ProgressTracker submitState={submitState} /> */}
 
-            <div className='content'>
                 {submitState === 'form' && (
                     <SubmitForm
                         title={'Submit your meme'}
@@ -148,6 +147,7 @@ export default function Meme() {
                         handleSubmit={showOverview}
                         titleValue={formTitle}
                         handleTitleChange={handleTitleChange}
+                        submitState={submitState}
                     />
                 )}
                 {submitState === 'overview' && (
@@ -156,12 +156,13 @@ export default function Meme() {
                         imgNamesResult={imgNamesResult}
                         formTitle={formTitle}
                         setSubmitState={setSubmitState}
+                        submitState={submitState}
                     />
                 )}
                 {submitState === 'confirmation' && (
                     <Confirmation typeOfSubmission={'meme'} openIssueDate={openIssueDate} />
                 )}
-            </div>
+
 
         </main>
     );
