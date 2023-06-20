@@ -37,6 +37,7 @@ nav ul div a:hover {
 
 .active {
     text-decoration: solid underline 2px;
+    -webkit-text-decoration-line: underline;
     font-family: 'Metropolis Semibold';
 }
 

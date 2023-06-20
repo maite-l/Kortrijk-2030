@@ -52,6 +52,7 @@
     display: block;
     color: var(--color-orange);
     text-decoration: underline 2px var(--color-orange);
+    -webkit-text-decoration-line: underline;
     padding: 1rem;
     background-color: transparent;
     border: none;
@@ -65,6 +66,7 @@
     display: block;
     color: var(--color-orange);
     text-decoration: underline 2px var(--color-orange);
+    -webkit-text-decoration-line: underline;
     background-color: transparent;
     border: none;
     text-align: end;

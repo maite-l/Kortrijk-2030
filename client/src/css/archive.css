@@ -48,7 +48,7 @@
     background-color: var(--color-orange);
     box-shadow: var(--drop-shadow);
     color: var(--color-white);
-    font-size: 1rem;
+    font-size: var(--font-size-0);
     margin-block-start: -0.5rem;
     margin-inline-start: -0.5rem;
 }

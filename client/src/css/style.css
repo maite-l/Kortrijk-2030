@@ -68,7 +68,7 @@ html {
     --font-size-5: clamp(1.4rem, calc(1.4rem + 1vw), 2.5rem);
     --font-size-6: clamp(1.5rem, calc(1.5rem + 1.2vw), 3rem);
     --font-size-7: clamp(1.8rem, calc(1.8rem + 1.4vw), 3.8rem);
-    --font-size-8: 5.5rem;
+    --font-size-8: clamp(2rem, calc(2rem + 3.5vw), 5.5rem);
 }
 
 body {
@@ -108,7 +108,7 @@ span.italic-semibold {
 .title--style2 {
     font-family: 'Trappist';
     text-transform: uppercase;
-    font-size: 7.6rem;
+    font-size: clamp(3.2rem, calc(3.2rem + 4vw), 7.6rem);
 }
 
 .custom-button, .poll-form button, .error-page button {
