@@ -9,7 +9,7 @@ import insta6 from "../../assets/img/insta/insta6.png";
 import insta7 from "../../assets/img/insta/insta7.png";
 import insta8 from "../../assets/img/insta/insta8.png";
 
-import tiktok from "../../assets/img/tiktok.png";
+import tiktok from "../../assets/img/tiktok.gif";
 
 export default function SocialMediaSection() {
 

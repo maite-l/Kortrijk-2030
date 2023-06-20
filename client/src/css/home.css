@@ -875,6 +875,7 @@
     .tiktok-gif {
         position: absolute;
         margin: auto;
+        border-radius: var(--border-radius);
     }
     .tiktok .scribble1 {
         right: 22vw;
@@ -910,6 +911,7 @@
 .tiktok-gif {
         width: 15rem;
         height: auto;
+        border-radius: var(--border-radius);
     }
 }
 
@@ -917,6 +919,7 @@
 .tiktok-gif {
         width: 20rem;
         height: auto;
+        border-radius: var(--border-radius);
     }
 }
 
