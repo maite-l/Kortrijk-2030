@@ -5,7 +5,7 @@ import { useContext, useState } from 'react';
 import { GlobalContext } from '../root';
 
 //submission queries and mutations
-import { getMagazineSectionByTitle, newImageAsset, newSubmission, getOpenIssue } from "../../submissions";
+import { getMagazineSectionByTitle, newImageAsset, newSubmission, getOpenIssue } from "../../util/submissions";
 
 import { fileInputChange } from '../../util/util';
 

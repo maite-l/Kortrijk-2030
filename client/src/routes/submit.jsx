@@ -1,6 +1,9 @@
 import { useLoaderData } from "react-router-dom";
 
-import { getAllMagazineSections } from "../submissions";
+import { getAllMagazineSections } from "../util/submissions";
+
+import { redirect } from "react-router-dom";
+import * as jose from 'jose';
 
 import "../css/submit.css";
 
@@ -12,7 +15,27 @@ export async function loader() {
     const meaningfulSections = categories.filter((section) => section.sectionGroup === 'Meaningful & Impactful');
     const creativeSections = categories.filter((section) => section.sectionGroup === 'Creative & Promo');
     const specialSections = categories.filter((section) => section.sectionGroup === 'Special');
-    return { shortFunSections, meaningfulSections, creativeSections, specialSections };
+
+
+    const jwt = localStorage.getItem("jwt");
+
+    if (jwt !== null) {
+        const claims = jose.decodeJwt(jwt);
+        const expires = new Date(claims.exp * 1000);
+        if (expires < new Date()) {
+            localStorage.removeItem("jwt");
+            localStorage.removeItem("user");
+            setTimeout(() => {
+                alert("Your session has expired. Please log in again.");
+            }, 100);
+            return redirect("/login");
+        }
+        else {
+            return { shortFunSections, meaningfulSections, creativeSections, specialSections };
+        }
+    } else {
+        return { shortFunSections, meaningfulSections, creativeSections, specialSections };
+    }
 }
 
 export default function Submit() {
@@ -31,10 +54,10 @@ export default function Submit() {
                 </div>
                 <div className="sections">
 
-                    <SectionGroup title="Short & Fun" sections={shortFunSections} />
-                    <SectionGroup title="Meaningful & Impactful" sections={meaningfulSections} />
-                    <SectionGroup title="Creative & Promo" sections={creativeSections} />
-                    <SectionGroup title="Special" sections={specialSections} />
+                    <SectionGroup sectionClass="short" title="Short & Fun" sections={shortFunSections} />
+                    <SectionGroup sectionClass="meaningful" title="Meaningful & Impactful" sections={meaningfulSections} />
+                    <SectionGroup sectionClass="creative" title="Creative & Promo" sections={creativeSections} />
+                    <SectionGroup sectionClass="special" title="Special" sections={specialSections} />
 
                 </div>
             </div>
@@ -72,10 +95,9 @@ export function SectionCard({ section }) {
     );
 }
 
-
-export function SectionGroup({ title, sections }) {
+export function SectionGroup({ title, sections, sectionClass }) {
     return (
-        <div className="section-group">
+        <div className={`section-group ${sectionClass}`}>
             <h2 className="section-group__title">{title}</h2>
             <div className="section-cards">
                 {sections.map((section) => (

@@ -17,7 +17,7 @@ import {
     getCurrentPoll,
     updateVoteAmountOne,
     updateVoteAmountTwo,
-} from "../polls";
+} from "../util/polls";
 import {
     newPollSubmission,
     getMagazineSectionByTitle,
@@ -26,8 +26,8 @@ import {
     getAllSubmissions,
     getAllMagazineSections,
     getOpenIssue,
-} from "../submissions";
-import { getCurrentIssue } from "../magazines";
+} from "../util/submissions";
+import { getCurrentIssue } from "../util/magazines";
 
 
 import pdfToImgSrc from "../util/pdfToImgSrc";
@@ -283,7 +283,7 @@ export default function Home() {
 
             <Header allMagazineSections={allMagazineSections} openModal={openModal} />
 
-            <FeaturedSubmissions featuredSubmissions={featuredSubmissions} issueDate={issueDate} imgURL={imgURL} openModal={openModal}/>
+            <FeaturedSubmissions featuredSubmissions={featuredSubmissions} issueDate={issueDate} imgURL={imgURL} openModal={openModal} />
 
             <TotalSubmissions allSubmissionsAmount={allSubmissionsAmount} cursorPosition={cursorPosition} />
 
@@ -305,11 +305,11 @@ export default function Home() {
                 handleSubmit={handleSubmit}
             />
 
-            <MagazinePreview pages={pages} date={date} openModal={openModal} pdfPath={currentMagazinePath}/>
+            <MagazinePreview pages={pages} date={date} openModal={openModal} pdfPath={currentMagazinePath} />
             {isOpen && (
                 <MagazinePopUp isOpen={isOpen} closeModal={closeModal} pdfPath={selectedMagazine} />
             )}
-            
+
             <SocialMediaSection />
 
             <MapSection />

@@ -50,6 +50,37 @@
         width: 88vw;
         height: 15rem;
     }
+    .section-group.short .section-card:first-of-type {
+        background-color: var(--color-blue);
+    }
+
+    .section-group.short .section-card:last-of-type {
+        background-color: var(--color-orange);
+    }
+
+    .section-group.meaningful .section-card:first-of-type {
+        background-color: var(--color-yellow);
+    }
+
+    .section-group.meaningful .section-card:last-of-type {
+        background-color: var(--color-blue);
+    }
+
+    .section-group.creative .section-card:first-of-type {
+        background-color: var(--color-orange);
+    }
+
+    .section-group.creative .section-card:last-of-type {
+        background-color: var(--color-yellow);
+    }
+
+    .section-group.special .section-card:first-of-type {
+        background-color: var(--color-blue);
+    }
+
+    .section-group.special .section-card:last-of-type {
+        background-color: var(--color-orange);
+    }
 }
 
 @media (min-width: 881px) {
@@ -61,15 +92,43 @@
         width: 40vw;
         height: 22rem;
     }
+    .section-group.short .section-card:first-of-type:hover {
+        background-color: var(--color-blue);
+    }
+
+    .section-group.short .section-card:last-of-type:hover {
+        background-color: var(--color-orange);
+    }
+
+    .section-group.meaningful .section-card:first-of-type:hover {
+        background-color: var(--color-yellow);
+    }
+
+    .section-group.meaningful .section-card:last-of-type:hover {
+        background-color: var(--color-blue);
+    }
+
+    .section-group.creative .section-card:first-of-type:hover {
+        background-color: var(--color-orange);
+    }
+
+    .section-group.creative .section-card:last-of-type:hover {
+        background-color: var(--color-yellow);
+    }
+
+    .section-group.special .section-card:first-of-type:hover {
+        background-color: var(--color-blue);
+    }
+
+    .section-group.special .section-card:last-of-type:hover {
+        background-color: var(--color-orange);
+    }
 }
 
-.section-cards:hover {
 
-}
 
 .section-card {
     display: block;
-    /* width: 40vw; */
     border: var(--border);
     border-radius: var(--border-radius);
 
@@ -79,6 +138,7 @@
     flex-direction: column;
     justify-content: space-between;
     box-shadow: var(--drop-shadow);
+    transition: all 0.2s ease-in-out;
 }
 
 .section__info {

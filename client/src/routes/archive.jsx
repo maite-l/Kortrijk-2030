@@ -4,7 +4,7 @@ import { saveAs } from 'file-saver';
 
 import pdfToImgSrc from "../util/pdfToImgSrc";
 
-import { getAllMagazinePaths } from "../magazines";
+import { getAllMagazinePaths } from "../util/magazines";
 
 import MagazinePopUp from "../components/MagazinePopUp";
 

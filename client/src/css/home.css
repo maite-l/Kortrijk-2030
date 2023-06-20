@@ -175,7 +175,6 @@
 @media (max-width: 880px) {
     .rolling-cards {
         width: 100%;
-        overflow: scroll;
         padding-inline-start: 1rem;
         padding-block-start: 6rem;
         padding-block-end: 1rem;
@@ -825,14 +824,7 @@
 
 
 
-.tiktok-title {
-    width: 100vw;
-    margin-block-start: 10rem;
-    margin-block-end: 10rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
+
 
 
 .tiktok {
@@ -845,11 +837,63 @@
     position: relative;
 }
 
-.tiktok-title__1 {
-    text-align: end;
-    margin-inline-end: 6rem;
-    overflow: hidden;
+@media (max-width: 880px) {
+    .tiktok-title__1 {
+        text-align: start;
+        margin-inline-start: 1rem;
+        margin-block-end: 1rem;
+        line-height: 1;
+    }
+    .tiktok .scribble1 {
+        left: -15vw;
+        top: 10rem;
+    }
+    .tiktok .scribble2 {
+        left: 18vw;
+        top: 18rem;
+    }
+    .tiktok .scribble3 {
+        right: 3vw;
+        bottom: 0;
+    }
 }
+
+@media (min-width: 881px) {
+    .tiktok-title__1 {
+        text-align: end;
+        margin-inline-end: 6rem;
+        overflow: hidden;
+    }
+    .tiktok-title {
+        width: 100vw;
+        margin-block-start: 10rem;
+        margin-block-end: 10rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .tiktok-gif {
+        position: absolute;
+        margin: auto;
+        border-radius: var(--border-radius);
+    }
+    .tiktok .scribble1 {
+        right: 22vw;
+        top: 0;
+    }
+
+    .tiktok .scribble2 {
+        left: 18vw;
+        top: 18rem;
+    }
+
+    .tiktok .scribble3 {
+        right: 36vw;
+        bottom: 4rem;
+    }
+}
+
+
 .tiktok-title__2 {
     text-align: start;
     margin-inline-start: -8rem;
@@ -861,15 +905,13 @@
     overflow: hidden;
 }
 
-.tiktok-gif {
-    position: absolute;
-    margin: auto;
-}
+
 
 @media (max-width: 880px) {
 .tiktok-gif {
         width: 15rem;
         height: auto;
+        border-radius: var(--border-radius);
     }
 }
 
@@ -877,6 +919,7 @@
 .tiktok-gif {
         width: 20rem;
         height: auto;
+        border-radius: var(--border-radius);
     }
 }
 
@@ -885,18 +928,7 @@
     z-index: -100;
 }
 
-.tiktok .scribble1 {
-    right: 22vw;
-    top: 0;
-}
-.tiktok .scribble2 {
-    left: 18vw;
-    top: 18rem;
-}
-.tiktok .scribble3 {
-    right: 36vw;
-    bottom: 4rem;
-}
+
 
 .instructions {
     width: 100vw;
@@ -946,7 +978,10 @@
     }
 }
 
-
+.instructions .scribble {
+    width: 100%;
+    margin-block-start: -3rem;
+}
 
 
 .instructions__wrapper {
