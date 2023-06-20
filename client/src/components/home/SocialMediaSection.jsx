@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import insta1 from "../../assets/img/insta/insta1.png";
 import insta2 from "../../assets/img/insta/insta2.png";
 import insta3 from "../../assets/img/insta/insta3.png";
@@ -11,17 +13,31 @@ import tiktok from "../../assets/img/tiktok.png";
 
 export default function SocialMediaSection() {
 
-    const instaFeedImgPaths = [
-        insta1,
-        insta2,
-        insta3,
-        insta4,
-        insta5,
-        insta6,
-        insta7,
-        insta8,
-    ];
+    const [isMobile, setIsMobile] = useState(false);
 
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth >= 880); // Adjust the breakpoint as needed
+        };
+
+        // Listen for window resize events
+        window.addEventListener('resize', handleResize);
+
+        // Initial check on component mount
+        handleResize();
+
+        // Clean up the event listener on component unmount
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+
+    let instaFeedImgPaths
+    if (isMobile) {
+        instaFeedImgPaths = [insta1, insta2, insta3, insta4, insta5, insta6, insta7, insta8];
+    } else {
+        instaFeedImgPaths = [insta1, insta2, insta3, insta4];
+    }
+    
     return (
         <div className="social-media">
             <div className="instagram">

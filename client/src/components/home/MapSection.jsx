@@ -1,4 +1,25 @@
+import {useEffect, useState} from "react";
+
 export default function MapSection() {
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth >= 880); // Adjust the breakpoint as needed
+        };
+
+        // Listen for window resize events
+        window.addEventListener('resize', handleResize);
+
+        // Initial check on component mount
+        handleResize();
+
+        // Clean up the event listener on component unmount
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+
     return (
         <div className="map-wrapper" id="map">
             <div className="map">
@@ -10,43 +31,46 @@ export default function MapSection() {
                         height="480"
                         className="my-map">
                     </iframe>
-                    <div className="map-info">
-                        <div className="place">
-                            <p className="place__name">The Penta</p>
-                            <p className="place__specification">Howest Campus Kortrijk Weide</p>
+
+                    {isMobile ? (   
+                        <div className="map-info">
+                            <div className="place">
+                                <p className="place__name">The Penta</p>
+                                <p className="place__specification">Howest Campus Kortrijk Weide</p>
+                            </div>
+                            <p className="address">Sint-Martens-Latemlaan 1B, 8500 Kortrijk</p>
+                            <div className="opening-hours">
+                                <div className="opening-hours__day">
+                                    <p>Monday</p>
+                                    <p>8am - 6pm</p>
+                                </div>
+                                <div className="opening-hours__day">
+                                    <p>Tuesday</p>
+                                    <p>8am - 6pm</p>
+                                </div>
+                                <div className="opening-hours__day">
+                                    <p>Wednesday</p>
+                                    <p>8am - 6pm</p>
+                                </div>
+                                <div className="opening-hours__day">
+                                    <p>Thursday</p>
+                                    <p>8am - 6pm</p>
+                                </div>
+                                <div className="opening-hours__day">
+                                    <p>Friday</p>
+                                    <p>8am - 6pm</p>
+                                </div>
+                                <div className="opening-hours__day">
+                                    <p>Saturday</p>
+                                    <p>Closed</p>
+                                </div>
+                                <div className="opening-hours__day">
+                                    <p>Sunday</p>
+                                    <p>Closed</p>
+                                </div>
+                            </div>
                         </div>
-                        <p className="address">Sint-Martens-Latemlaan 1B, 8500 Kortrijk</p>
-                        <div className="opening-hours">
-                            <div className="opening-hours__day">
-                                <p>Monday</p>
-                                <p>8am - 6pm</p>
-                            </div>
-                            <div className="opening-hours__day">
-                                <p>Tuesday</p>
-                                <p>8am - 6pm</p>
-                            </div>
-                            <div className="opening-hours__day">
-                                <p>Wednesday</p>
-                                <p>8am - 6pm</p>
-                            </div>
-                            <div className="opening-hours__day">
-                                <p>Thursday</p>
-                                <p>8am - 6pm</p>
-                            </div>
-                            <div className="opening-hours__day">
-                                <p>Friday</p>
-                                <p>8am - 6pm</p>
-                            </div>
-                            <div className="opening-hours__day">
-                                <p>Saturday</p>
-                                <p>Closed</p>
-                            </div>
-                            <div className="opening-hours__day">
-                                <p>Sunday</p>
-                                <p>Closed</p>
-                            </div>
-                        </div>
-                    </div>
+                    ) : (null)}
                 </div>
             </div>
         </div>
