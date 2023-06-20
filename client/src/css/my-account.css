@@ -1,17 +1,33 @@
-.my-account {
-    display: grid;
-    grid-template-areas: 'account-info empty' 'my-submissions actions';
-    column-gap: 5rem;
-    width: 72vw;
-    border: var(--border);
-    border-radius: var(--border-radius);
-    margin-inline: auto;
-    padding: 3rem;
-    margin-block-start: 7rem;
-    margin-block-end: 10rem;
-    background-color: var(--color-white);
-    position: relative;
+@media (max-width: 880px) {
+    .my-account {
+        width: 94vw;
+        margin-inline: auto;
+        margin-block: 10rem;
+    }
+    .my-account svg {
+        display: none;
+    }
 }
+
+@media (min-width: 881px) {
+    .my-account {
+        display: grid;
+        grid-template-areas: 'account-info empty' 'my-submissions actions';
+        column-gap: 5rem;
+        width: 72vw;
+        border: var(--border);
+        border-radius: var(--border-radius);
+        margin-inline: auto;
+        padding: 3rem;
+        margin-block-start: 7rem;
+        margin-block-end: 10rem;
+        background-color: var(--color-white);
+        position: relative;
+    }
+}
+
+
+
 
 .my-account .scribble {
     position: absolute;
