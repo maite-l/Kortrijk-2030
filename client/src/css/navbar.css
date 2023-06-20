@@ -68,6 +68,7 @@
     margin-block: -2rem;
     top: 1rem;
     left: 80vw;
+    z-index: 10;
 }
 
 .mobile-nav__close {
