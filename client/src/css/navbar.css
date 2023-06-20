@@ -1,4 +1,4 @@
-nav {
+.desktop-nav {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.76) 14.58%, rgba(255, 255, 255, 0) 100%);
     backdrop-filter: blur(2.5px);
     width: 100vw;
@@ -10,7 +10,7 @@ nav {
     z-index: 10;
 }
 
-nav ul{
+.desktop-nav ul{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -18,7 +18,7 @@ nav ul{
     width: 92vw;
 }
 
-nav ul div {
+.desktop-nav ul div {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -26,27 +26,27 @@ nav ul div {
     gap: 2rem;
 }
 
-nav ul div a {
+.desktop-nav ul div a {
     text-transform: uppercase;
     font-size: var(--font-size-1);
 }
 
-nav ul div a:hover {
+.desktop-nav ul div a:hover {
     font-family: 'Metropolis Semibold';
 }
 
-.active {
+.desktop-nav .active {
     text-decoration: solid underline 2px;
     -webkit-text-decoration-line: underline;
     font-family: 'Metropolis Semibold';
 }
 
-.logo-link {
+.desktop-nav .logo-link {
     font-family: 'Trappist';
     text-transform: uppercase;
     font-size: var(--font-size-6);
 }
-.logo-link .active {
+.desktop-nav .logo-link .active {
     font-family: inherit;
     text-decoration: inherit;
 }
@@ -60,3 +60,56 @@ nav ul div a:hover {
     text-transform: capitalize;
 }
 
+
+.hamburger-icon {
+    position: sticky;
+    height: 2rem;
+    width: 2rem;
+    margin-block: -2rem;
+    top: 1rem;
+    left: 80vw;
+}
+
+.mobile-nav__close {
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+    top: 2rem;
+    left: 82vw;
+}
+
+
+.mobile-nav__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.mobile-nav__container nav ul div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mobile-nav__container nav ul li {
+    margin-block: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mobile-nav__container .login-link {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: capitalize;
+}
+
+.mobile-nav__container .logo-link {
+    font-family: 'Trappist';
+    text-transform: uppercase;
+    font-size: var(--font-size-7);
+}
