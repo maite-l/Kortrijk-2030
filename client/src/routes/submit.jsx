@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 
-import { getAllMagazineSections } from "../submissions";
+import { getAllMagazineSections } from "../util/submissions";
 
 import { redirect } from "react-router-dom";
 import * as jose from 'jose';

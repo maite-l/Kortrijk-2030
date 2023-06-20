@@ -1,7 +1,7 @@
 import { useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
 
-import { getMagazineSectionByTitle, getOpenIssue, newSubmission } from "../../submissions";
+import { getMagazineSectionByTitle, getOpenIssue, newSubmission } from "../../util/submissions";
 
 import SubmitForm from '../../components/submission/SubmitForm';
 import ProgressTracker from '../../components/submission/ProgressTracker';

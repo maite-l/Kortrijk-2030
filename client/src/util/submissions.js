@@ -1,4 +1,4 @@
-import { graphQLRequest, authenticatedGraphQLRequest } from "./util/graphql";
+import { graphQLRequest, authenticatedGraphQLRequest } from "./graphql";
 
 export async function newSubmission(title, text, extraInfo, imgIds, magazineSection, issueNumber, userId, jwt) {
 

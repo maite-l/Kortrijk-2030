@@ -1,8 +1,8 @@
 import { useLoaderData } from "react-router-dom";
 import { useContext, useState } from "react";
 import { GlobalContext } from "../routes/root";
-import { getSubmissonsByUserId, getOpenIssue } from "../submissions";
-import { getUserInfoByUserId } from "../auth";
+import { getSubmissonsByUserId, getOpenIssue } from "../util/submissions";
+import { getUserInfoByUserId } from "../util/auth";
 
 import "../css/my-submissions.css";
 

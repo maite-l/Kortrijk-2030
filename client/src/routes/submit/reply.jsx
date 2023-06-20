@@ -1,8 +1,8 @@
 import { useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
 
-import { getMagazineSectionByTitle, newSubmission, getOpenIssue } from "../../submissions";
-import { getCurrentIssue } from "../../magazines";
+import { getMagazineSectionByTitle, newSubmission, getOpenIssue } from "../../util/submissions";
+import { getCurrentIssue } from "../../util/magazines";
 
 import SubmitForm from '../../components/submission/SubmitForm';
 import ProgressTracker from '../../components/submission/ProgressTracker';
@@ -120,37 +120,37 @@ export default function Reply() {
 
                 {/* <ProgressTracker submitState={submitState} /> */}
 
-                    {submitState === 'form' && (
-                        <SubmitForm
-                            title={'Reply to an article / interview'}
-                            submissionTips={'We would love to know your opinion about what we publish in klinkt.! Just don’t be too harsh on us...'}
-                            formTitlePlaceholder={'My new favourite restaurant (probably)'}
-                            formTextLabel={'Your answer'}
-                            formTextPlaceholder={'I totally agree with you!!! I went there last week and I definitely recommend...'}
-                            reply={true}
-                            articlesToReplyTo={articlesToReplyTo}
-                            includeText={true}
-                            requireText={true}
-                            includeImages={false}
-                            handleSubmit={showOverview}
-                            titleValue={formTitle}
-                            textValue={formText}
-                            handleTitleChange={handleTitleChange}
-                            handleTextChange={handleTextChange}
-                            submitState={submitState}
-                        />
-                    )}
-                    {submitState === 'overview' && (
-                        <SubmitOverview
-                            formTitle={formTitle}
-                            formText={formText}
-                            setSubmitState={setSubmitState}
-                            submitState={submitState}
-                        />
-                    )}
-                    {submitState === 'confirmation' && (
-                        <Confirmation typeOfSubmission={'reply'} openIssueDate={openIssueDate} />
-                    )}
+                {submitState === 'form' && (
+                    <SubmitForm
+                        title={'Reply to an article / interview'}
+                        submissionTips={'We would love to know your opinion about what we publish in klinkt.! Just don’t be too harsh on us...'}
+                        formTitlePlaceholder={'My new favourite restaurant (probably)'}
+                        formTextLabel={'Your answer'}
+                        formTextPlaceholder={'I totally agree with you!!! I went there last week and I definitely recommend...'}
+                        reply={true}
+                        articlesToReplyTo={articlesToReplyTo}
+                        includeText={true}
+                        requireText={true}
+                        includeImages={false}
+                        handleSubmit={showOverview}
+                        titleValue={formTitle}
+                        textValue={formText}
+                        handleTitleChange={handleTitleChange}
+                        handleTextChange={handleTextChange}
+                        submitState={submitState}
+                    />
+                )}
+                {submitState === 'overview' && (
+                    <SubmitOverview
+                        formTitle={formTitle}
+                        formText={formText}
+                        setSubmitState={setSubmitState}
+                        submitState={submitState}
+                    />
+                )}
+                {submitState === 'confirmation' && (
+                    <Confirmation typeOfSubmission={'reply'} openIssueDate={openIssueDate} />
+                )}
 
             </main >
     );

@@ -1,4 +1,4 @@
-import { graphQLRequest } from "./util/graphql";
+import { graphQLRequest } from "./graphql";
 
 export async function getCurrentIssue() {
     const graphqlQuery = `

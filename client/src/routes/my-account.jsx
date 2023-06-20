@@ -1,6 +1,6 @@
 import { Form, useLoaderData } from "react-router-dom";
-import { getSubmissonsByUserId } from "../submissions";
-import { getUserInfoByUserId } from "../auth";
+import { getSubmissonsByUserId } from "../util/submissions";
+import { getUserInfoByUserId } from "../util/auth";
 
 import "../css/my-account.css";
 

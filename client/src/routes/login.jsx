@@ -1,5 +1,5 @@
 import { Form, redirect } from 'react-router-dom';
-import { authenticate } from '../auth';
+import { authenticate } from '../util/auth';
 
 import "../css/auth.css";
 

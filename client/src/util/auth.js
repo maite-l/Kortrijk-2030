@@ -1,4 +1,4 @@
-import { graphQLRequest } from './util/graphql';
+import { graphQLRequest } from './graphql';
 
 export async function authenticate(email, password) {
   const { data, errors } = await graphQLRequest(`
