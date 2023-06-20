@@ -8,18 +8,15 @@ import { createContext } from 'react';
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
-// data
-// import { getSubmissions } from "../submissions";
-// import { getMagazines } from "../submissions";
-
 // global context
+export const GlobalContext = createContext();
 const IMG_URL = import.meta.env.VITE_API_IMAGES_URL || "https://kortrijk2030.ddev.site/files/images/";
 const MAGAZINES_URL = import.meta.env.VITE_API_MAGAZINES_URL || "https://kortrijk2030.ddev.site/files/magazines/";
 
 const maxImgCount = 5;
 const maxImgSizeInMb = 16; //https://craftcms.stackexchange.com/questions/492/when-uploading-assets-what-determines-the-maximum-file-size
 
-export const GlobalContext = createContext();
+
 
 export async function loader() {
     console.log("Loading root");

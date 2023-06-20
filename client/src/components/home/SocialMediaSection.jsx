@@ -13,26 +13,21 @@ import tiktok from "../../assets/img/tiktok.png";
 
 export default function SocialMediaSection() {
 
-    const [isMobile, setIsMobile] = useState(false);
-
+    const [width, setWidth] = useState(window.innerWidth);
+    const breakpoint = 860;
     useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth >= 880); // Adjust the breakpoint as needed
+        const handleResizeWindow = () => setWidth(window.innerWidth);
+        // subscribe to window resize event "onComponentDidMount"
+        window.addEventListener("resize", handleResizeWindow);
+        return () => {
+            // unsubscribe "onComponentDestroy"
+            window.removeEventListener("resize", handleResizeWindow);
         };
-
-        // Listen for window resize events
-        window.addEventListener('resize', handleResize);
-
-        // Initial check on component mount
-        handleResize();
-
-        // Clean up the event listener on component unmount
-        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
 
     let instaFeedImgPaths
-    if (isMobile) {
+    if (width > breakpoint) {
         instaFeedImgPaths = [insta1, insta2, insta3, insta4, insta5, insta6, insta7, insta8];
     } else {
         instaFeedImgPaths = [insta1, insta2, insta3, insta4];

@@ -2,21 +2,16 @@ import {useEffect, useState} from "react";
 
 export default function MapSection() {
 
-    const [isMobile, setIsMobile] = useState(false);
-
+    const [width, setWidth] = useState(window.innerWidth);
+    const breakpoint = 860;
     useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth >= 880); // Adjust the breakpoint as needed
+        const handleResizeWindow = () => setWidth(window.innerWidth);
+        // subscribe to window resize event "onComponentDidMount"
+        window.addEventListener("resize", handleResizeWindow);
+        return () => {
+            // unsubscribe "onComponentDestroy"
+            window.removeEventListener("resize", handleResizeWindow);
         };
-
-        // Listen for window resize events
-        window.addEventListener('resize', handleResize);
-
-        // Initial check on component mount
-        handleResize();
-
-        // Clean up the event listener on component unmount
-        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
 
@@ -32,7 +27,7 @@ export default function MapSection() {
                         className="my-map">
                     </iframe>
 
-                    {isMobile ? (   
+                    {width > breakpoint ? (   
                         <div className="map-info">
                             <div className="place">
                                 <p className="place__name">The Penta</p>
