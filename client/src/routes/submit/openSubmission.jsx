@@ -78,7 +78,7 @@ export async function action({ request }) {
         let userId;
         let jwt;
         if (localStorage.getItem('jwt') === null) {
-            userId = 880;
+            userId = 556;
             jwt = null;
         } else {
             jwt = localStorage.getItem('jwt');
