@@ -4,6 +4,27 @@ import gsap from 'gsap'
 export default function RollingCards({ allMagazineSections }) {
     const elementRef = useRef(null)
 
+
+    const [width, setWidth] = useState(window.innerWidth);
+    const breakpoint = 860;
+    useEffect(() => {
+        const handleResizeWindow = () => setWidth(window.innerWidth);
+        // subscribe to window resize event "onComponentDidMount"
+        window.addEventListener("resize", handleResizeWindow);
+        return () => {
+            // unsubscribe "onComponentDestroy"
+            window.removeEventListener("resize", handleResizeWindow);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (width > breakpoint) {
+            gsap.fromTo(elementRef.current, 30, { y: 0 }, { y: -1750, ease: "power0.inOut", yoyo: true, repeat: -1 });
+        } else {
+            gsap.fromTo(elementRef.current, 30, { x: 0 }, { x: -1650, ease: "power0.inOut", yoyo: true, repeat: -1 });
+        }
+    }, [])
+
     return (
         <a href="/submit" className='rolling-cards__wrapper'>
             <div className="rolling-cards">

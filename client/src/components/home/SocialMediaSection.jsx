@@ -32,7 +32,7 @@ export default function SocialMediaSection() {
     } else {
         instaFeedImgPaths = [insta1, insta2, insta3, insta4];
     }
-    
+
     return (
         <div className="social-media">
             <div className="instagram">
@@ -48,8 +48,16 @@ export default function SocialMediaSection() {
             <div className="tiktok">
                 <div className="tiktok-title">
                     <h2 className="title--style2 tiktok-title__1">Find us on Tiktok</h2>
-                    <h2 className="title--style2 tiktok-title__2">Find us on Tiktok</h2>
-                    <h2 className="title--style2 tiktok-title__3">Find us on Tiktok</h2>
+                    {
+                        width > breakpoint ? (
+                            <>
+                                <h2 className="title--style2 tiktok-title__2">Find us on Tiktok</h2>
+                                <h2 className="title--style2 tiktok-title__3">Find us on Tiktok</h2>
+                            </>
+                        ) : null
+
+                    }
+
                 </div>
                 <img className="tiktok-gif" src={tiktok} alt="Tiktok Post" />
                 <svg className="scribble scribble1" width="237" height="271" viewBox="0 0 237 271" fill="none" xmlns="http://www.w3.org/2000/svg">

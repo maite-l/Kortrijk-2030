@@ -31,10 +31,10 @@ export default function Submit() {
                 </div>
                 <div className="sections">
 
-                    <SectionGroup title="Short & Fun" sections={shortFunSections} />
-                    <SectionGroup title="Meaningful & Impactful" sections={meaningfulSections} />
-                    <SectionGroup title="Creative & Promo" sections={creativeSections} />
-                    <SectionGroup title="Special" sections={specialSections} />
+                    <SectionGroup sectionClass="short" title="Short & Fun" sections={shortFunSections} />
+                    <SectionGroup sectionClass="meaningful" title="Meaningful & Impactful" sections={meaningfulSections} />
+                    <SectionGroup sectionClass="creative" title="Creative & Promo" sections={creativeSections} />
+                    <SectionGroup sectionClass="special" title="Special" sections={specialSections} />
 
                 </div>
             </div>
@@ -72,10 +72,9 @@ export function SectionCard({ section }) {
     );
 }
 
-
-export function SectionGroup({ title, sections }) {
+export function SectionGroup({ title, sections, sectionClass }) {
     return (
-        <div className="section-group">
+        <div className={`section-group ${sectionClass}`}>
             <h2 className="section-group__title">{title}</h2>
             <div className="section-cards">
                 {sections.map((section) => (
