@@ -27,7 +27,7 @@
 }
 
 .submission-tips__title {
-    font-size: 1.8rem;
+    font-size: var(--font-size-3)
     font-family: 'Metropolis Semibold';
 }
 
@@ -263,7 +263,7 @@
 
 .confirmation__info p {
     font-family: 'Metropolis Medium';
-    font-size: 1.4rem;
+    font-size: var(--font-size-2);
     line-height: 1.2;
     margin-inline-start: -1rem;
     margin-block-end: 1rem;

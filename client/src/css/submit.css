@@ -6,6 +6,7 @@
 
 .submit-sections__header a {
     text-decoration: underline 2px;
+    -webkit-text-decoration-line: underline;
 }
 
 .submit {

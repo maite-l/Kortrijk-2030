@@ -20,7 +20,7 @@
 
 .auth-wrapper h2 {
     font-family: 'Metropolis Medium';
-    font-size: 1.8rem;
+    font-size: var(--font-size-3);
     line-height: 1.2;
 }
 
@@ -51,6 +51,7 @@
 }
 .auth-wrapper p:last-of-type a {
     text-decoration: underline 2px var(--color-black);
+    -webkit-text-decoration-line: underline;
     margin-inline-start: 0.4rem;
 }
 

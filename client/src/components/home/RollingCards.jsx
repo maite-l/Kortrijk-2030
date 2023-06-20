@@ -8,7 +8,7 @@ export default function RollingCards({ allMagazineSections }) {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth >= 880); // Adjust the breakpoint as needed
+            setIsMobile(window.innerWidth <= 880); // Adjust the breakpoint as needed
         };
 
         // if (!isMobile) {
