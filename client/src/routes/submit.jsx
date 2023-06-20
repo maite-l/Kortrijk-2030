@@ -2,6 +2,9 @@ import { useLoaderData } from "react-router-dom";
 
 import { getAllMagazineSections } from "../submissions";
 
+import { redirect } from "react-router-dom";
+import * as jose from 'jose';
+
 import "../css/submit.css";
 
 
@@ -12,7 +15,27 @@ export async function loader() {
     const meaningfulSections = categories.filter((section) => section.sectionGroup === 'Meaningful & Impactful');
     const creativeSections = categories.filter((section) => section.sectionGroup === 'Creative & Promo');
     const specialSections = categories.filter((section) => section.sectionGroup === 'Special');
-    return { shortFunSections, meaningfulSections, creativeSections, specialSections };
+
+
+    const jwt = localStorage.getItem("jwt");
+
+    if (jwt !== null) {
+        const claims = jose.decodeJwt(jwt);
+        const expires = new Date(claims.exp * 1000);
+        if (expires < new Date()) {
+            localStorage.removeItem("jwt");
+            localStorage.removeItem("user");
+            setTimeout(() => {
+                alert("Your session has expired. Please log in again.");
+            }, 100);
+            return redirect("/login");
+        }
+        else {
+            return { shortFunSections, meaningfulSections, creativeSections, specialSections };
+        }
+    } else {
+        return { shortFunSections, meaningfulSections, creativeSections, specialSections };
+    }
 }
 
 export default function Submit() {

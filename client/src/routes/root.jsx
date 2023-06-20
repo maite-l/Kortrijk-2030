@@ -4,6 +4,8 @@ import {
 } from "react-router-dom";
 import { createContext } from 'react';
 
+
+
 // components
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
@@ -25,9 +27,7 @@ export async function loader() {
     if (localStorage.getItem("jwt")) {
         loggedIn = true;
     }
-
-    return {loggedIn};
-
+    return { loggedIn };
 }
 
 export default function Root() {
